@@ -1,8 +1,15 @@
-.Title {
+#Title {
+	background-color: black;
+	color: white;
+	size: 20px;
+}
+
+#anime {
 	background-color: black;
 	color: white;
 }
 
-body {
+#menu {
 	background-color: black;
+	color: white;
 }
