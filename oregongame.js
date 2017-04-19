@@ -1,6 +1,6 @@
 		
 		
-window.onload = function() { document.getElementById("audio_MenuTheme").play();}
+window.onload = function() { document.getElementById("audio_menuTheme").play();}
 
 //Functionality for sfx sound on hover menu items
 function playMenuHoverSound()
@@ -16,7 +16,7 @@ function stopMenuHoverSound()
 }
 //Functionality for the Turn Off/On Menu Option.
 function toggleMusic(){ 
-	var audio = document.getElementById("audio_MenuTheme");
+	var audio = document.getElementById("audio_menuTheme");
 	var button = document.getElementById("button_toggleMusic");
 	if(button.innerHTML == "Turn sound off")
 	{
@@ -28,4 +28,10 @@ function toggleMusic(){
 		audio.play();
 		button.innerHTML = "Turn sound off";
 	}	
+}
+
+function learnTheTrail(){
+	var menuHTML = document.getElementById("div_Menu").innerHTML; 
+	var currMenu = document.getElementById("div_Menu").innerHTML = ("<center>BSDFSDFSDFSDFSDFSDFDF <br><button><</center>");
+	
 }
