@@ -2,9 +2,8 @@
 	<head>
 	<link href='http://fonts.googleapis.com/css?family=Just+Another+Hand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="oregon.css">
-	<audio>
-		<source id="audio_menuSelect" src="Sound/title_piano_ver.mp3" type="audio/mpeg"> 
-		<source id="audio_MenuTheme" src="Sound/MenuSelect.mp3" type="audio/mpeg">  
+	<audio id="audio_menuTheme"><source  src="Sound/title_piano_ver.mp3" type="audio/mpeg"> </audio>
+	<audio id="audio_menuSelect"><source  src="Sound/MenuSelect.mp3" type="audio/mpeg"> </audio>
 	</audio>
 	<script src="oregongame.js"></script>
 	
@@ -14,15 +13,15 @@
 	
 		<center id="Title">The Oregon Trail!</center> 
 	
-		<div class="wrapper_MenuHolder">
+		<div class="wrapper_MenuHolder" id="div_Menu">
 			<center>
 				<button class="MenuOption" id="button_playGame" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Travel the Trail</button> <br><br>
-				<button class="MenuOption" id="button_learnAbout" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Learn about the trail</button> <br> <br>
+				<button class="MenuOption" id="button_learnAbout" onclick="learnTheTrail()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Learn about the trail</button> <br> <br>
 				<button class="MenuOption" id="button_highScore" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">See the Oregon Top Ten</button> <br><br>
 				<button class="MenuOption" id="button_toggleMusic" onclick="toggleMusic()" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()">Turn sound off</button> <br><br>
 				<button class="MenuOption" id="button_options" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()"> Choose Management Options</button> <br>
 			</center>
 		</div>					
 	</div>
-	</body>
+	</body> 
 </html>
