@@ -1,0 +1,98 @@
+1a) Real Initial menu
+	- Treval the trail
+	- Learn about the trail
+	- See the Oregon top ten
+	- Turn sound off and on
+	- Choose manahemet options
+	- End
+1) Play game Menu
+	- Pick what type of person you are
+	- pick five names
+	- pick month to leave march - july
+	- allocate money according to who user chose
+		a) 1600 banker
+		b) 800 carpetner 
+		c) 400 farmer
+	- Supply shop default transition
+		a) Oxen
+		b) Sets of clothing
+		c) bullets
+		d) wagon wheels
+		e) wagon axle
+		f) wagon tongues
+		g) pounds of food
+3) Town menu
+	- Continue trail
+	- Check supplies
+		a) Oxen
+		b) Sets of clothing
+		c) bullets
+		d) wagon wheels
+		e) wagon axle
+		f) wagon tongues
+		g) pounds of food
+		h) how much money is left
+	- Look at map
+	- Change pace
+		a) steady pace
+		b) streneous pace
+		c) grueling pace
+		d) help understand it
+	- Change food ration
+		a) filling
+		b) meager
+		c) bare bones
+	- Stop to rest
+	- Attempt to trade
+		a) lose days when trading
+		b) randomly select if trade is or isn't going to happen
+		c) randomly generate what to trade
+	- Talk to people
+		a) give zero useful information
+		b) roast the player
+	- Buy Supplies
+4) Trip segments and random generators
+	- Generate random number between 0 and 50 over mile range, this designats if event occurs
+	(This changes dynimcally according to how much food user has and their health)
+		a) Wheel can break
+		b) wagon axle can break
+		c) tongue can break
+		d) suuplies stolen
+		e) someone dies
+		f) someone gets sick
+			- if someone is sick they can either die or get better
+	- each 10 miles is designated as a second, count off on screen
+	- can interupt at any moment for rest menu
+	- Current status
+		a) Date
+		b) Wheater
+		c) Health
+		d) Food
+		e) Next Landmark
+		f) Miles traveled 
+	- river stops/crossing
+		a) Show how scenery looks after asking if they want to see
+		b) Show width and depth of river
+		c) menu
+			- attempt to ford the river
+			- caulk the wagon and float it across
+			- take a ferry across
+				a) this is paid
+			- wait to see if coonditions improve
+				- go up a day and change status of river or not
+			- get more info
+5) Rest menu
+	- Continue on trail
+	- Check suppplies
+	- Look at map
+	- Change pace
+	- change food ration
+	- stop to rest
+	- attempt to trade
+	- hunt
+6) Animations
+	- gifs maybe? lupoli said YES
+	- Chritie can draw
+7) DB connectivity
+	- PHP file
+	- who wants to have their account used
