@@ -99,3 +99,4 @@
 	- High score
 		a) x3 if farmer
 		b) x2 if jesus
+
