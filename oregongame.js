@@ -1,12 +1,111 @@
-var player1name, player2name, player3name, player4name;
+		
+		
+window.onload = function() { document.getElementById("audio_menuTheme").play();}
+/******************************************** Game related Objects *********************************************/
+function Game(personBackground){
+	this.game_family =[]; //array that holds people objects (your family)
+	this.currMile = 1;
+	
+	if (personBackground =="Banker"){
+		this.money = 1600;
+	}
+	else{
+		this.money = 500;
+	}	
+}
 
+function Person(name){
+	this.hunger = 100; //hunger for new people begins at 100
+	this.p_name = name;
+}
 
-/***********************Initialization*****************/
-
-function welcome(){
+function selectGameBackground(){
+	document.getElementById("wrapper_chooseGameBackground").style.display = "block";
+	document.getElementById("wrapper_menuOptions").style.display = "none";
+	document.getElementById("wrapper_chooseGameBackground").style.backgroundImage = "url('Images/openBook.png')";
 
 }
 
-function getName(){
 
+/********************************************** Main Menu Functions *********************************************/
+
+function startGame(){
+	selectGameBackground();
 }
+
+//Functionality for sfx sound on hover menu items
+function playMenuHoverSound()
+{
+	var paperCrumble = document.getElementById("audio_menuSelect");
+	paperCrumble.play();
+}
+function stopMenuHoverSound()
+{
+	var paperCrumble = document.getElementById("audio_menuSelect");
+	paperCrumble.pause();
+	paperCrumble.currentTime = 0;
+}
+//Functionality for the Turn Sound Off/On Menu Option.
+function toggleMusic(){ 
+	var audio = document.getElementById("audio_menuTheme");
+	var button = document.getElementById("button_toggleMusic");
+	if(button.innerHTML == "Turn sound off")
+	{
+		audio.pause();
+		button.innerHTML = "Turn sound on";
+	}
+	else
+	{
+		audio.play();
+		button.innerHTML = "Turn sound off";
+	}	
+}
+
+//this function allows the user to click through prompts when clicking "Learn the trail"
+var currentLearnTheTrailMenu = 0; //used to navigate the menu
+function learnTheTrail(){
+	if (currentLearnTheTrailMenu == 0){
+		currentLearnTheTrailMenu = 1;
+		var menuHTML = document.getElementById("div_Menu").innerHTML; 
+		document.getElementById("wrapper_menuOptions").style.display="none";
+		document.getElementById("wrapper_learnTheTrail").style.display="inline";
+		document.getElementById("button_learnTheTrail").innerHTML = "Try taking a journey by covered wagon across 2000 miles of plain, rivers, and mountains. Try!<br>  On the plains, will you slosh through mud and water-filled ruts or will you plod through dust six inches deep? <br>  <u>CLICK TO CONTINUE! </u>";	
+	}
+	else if (currentLearnTheTrailMenu == 1){
+		currentLearnTheTrailMenu = 2;
+		document.getElementById("button_learnTheTrail").innerHTML = "How will you cross the rivers?<br> If you have money, you might take a ferry (if there is a ferry). <br>Or, you can go through the river and hope you and your wagon aren't swallowed alive! <br>  <u>CLICK TO CONTINUE! </u>";
+	}
+	else if (currentLearnTheTrailMenu == 2){
+		currentLearnTheTrailMenu = 3;
+		document.getElementById("button_learnTheTrail").innerHTML =  "What about supplies? Well, if you're low on food you can hunt.<br> You might get a buffalo... you might.<br> And there are bears in the mountains. <br>  <u>CLICK TO CONTINUE!</u>";
+	}
+	else if (currentLearnTheTrailMenu == 3) {
+		currentLearnTheTrailMenu = 4;
+		document.getElementById("button_learnTheTrail").innerHTML =  "At the Dalles, you can try navigating the Columbia River.<br> But, if running the rapids with a makeshift raft makes you queasy, better take the Barlow Road. <br> <u> CLICK TO CONTINUE!</u>";
+	}
+	else if (currentLearnTheTrailMenu == 4){
+		currentLearnTheTrailMenu = 5;
+		document.getElementById("button_learnTheTrail").innerHTML = "If for some reason you don't survive -- your wagon burns, or theives steal your oxen,<br> or you run out of provisions, or you die of cholera -- don't give up!<br> Try again...and again...until your name is up with the others on The Oregon Top Ten<br> <u> CLICK TO CONTINUE!</u>"; 
+	}
+	else if(currentLearnTheTrailMenu == 5){
+		currentLearnTheTrailMenu = 6;
+		document.getElementById("button_learnTheTrail").innerHTML = "The software team responsible for creation of this product: <br> Sean Imam <br> Andrei Bodnya <br> Christine Miller <br> Malik Phillips-Uwanamodo <br> <u> CLICK TO EXIT!</u>";
+	}
+	else if(currentLearnTheTrailMenu == 6){
+		currentLearnTheTrailMenu = 1;
+		document.getElementById("wrapper_learnTheTrail").style.display="none";
+		document.getElementById("wrapper_menuOptions").style.display="block";	
+	}
+}
+/********************************************** jQuery Functions *********************************************/
+//this sections is used for more complicated effects and interactivity
+
+$(document).ready(function() {
+   $('#button_startGame').on('click', function() {
+     $('#overlay').animate({
+       opacity: 0.33,
+     }, 5000, function() {
+        // Animation complete.
+     });
+   }); 
+});
