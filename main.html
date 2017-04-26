@@ -10,15 +10,42 @@
 	<body>
 	<div id="GameBox">	
 		<center id="Title">The Oregon Trail!</center> 
+		
 		<div class="wrapper_MenuHolder" id="div_Menu">
+		
+		<!--invisible span for handling learn about the trail information -->
 			<center>
-				<button class="MenuOption" id="button_playGame" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Travel the Trail</button> <br><br>
+				<span id="wrapper_learnTheTrail">
+				<button class="MenuOption" id="button_learnTheTrail" style=" width:50vw; height:40vh;" onclick="learnTheTrail()"> </button>	
+				</span>
+			</center>
+			
+		<!--options for for handlding main menu information -->	
+			<center>
+				<span id="wrapper_menuOptions">
+				<button class="MenuOption" id="button_startGame" onclick="startGame()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Travel the Trail</button> <br><br>
 				<button class="MenuOption" id="button_learnAbout" onclick="learnTheTrail()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Learn about the trail</button> <br> <br>
 				<button class="MenuOption" id="button_highScore" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">See the Oregon Top Ten</button> <br><br>
 				<button class="MenuOption" id="button_toggleMusic" onclick="toggleMusic()" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()">Turn sound off</button> <br><br>
 				<button class="MenuOption" id="button_options" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()"> Choose Management Options</button> <br>
+				</span>
+			</center> 
+
+		<!--menu for handlding choosing your background -->
+			<center>
+				<span id="wrapper_chooseGameBackground">
+				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">Choose your Background</p>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_banker">Banker</button> 
+					<button style="margin-left:15vw; " class="MenuOption" id="button_farmer">Farmer</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_carpenter">Carpenter</button>
+					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
+				</span>
 			</center>
-		</div>					
+			
+		</div>		
+		
+		
+		
 	</div>
 	</body> 
 </html>
