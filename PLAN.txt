@@ -96,3 +96,7 @@
 7) DB connectivity
 	- PHP file
 	- who wants to have their account used
+	- High score
+		a) x3 if farmer
+		b) x2 if jesus
+
