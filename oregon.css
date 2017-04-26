@@ -1,15 +1,73 @@
-#Title {
-	background-color: black;
-	color: white;
-	size: 20px;
-}
+body 
+	{
+    background-color: black;
+	}
+	#GameBox
+	{
+	width:55vw;
+	height:60vh;
+	border-style:solid;
+	border-width:2px;
+	background-image: url("Images/MainMenu.png");
+	background-size: 100% 100%;
+	margin-top:25vh;
+	margin:auto;
+	}
+	#Title
+	{
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	color:white;
+	font-size:12vh;
+	position:relative;
 
-#anime {
-	background-color: black;
-	color: white;
-}
+	}
+	button.MenuOption
+	{
+	margin:auto;
+	width:25vh;
+	height:3vw;
+	border-style:none;
+	background-image:url(Images/scrollArt.png);
+	background-size: 100% 100%;
+	background-repeat:no-repeat;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	font-size:3vh;
+	background-color: Transparent;
+	transition: width 0.4s;
+	}
+	button.MenuOption:hover
+	{
+	width:35vh;
+	color:white;
+	}
+	
+	div.wrapper_MenuHolder
+	{
+	animation-name: menuHover ;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	}
+	
+	@keyframes menuHover 
+	{
+    0%   {transform: translateY(0px); }
+	
+    25%  {transform: translateY(5px); }
 
-#menu {
-	background-color: black;
-	color: white;
-}
+	75% {transform: translateY(-5px); }
+
+	100% {transform: translateY(0px); }
+	}
+	#wrapper_learnTheTrail
+	{
+	display:none;
+	}
+	#wrapper_chooseGameBackground
+	{
+	display:none;
+	width:30vw;
+	height: 45vh;
+	background-size: 100% 100%;
+	}
+	
