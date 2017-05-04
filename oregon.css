@@ -70,4 +70,11 @@ body
 	height: 45vh;
 	background-size: 100% 100%;
 	}
+	#wrapper_chooseFamilyName
+	{
+	display: none;
+	}
+	#wrapper_chooseMonthtoLeave{
+		display: none;
+	}
 	
