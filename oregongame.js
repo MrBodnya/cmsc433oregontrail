@@ -2,6 +2,15 @@
 		
 window.onload = function() { document.getElementById("audio_menuTheme").play();}
 /******************************************** Game related Objects *********************************************/
+function selectGameBackground(){
+	document.getElementById("wrapper_chooseGameBackground").style.display = "block";
+	document.getElementById("wrapper_menuOptions").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
+	document.getElementById("wrapper_chooseGameBackground").style.backgroundImage = "url('Images/openBook.png')";
+
+}
+
 function pickBackground(type){
 	
 	this.currMile = 1;
@@ -9,19 +18,32 @@ function pickBackground(type){
 	if (type == "banker"){
 		this.money = 1600;
 		this.pointsMulti = 1;
+		this.type = type;
 		makeFamily();
 	}
 	else if(type == "carpenter"){
 		this.money = 800;
 		this.pointsMulti = 2;
+		this.type = type;
 		makeFamily();
 	}
 	else if(type == "farmer")	{
 		this.money = 400;
 		this.pointsMulti = 3;
+		this.type = type;
 		makeFamily();
 	}
 	
+}
+
+function makeFamily(){
+
+	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
+	document.getElementById("wrapper_menuOptions").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.display = "block";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.backgroundImage = "url('Images/openBook.png')";
+
 }
 
 function submitFNames(){
@@ -34,37 +56,50 @@ function submitFNames(){
 	chooseMonth();
 }
 
-// Might need to edit since array is not in this function, or make array global
-function makeFamily(){
-
-	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
-	document.getElementById("wrapper_menuOptions").style.display = "none";
-	document.getElementById("wrapper_chooseFamilyName").style.display = "block";
-	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
-	document.getElementById("wrapper_chooseFamilyName").style.backgroundImage = "url('Images/openBook.png')";
-
-}
 
 function Person(name){
 	this.hunger = 100; //hunger for new people begins at 100
 	this.p_name = name;
 }
 
-function selectGameBackground(){
-	document.getElementById("wrapper_chooseGameBackground").style.display = "block";
-	document.getElementById("wrapper_menuOptions").style.display = "none";
-	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
-	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
-	document.getElementById("wrapper_chooseGameBackground").style.backgroundImage = "url('Images/openBook.png')";
-
-}
-
 function chooseMonth(){
-document.getElementById("wrapper_chooseGameBackground").style.display = "none";
+	
+	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
 	document.getElementById("wrapper_menuOptions").style.display = "none";
 	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
 	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "block";
-	document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')";}
+	document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')";
+
+}
+
+function monthPick(month){
+
+	if(type == "march"){
+		this.month = "March";
+		timeToShop();
+	}else if(type == "april"){
+		this.month = "April";
+		timeToShop();
+	}else if(type == "may"){
+		this.month = "May";
+		timeToShop();
+	}else if(type == "june"){
+		this.month = "June";
+		timeToShop();
+	}else if(type == "july"){
+		this.month = "july";
+		timeToShop();
+	}
+	
+}
+
+function timeToShop(){
+
+	if(this.type == "banker"){
+		
+	}
+
+}
 
 
 /********************************************** Main Menu Functions *********************************************/
