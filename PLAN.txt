@@ -1,15 +1,15 @@
 1a) Real Initial menu
 	- Treval the trail
-	- Learn about the trail
+	- Learn about the trail - Sean - done
 	- See the Oregon top ten
 	- Turn sound off and on
-	- Choose manahemet options
+	- Choose managemet options
 	- End
 1) Play game Menu
 	- Pick what type of person you are   - Sean/ Andrei - complete
 	- pick five names    - Andrei - Complete but ugly
 	- pick month to leave march - july		Andrei - complete but does not go further
-	- allocate money according to who user chose
+	- allocate money according to who user chose  Andrei - completed
 		a) 1600 banker
 		b) 800 carpetner 
 		c) 400 farmer
@@ -100,3 +100,11 @@
 		a) x3 if farmer
 		b) x2 if jesus
 
+
+
+General Guide 
+https://www.gamefaqs.com/pc/577345-the-oregon-trail/faqs/30964
+
+
+Walkthrough specifically for our version of the game
+https://strategywiki.org/wiki/The_Oregon_Trail/Walkthrough
