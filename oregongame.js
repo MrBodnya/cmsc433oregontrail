@@ -2,6 +2,31 @@
 		
 window.onload = function() { document.getElementById("audio_menuTheme").play();}
 /******************************************** Game related Objects *********************************************/
+function Game(personBackground){
+	this.game_family =[]; //array that holds people objects (your family)
+	this.currMile = 1;    //current mile
+	this.pointsMulti = 0; //points multiplier
+	this.money = 0;
+	this.type="";
+	
+	if (personBackground =="banker"){
+		money = 1600;
+		pointsMulti = 1;
+		type = "banker";
+		
+	}
+	else if (personBackground=="carpenter"){
+		money = 800;
+		pointsMulti = 2;
+		type = "capenter";
+	}
+	else if(personBackground=="farmer"){
+		money = 400;
+		pointsMulti = 3;
+		type = "farmer";
+	}
+}
+
 function selectGameBackground(){
 	document.getElementById("wrapper_chooseGameBackground").style.display = "block";
 	document.getElementById("wrapper_menuOptions").style.display = "none";
@@ -13,24 +38,17 @@ function selectGameBackground(){
 
 function pickBackground(type){
 	
-	this.currMile = 1;
-
 	if (type == "banker"){
-		this.money = 1600;
-		this.pointsMulti = 1;
-		this.type = type;
+		theGame[0] = new Game(type);
+		console.log(theGame[0].money);
 		makeFamily();
 	}
 	else if(type == "carpenter"){
-		this.money = 800;
-		this.pointsMulti = 2;
-		this.type = type;
+		theGame[0] = new Game(type);
 		makeFamily();
 	}
 	else if(type == "farmer")	{
-		this.money = 400;
-		this.pointsMulti = 3;
-		this.type = type;
+		theGame[0] = new Game(type);
 		makeFamily();
 	}
 	

@@ -72,9 +72,15 @@ body
 	}
 	#wrapper_chooseFamilyName
 	{
-	display: none;
+		display: none;
+		width:30vw;
+		height: 45vh;
+		background-size: 100% 100%;
 	}
 	#wrapper_chooseMonthtoLeave{
 		display: none;
+		width:30vw;
+		height: 45vh;
+		background-size: 100% 100%;
 	}
 	
