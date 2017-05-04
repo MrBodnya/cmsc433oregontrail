@@ -6,9 +6,9 @@
 	- Choose manahemet options
 	- End
 1) Play game Menu
-	- Pick what type of person you are
-	- pick five names
-	- pick month to leave march - july
+	- Pick what type of person you are   - Sean/ Andrei - complete
+	- pick five names    - Andrei - Complete but ugly
+	- pick month to leave march - july		Andrei - complete but does not go further
 	- allocate money according to who user chose
 		a) 1600 banker
 		b) 800 carpetner 
