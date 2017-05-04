@@ -2,16 +2,47 @@
 		
 window.onload = function() { document.getElementById("audio_menuTheme").play();}
 /******************************************** Game related Objects *********************************************/
-function Game(personBackground){
-	this.game_family =[]; //array that holds people objects (your family)
-	this.currMile = 1;
+function pickBackground(type){
 	
-	if (personBackground =="Banker"){
+	this.currMile = 1;
+
+	if (type == "banker"){
 		this.money = 1600;
+		this.pointsMulti = 1;
+		makeFamily();
 	}
-	else{
-		this.money = 500;
-	}	
+	else if(type == "carpenter"){
+		this.money = 800;
+		this.pointsMulti = 2;
+		makeFamily();
+	}
+	else if(type == "farmer")	{
+		this.money = 400;
+		this.pointsMulti = 3;
+		makeFamily();
+	}
+	
+}
+
+function submitFNames(){
+	this.game_family = []; //array that holds people objects (your family)
+	game_family.push(Person(document.getElementById("playername").value));
+	game_family.push(Person(document.getElementById("fname1").value));
+	game_family.push(Person(document.getElementById("fname2").value));
+	game_family.push(Person(document.getElementById("fname3").value));
+	game_family.push(Person(document.getElementById("fname4").value));
+	chooseMonth();
+}
+
+// Might need to edit since array is not in this function, or make array global
+function makeFamily(){
+
+	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
+	document.getElementById("wrapper_menuOptions").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.display = "block";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.backgroundImage = "url('Images/openBook.png')";
+
 }
 
 function Person(name){
@@ -22,15 +53,25 @@ function Person(name){
 function selectGameBackground(){
 	document.getElementById("wrapper_chooseGameBackground").style.display = "block";
 	document.getElementById("wrapper_menuOptions").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
 	document.getElementById("wrapper_chooseGameBackground").style.backgroundImage = "url('Images/openBook.png')";
 
 }
+
+function chooseMonth(){
+document.getElementById("wrapper_chooseGameBackground").style.display = "none";
+	document.getElementById("wrapper_menuOptions").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "block";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')";}
 
 
 /********************************************** Main Menu Functions *********************************************/
 
 function startGame(){
 	selectGameBackground();
+	
 }
 
 //Functionality for sfx sound on hover menu items
