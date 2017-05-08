@@ -1,6 +1,7 @@
 		
 		
 window.onload = function() { document.getElementById("audio_menuTheme").play();}
+var theGame = [];
 /******************************************** Game related Objects *********************************************/
 function Game(personBackground){
 	this.game_family =[]; //array that holds people objects (your family)
@@ -8,22 +9,23 @@ function Game(personBackground){
 	this.pointsMulti = 0; //points multiplier
 	this.money = 0;
 	this.type="";
+	this.month = "";
 	
 	if (personBackground =="banker"){
-		money = 1600;
-		pointsMulti = 1;
-		type = "banker";
+		this.money = 1600;
+		this.pointsMulti = 1;
+		this.type = "banker";
 		
 	}
 	else if (personBackground=="carpenter"){
-		money = 800;
-		pointsMulti = 2;
-		type = "capenter";
+		this.money = 800;
+		this.pointsMulti = 2;
+		this.type = "capenter";
 	}
 	else if(personBackground=="farmer"){
-		money = 400;
-		pointsMulti = 3;
-		type = "farmer";
+		this.money = 400;
+		this.pointsMulti = 3;
+		this.type = "farmer";
 	}
 }
 
@@ -92,19 +94,19 @@ function chooseMonth(){
 
 function monthPick(month){
 
-	if(type == "march"){
+	if(month == "march"){
 		this.month = "March";
 		timeToShop();
-	}else if(type == "april"){
+	}else if(month == "april"){
 		this.month = "April";
 		timeToShop();
-	}else if(type == "may"){
+	}else if(month == "may"){
 		this.month = "May";
 		timeToShop();
-	}else if(type == "june"){
+	}else if(month == "june"){
 		this.month = "June";
 		timeToShop();
-	}else if(type == "july"){
+	}else if(month == "july"){
 		this.month = "july";
 		timeToShop();
 	}
@@ -112,11 +114,14 @@ function monthPick(month){
 }
 
 function timeToShop(){
+	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
+	document.getElementById("wrapper_menuOptions").style.display = "none";
+	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
+	document.getElementById("wrapper_shoppingTime").style.display = "block";
+	document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')";
 
-	if(this.type == "banker"){
-		
-	}
-
+	document.getElementById("shopping_info").innerHTML = "Before leaving Independence you \n should buy equipment and \n supplies. You have " + this.money + " in \n cash, but you don't have to \n spend it all now. \n \n You can buy whatever you need at Matt's General Store.";
 }
 
 
@@ -194,12 +199,12 @@ function learnTheTrail(){
 /********************************************** jQuery Functions *********************************************/
 //this sections is used for more complicated effects and interactivity
 
-$(document).ready(function() {
-   $('#button_startGame').on('click', function() {
-     $('#overlay').animate({
-       opacity: 0.33,
-     }, 5000, function() {
-        // Animation complete.
-     });
-   }); 
-});
+// $(document).ready(function() {
+//    $('#button_startGame').on('click', function() {
+//      $('#overlay').animate({
+//        opacity: 0.33,
+//      }, 5000, function() {
+//         // Animation complete.
+//      });
+//    }); 
+// });
