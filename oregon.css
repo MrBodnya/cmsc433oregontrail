@@ -83,4 +83,12 @@ body
 		height: 45vh;
 		background-size: 100% 100%;
 	}
+
+	#wrapper_shoppingTime{
+		display: none;
+		width:30vw;
+		height: 45vh;
+		background-size: 100% 100%;
+		color: white;
+	}
 	
