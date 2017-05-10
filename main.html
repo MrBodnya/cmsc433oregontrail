@@ -34,7 +34,7 @@
 		<!--menu for handlding choosing your background -->
 			<center>
 				<span id="wrapper_chooseGameBackground">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">Choose your Background</p>
+				<p style="float:right; font-size:2vw; margin-top:5vh; margin-right:8vw;">Choose your Background</p>
 					<button style="margin-left:15vw;" class="MenuOption" id="button_banker" onclick="pickBackground('banker')">Banker</button> 
 					<button style="margin-left:15vw; " class="MenuOption" id="button_carpenter"onclick="pickBackground('carpenter')">Carpenter</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_farmer" onclick="pickBackground('farmer')">Farmer</button>
@@ -45,12 +45,12 @@
 		<!-- Menu for picking names for the family of people -->
 			<center>
 				<span id="wrapper_chooseFamilyName">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">What are your names?</p>
-					<p style="margin-left:15vw;">Your name: <input type="text" id="playername"></p>
-					<p style="margin-left:15vw;">Member 1: <input type="text" id="fname1"></p>
-					<p style="margin-left:15vw;">Member 2: <input type="text" id="fname2"></p>
-					<p style="margin-left:15vw;">Member 3: <input type="text" id="fname3"></p>
-					<p style="margin-left:15vw;">Member 4: <input type="text" id="fname4"></p>
+				<p style="float:right; font-size:2vw; margin-top:5vh; margin-right:8vw;"><br>What are your names?</p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Your name: <input type="text" id="playername"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 1: <input type="text" id="fname1"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 2: <input type="text" id="fname2"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 3: <input type="text" id="fname3"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 4: <input type="text" id="fname4"></p>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_name_submit" onclick="submitFNames()">Submit</button>
 					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
 				</span>
@@ -59,27 +59,37 @@
 	<!-- Menu for picking which month to leave in -->
 			<center>
 				<span id="wrapper_chooseMonthtoLeave">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">What month would you like to leave in?</p>
-					<button style="margin-left:1vw;" class="MenuOption" id="button_march" onclick="monthPick('march')">March</button>
-					<button style="margin-left:1vw; " class="MenuOption" id="button_april" onclick="monthPick('april')">April</button><br>
+				<p style="float:right; font-size:2vw; margin-top:5vh; margin-right:8vw;"><br>  What month would you like to leave in?</p>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_march" onclick="monthPick('march')">March</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_april" onclick="monthPick('april')">April</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_may" onclick="monthPick('may')">May</button>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_june" onclick="monthPick('june')">June</button><br>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_june" onclick="monthPick('june')">June</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_july" onclick="monthPick('july')">July</button>
 					<!--There has to be a help button here, MAY is the optimal month-->
 					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
 				</span>
 			</center>
 
-
+	<!-- Menu for displaying information screen before beginning shopping at Matt's General Store -->
 			<center>
 				<span id="wrapper_shoppingTime">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">It's time to shop!</p>
-					<p id="shopping_picture"></p>
-					<p id="shopping_info"></p>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_july" onclick="">Shop</button>
-
-					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
-				</span>
+					<button class="MenuOption" id="button_shoppingTime" style=" width:50vw; height:40vh;" onclick=""> </button>	<br>
+					<center><button  class="MenuOption" id="button_StartShop" onclick="openShop_Matt()">Shop</button> </center>
+				</span>	
+			</center>
+			
+	<!-- Menu for displaying Matt's General Store -->		
+			<center>
+				<span id="wrapper_MattsShop">
+				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_oxen" onclick="">Buy Oxen</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_food" onclick="">Buy Food</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_clothing" onclick="">Buy Clothing</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_ammunition" onclick="">Buy Ammunition</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_spareParts" onclick="">Buy Spare Parts</button><br>
+					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+				</span>		
 			</center>
 			
 		</div>		

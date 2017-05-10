@@ -84,8 +84,6 @@ function Person(name){
 
 function chooseMonth(){
 	
-	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
-	document.getElementById("wrapper_menuOptions").style.display = "none";
 	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
 	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "block";
 	document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')";
@@ -114,16 +112,30 @@ function monthPick(month){
 }
 
 function timeToShop(){
-	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
-	document.getElementById("wrapper_menuOptions").style.display = "none";
-	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
+	console.log("in timeToShop");
+	
 	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
-	document.getElementById("wrapper_shoppingTime").style.display = "block";
-	document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')";
-
-	document.getElementById("shopping_info").innerHTML = "Before leaving Independence you \n should buy equipment and \n supplies. You have " + this.money + " in \n cash, but you don't have to \n spend it all now. \n \n You can buy whatever you need at Matt's General Store.";
+	
+	document.getElementById("wrapper_shoppingTime").style.display = "inline";
+	document.getElementById("GameBox").style.backgroundImage = "Images/GeneralStore.png";
+	
+	document.getElementById("button_shoppingTime").innerHTML = "<center>Its Time to Shop!</center><br>Before leaving Independence you \n should buy equipment and \n supplies. You have <font color='red'> " + theGame[0].money + " </font> in \n cash, but you don't have to \n spend it all now. <br> You can buy whatever you need at Matt's General Store.";
+	
 }
-
+	
+function openShop_Matt(){
+	//setup page
+	document.getElementById("wrapper_shoppingTime").style.display = "none";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/GeneralStore.png)';
+	document.getElementById("wrapper_MattsShop").style.display = "block";
+	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
+	
+	//set variables
+	document.getElementById("currentMoney").innerHTML = "Current Money: "+theGame[0].money ;
+	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: 0 ";
+	
+	
+}
 
 /********************************************** Main Menu Functions *********************************************/
 
