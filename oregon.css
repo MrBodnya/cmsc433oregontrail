@@ -150,3 +150,11 @@ body
 	#wrapper_goToTown{
 	display: none;
 	}
+	#wrapper_townMenu{
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	}

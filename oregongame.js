@@ -287,11 +287,7 @@ function spareparts_purchase(){
 		theGame[0].axles = Number(numOfAxles);
 		theGame[0].tongues = Number(numOfTongues);
 		theGame[0].money -= sparepartPrice;
-
-		window.alert("Congradulations, you bought " + theGame[0].wheels + " wheels, " + theGame[0].axles + " axles, " + theGame[0].tongues + " tongues.");
-
 		window.alert= ("Congradulations, you bought" + theGame[0].wheels + "wheels," + theGame[0].axles + "axles," + theGame[0].tongues + "tongues.");
-
 		mattsbill += sparepartPrice;
 		openShop_Matt();
 	}
@@ -306,6 +302,9 @@ document.getElementById("GameBox").style.backgroundImage = 'url(Images/Independe
 
 function goTown1(){
 // This is where the logic goes for going from just a picture to the twon menu
+document.getElementById("wrapper_goToTown").style.display = "none";
+document.getElementById("wrapper_townMenu").style.display="block";
+document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 }
 
 /********************************************** Main Menu Functions *********************************************/
@@ -380,3 +379,4 @@ function learnTheTrail(){
 	}
 }
 /********************************************** jQuery Functions *********************************************/
+

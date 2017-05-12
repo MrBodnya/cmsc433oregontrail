@@ -88,11 +88,12 @@
 					<button style="margin-left:15vw; " class="MenuOption" id="button_ammunition" onclick="shop_for_ammo()">Buy Ammunition</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_spareParts" onclick="shop_spareparts()">Buy Spare Parts</button><br>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_goto_town1" onclick="goTown1_view()">Go to Town</button><br>
-					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span>&nbsp; &nbsp;
 					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
 				</span>
 			</center>
-
+			
+	<!-- Menu for Buying Oxen from General Store-->
 			<center>
 				<span id="wrapper_OxenShop">
 				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
@@ -104,7 +105,8 @@
 					<span style="font-size:2vw;" id="currentMoney_1">Current Money: notset</span>
 				</span>
 			</center>
-
+			
+	<!-- Menu for Buying Food from General Store-->
 			<center>
 				<span id="wrapper_FoodShop">
 				<p style=" font-size:2vw; margin-left:19vw; margin-bottom:0vw; margin-top:1px; "><br><br> Matt's General Store <br>Indepenece, Missouri <br> </p> 
@@ -118,7 +120,8 @@
 					
 				</span>
 			</center>
-
+			
+	<!-- Menu for Buying Clothes from General Store-->
 			<center>
 				<span id="wrapper_ClothesShop">
 				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
@@ -131,6 +134,7 @@
 				</span>
 			</center>
 
+	<!-- Menu for Buying Ammo from General Store-->
 			<center>
 				<span id="wrapper_AmmoShop">
 				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
@@ -142,7 +146,8 @@
 					<span style="font-size:2vw;" id="currentMoney_4">Current Money: notset</span>
 				</span>
 			</center>
-
+			
+	<!-- Menu for Buying Spare Parts from General Store-->
 			<center>
 				<span id="wrapper_SpareShop">
 				<p style="font-size:2vw; margin-left:35vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
@@ -158,18 +163,24 @@
 					<span style="font-size:2vw;" id="currentMoney_5">Current Money: notset</span>
 				</span>
 			</center>
-			
+		
+	<!-- Menu for showing town image before acutally going into town-->		
 			<center>
 				<span id="wrapper_goToTown">
-					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh;" onclick=""> Enter The Town</button> </center>
+					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goTown1()"> ADD THE CURRENT DATE HERE <br> Enter The Town</button> </center>
 				</span>
 			</center>
 			
-
+	<!-- Menu for Indepence Town? -Potentialy for ALL towns-->			
+		<center>
+				<span id="wrapper_townMenu">
+					<!-- Add your menu here--> 
+				</span>	
+		</center>
+				
+	
+	
 		</div>
-
-
-
 	</div>
 	</body>
 </html>
