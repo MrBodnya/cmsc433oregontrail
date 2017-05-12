@@ -287,7 +287,11 @@ function spareparts_purchase(){
 		theGame[0].axles = Number(numOfAxles);
 		theGame[0].tongues = Number(numOfTongues);
 		theGame[0].money -= sparepartPrice;
+<<<<<<< HEAD
+		window.alert("Congradulations, you bought " + theGame[0].wheels + " wheels, " + theGame[0].axles + " axles, " + theGame[0].tongues + " tongues.");
+=======
 		window.alert= ("Congradulations, you bought" + theGame[0].wheels + "wheels," + theGame[0].axles + "axles," + theGame[0].tongues + "tongues.");
+>>>>>>> origin/master
 		mattsbill += sparepartPrice;
 		openShop_Matt();
 	}
