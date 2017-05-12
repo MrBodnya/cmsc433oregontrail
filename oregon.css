@@ -112,7 +112,7 @@ body
 	height: 65vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
-	background-image: url(Images/openBook.png);	
+	background-image: url(Images/openBook.png);
 	}
 	#wrapper_FoodShop{
 	display: none;
@@ -157,4 +157,26 @@ body
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
+	}
+
+	#wrapper_checksupplies{
+		display: none;
+	}
+	#wrapper_lookatmap{
+		display: none;
+	}
+	#wrapper_changepace{
+		display: none;
+	}
+	#wrapper_changefoodrat{
+		display: none;
+	}
+	#wrapper_stoprest{
+		display: none;
+	}
+	#wrapper_trade{
+		display: none;
+	}
+	#wrapper_talk2people{
+		display: none;
 	}
