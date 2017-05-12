@@ -7,8 +7,8 @@
 	- End
 1) Play game Menu
 	- Pick what type of person you are   - Sean/ Andrei - complete
-	- pick five names    - Andrei - Complete but ugly
-	- pick month to leave march - july		Andrei - complete but does not go further
+	- pick five names    - Andrei - Complete
+	- pick month to leave march - july		Andrei - complete
 	- allocate money according to who user chose  Andrei - completed
 		a) 1600 banker
 		b) 800 carpetner 

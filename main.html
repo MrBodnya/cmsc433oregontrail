@@ -5,22 +5,22 @@
 	<audio id="audio_menuTheme"><source  src="Sound/title_piano_ver.mp3" type="audio/mpeg"> </audio>
 	<audio id="audio_menuSelect"><source  src="Sound/MenuSelect.mp3" type="audio/mpeg"> </audio>
 	<script src="oregongame.js"></script>
-	
+
 	</head>
 	<body>
-	<div id="GameBox">	
-		<center id="Title">The Oregon Trail!</center> 
-		
+	<div id="GameBox">
+		<center id="Title">The Oregon Trail!</center>
+
 		<div class="wrapper_MenuHolder" id="div_Menu">
-		
+
 		<!--invisible span for handling learn about the trail information -->
 			<center>
 				<span id="wrapper_learnTheTrail">
-				<button class="MenuOption" id="button_learnTheTrail" style=" width:50vw; height:40vh;" onclick="learnTheTrail()"> </button>	
+				<button class="MenuOption" id="button_learnTheTrail" style=" width:50vw; height:40vh;" onclick="learnTheTrail()"> </button>
 				</span>
 			</center>
-			
-		<!--options for for handlding main menu information -->	
+
+		<!--options for for handlding main menu information -->
 			<center>
 				<span id="wrapper_menuOptions">
 				<button class="MenuOption" id="button_startGame" onclick="startGame()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Travel the Trail</button> <br><br>
@@ -29,13 +29,13 @@
 				<button class="MenuOption" id="button_toggleMusic" onclick="toggleMusic()" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()">Turn sound off</button> <br><br>
 				<button class="MenuOption" id="button_options" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()"> Choose Management Options</button> <br>
 				</span>
-			</center> 
+			</center>
 
 		<!--menu for handlding choosing your background -->
 			<center>
 				<span id="wrapper_chooseGameBackground">
 				<p style="float:right; font-size:2vw; margin-top:5vh; margin-right:8vw;">Choose your Background</p>
-					<button style="margin-left:15vw;" class="MenuOption" id="button_banker" onclick="pickBackground('banker')">Banker</button> 
+					<button style="margin-left:15vw;" class="MenuOption" id="button_banker" onclick="pickBackground('banker')">Banker</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_carpenter"onclick="pickBackground('carpenter')">Carpenter</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_farmer" onclick="pickBackground('farmer')">Farmer</button>
 					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
@@ -75,27 +75,92 @@
 				<span id="wrapper_shoppingTime">
 					<button class="MenuOption" id="button_shoppingTime" style=" width:50vw; height:40vh;" onclick=""> </button>	<br>
 					<center><button  class="MenuOption" id="button_StartShop" onclick="openShop_Matt()">Shop</button> </center>
-				</span>	
+				</span>
 			</center>
-			
-	<!-- Menu for displaying Matt's General Store -->		
+
+	<!-- Menu for displaying Matt's General Store -->
 			<center>
 				<span id="wrapper_MattsShop">
 				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
-					<button style="margin-left:15vw;" class="MenuOption" id="button_oxen" onclick="">Buy Oxen</button>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_food" onclick="">Buy Food</button>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_clothing" onclick="">Buy Clothing</button>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_ammunition" onclick="">Buy Ammunition</button>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_spareParts" onclick="">Buy Spare Parts</button><br>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_oxen" onclick="shop_for_oxen()">Buy Oxen</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_food" onclick="shop_for_food()">Buy Food</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_clothing" onclick="shop_for_clothes()">Buy Clothing</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_ammunition" onclick="shop_for_ammo()">Buy Ammunition</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_spareParts" onclick="shop_spareparts()">Buy Spare Parts</button><br>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_goto_town1" onclick="goTown1_view()">Go to Town</button>
 					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
 					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
-				</span>		
+				</span>
 			</center>
-			
-		</div>		
-		
-		
-		
+
+			<center>
+				<span id="wrapper_OxenShop">
+				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<p id="oxen_instruction"><br>I recommend at least six oxen to pull your wagon.</p>
+					<p>The price per oxen is $20 per oxen.</p>
+					Number of oxen to buy: <input type="number" id="oxen_number"><br>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_oxen_buy" onclick="oxen_purchase()">Buy Oxen</button>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_FoodShop">
+				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<p id="food_instruction"><br>You'll need plenty of flour, sugar, bacon, coffee, and other types of food. I suggest you start out with at least 200 pounds for each person in your party.</p>
+					<p>The price for food is $0.20 per pound of food.</p>
+					Pounds of food to buy: <input type="number" id="foodp_number"></br>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_food_buy" onclick="food_purchase()">Buy Food</button>
+					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_ClothesShop">
+				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<p id="clothes_instruction">You'll need good, warm clothing, especially for the mountains. I recommend taking at least 2 sets of clothing per person.</p>
+					<p>The price for clothing is $10 per one set. </p>
+					Sets of clothing to buy: <input type="number" id="clothes_number"></br>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_clothes_buy" onclick="clothes_purchase()">Buy Clothes</button>
+					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_AmmoShop">
+				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<p id="ammo_instruction">You'll need ammunition too. Each box of ammunition contains 20 bullets.</p>
+					<p> The price of ammunition is $2 per box of ammunition.</p>
+					Number of boxes of ammunition to buy: <input type="number" id="ammo_number"></br>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_ammo_buy" onclick="ammo_purchase()">Buy Ammunition</button>
+					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_SpareShop">
+				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<p id="spare_instruction">Finally, you might want to take along some spare wagon parts. Wagon Wheels, axles, and tongues are liable to break along the way. If you're unable to repair a broken wagon, you'll be in big trouble!
+					<p> The price for a spare wagon wheel is $10 per wheel.</p>
+					<p> The price for a spare wagon axle is $10 per axle</p>
+					<p> The price for a spare wagon tongue is $10 per tongue</p>
+					Number of spare wheels to buy: <input type="number" id="sparewheel_number"></br>
+					Number of spare axles to buy: <input type="number" id="spareaxle_number"></br>
+					Number of spare tongues to buy: <input type="number" id="sparetongue_number"></br>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_spare_buy" onclick="spareparts_purchase()">Buy Spare Parts</button>
+					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+				</span>
+			</center>
+
+		</div>
+
+
+
 	</div>
-	</body> 
+	</body>
 </html>

@@ -1,4 +1,4 @@
-body 
+body
 	{
     background-color: black;
 	}
@@ -40,7 +40,7 @@ body
 	width:35vh;
 	color:white;
 	}
-	
+
 	div.wrapper_MenuHolder
 	{
 	animation-name: menuHover ;
@@ -49,11 +49,11 @@ body
 	animation-timing-function: ease-in-out;
 	border-style:none;
 	}
-	
-	@keyframes menuHover 
+
+	@keyframes menuHover
 	{
     0%   {transform: translateY(0px); }
-	
+
     25%  {transform: translateY(5px); }
 
 	75% {transform: translateY(-5px); }
@@ -102,5 +102,18 @@ body
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
-	
-	
+	#wrapper_OxenShop{
+		display: none;
+	}
+	#wrapper_FoodShop{
+		display: none;
+	}
+	#wrapper_ClothesShop{
+		display: none;
+	}
+	#wrapper_AmmoShop{
+		display: none;
+	}
+	#wrapper_SpareShop{
+		display: none;
+	}
