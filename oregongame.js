@@ -295,6 +295,9 @@ function spareparts_purchase(){
 
 function goTown1_view(){
 // Just add a span that shows the town, like a picture of it
+document.getElementById("wrapper_MattsShop").style.display = "none";
+document.getElementById("wrapper_goToTown").style.display = "block";
+document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown.png)';
 }
 
 function goTown1(){

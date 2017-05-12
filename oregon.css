@@ -146,3 +146,7 @@ body
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
 	}
+
+	#wrapper_goToTown{
+	display: none;
+	}
