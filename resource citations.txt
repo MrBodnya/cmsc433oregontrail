@@ -1,4 +1,5 @@
-opened book image: https://pixabay.com/en/book-old-isolated-close-used-2156967/
+openBook.png: https://pixabay.com/en/book-old-isolated-close-used-2156967/
 using image of matt cropped: http://www.today.com/popculture/savannah-has-typhoid-today-com-takes-oregon-trail-video-game-1D80411331
-Scroll icon: https://www.shutterstock.com/image-vector/set-three-vector-cartoon-illustrations-aged-534310045?irgwc=1&utm_medium=Affiliate&utm_campaign=Hans%20Braxmeier%20und%20Simon%20Steinberger%20GbR&utm_source=44814
-general store background: https://pixabay.com/en/old-vintage-retro-trade-past-1578895/
+scrollArt.png: https://www.shutterstock.com/image-vector/set-three-vector-cartoon-illustrations-aged-534310045?irgwc=1&utm_medium=Affiliate&utm_campaign=Hans%20Braxmeier%20und%20Simon%20Steinberger%20GbR&utm_source=44814
+GeneralStore.png: https://pixabay.com/en/old-vintage-retro-trade-past-1578895/
+IndepedenceTown2.jpg: https://pixabay.com/en/painting-watercolor-campion-vintage-1241683/
