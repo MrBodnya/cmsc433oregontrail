@@ -153,13 +153,12 @@ function openShop_Matt(){
 
 function shop_for_oxen(){
 	document.getElementById("wrapper_MattsShop").style.display = "none";
-	document.getElementById("GameBox").style.backgroundImage = 'url(Images/GeneralStore.png)';
 	document.getElementById("wrapper_OxenShop").style.display = "block";
-	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
+	document.getElementById("wrapper_OxenShop").style.backgroundImage = 'url(Images/openBook.png)';
 
 	//set variables
-	document.getElementById("currentMoney").innerHTML = "Current Money: "+theGame[0].money ;
-	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: " + mattsbill;
+	document.getElementById("currentMoney_1").innerHTML = "Current Money: "+theGame[0].money ;
+	document.getElementById("MattsTotalBill_1").innerHTML = "Total Bill: " + mattsbill;
 
 }
 
@@ -185,8 +184,8 @@ function shop_for_food(){
 	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
 
 	//set variables
-	document.getElementById("currentMoney").innerHTML = "Current Money: "+theGame[0].money ;
-	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: " + mattsbill;
+	document.getElementById("currentMoney_2").innerHTML = "Current Money: "+theGame[0].money ;
+	document.getElementById("MattsTotalBill_2").innerHTML = "Total Bill: " + mattsbill;
 }
 
 function food_purchase(){
@@ -213,8 +212,8 @@ function shop_for_clothes(){
 	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
 
 	//set variables
-	document.getElementById("currentMoney").innerHTML = "Current Money: "+theGame[0].money ;
-	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: " + mattsbill;
+	document.getElementById("currentMoney_3").innerHTML = "Current Money: "+theGame[0].money ;
+	document.getElementById("MattsTotalBill_3").innerHTML = "Total Bill: " + mattsbill;
 }
 
 function clothes_purchase(){
@@ -241,8 +240,8 @@ function shop_for_ammo(){
 	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
 
 	//set variables
-	document.getElementById("currentMoney").innerHTML = "Current Money: "+theGame[0].money ;
-	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: " + mattsbill;
+	document.getElementById("currentMoney_4").innerHTML = "Current Money: "+theGame[0].money ;
+	document.getElementById("MattsTotalBill_4").innerHTML = "Total Bill: " + mattsbill;
 }
 
 function ammo_purchase(){
@@ -269,8 +268,8 @@ function shop_spareparts(){
 	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
 
 	//set variables
-	document.getElementById("currentMoney").innerHTML = "Current Money: "+theGame[0].money ;
-	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: " + mattsbill;
+	document.getElementById("currentMoney_5").innerHTML = "Current Money: "+theGame[0].money ;
+	document.getElementById("MattsTotalBill_5").innerHTML = "Total Bill: " + mattsbill;
 }
 
 function spareparts_purchase(){
@@ -288,7 +287,7 @@ function spareparts_purchase(){
 		theGame[0].axles = Number(numOfAxles);
 		theGame[0].tongues = Number(numOfTongues);
 		theGame[0].money -= sparepartPrice;
-		window.alert("Congradulations, you bought " + theGame[0].wheels + " wheels, " + theGame[0].axles + " axles, " theGame[0].tongues + " tongues.");
+		window.alert= ("Congradulations, you bought" + theGame[0].wheels + "wheels," + theGame[0].axles + "axles," + theGame[0].tongues + "tongues.");
 		mattsbill += sparepartPrice;
 		openShop_Matt();
 	}
@@ -296,6 +295,9 @@ function spareparts_purchase(){
 
 function goTown1_view(){
 // Just add a span that shows the town, like a picture of it
+document.getElementById("wrapper_MattsShop").style.display = "none";
+document.getElementById("wrapper_goToTown").style.display = "block";
+document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown.png)';
 }
 
 function goTown1(){
@@ -374,14 +376,4 @@ function learnTheTrail(){
 	}
 }
 /********************************************** jQuery Functions *********************************************/
-//this sections is used for more complicated effects and interactivity
 
-// $(document).ready(function() {
-//    $('#button_startGame').on('click', function() {
-//      $('#overlay').animate({
-//        opacity: 0.33,
-//      }, 5000, function() {
-//         // Animation complete.
-//      });
-//    });
-// });
