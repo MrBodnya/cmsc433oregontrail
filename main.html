@@ -5,22 +5,22 @@
 	<audio id="audio_menuTheme"><source  src="Sound/title_piano_ver.mp3" type="audio/mpeg"> </audio>
 	<audio id="audio_menuSelect"><source  src="Sound/MenuSelect.mp3" type="audio/mpeg"> </audio>
 	<script src="oregongame.js"></script>
-	
+
 	</head>
 	<body>
-	<div id="GameBox">	
-		<center id="Title">The Oregon Trail!</center> 
-		
+	<div id="GameBox">
+		<center id="Title">The Oregon Trail!</center>
+
 		<div class="wrapper_MenuHolder" id="div_Menu">
-		
+
 		<!--invisible span for handling learn about the trail information -->
 			<center>
 				<span id="wrapper_learnTheTrail">
-				<button class="MenuOption" id="button_learnTheTrail" style=" width:50vw; height:40vh;" onclick="learnTheTrail()"> </button>	
+				<button class="MenuOption" id="button_learnTheTrail" style=" width:50vw; height:40vh;" onclick="learnTheTrail()"> </button>
 				</span>
 			</center>
-			
-		<!--options for for handlding main menu information -->	
+
+		<!--options for for handlding main menu information -->
 			<center>
 				<span id="wrapper_menuOptions">
 				<button class="MenuOption" id="button_startGame" onclick="startGame()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Travel the Trail</button> <br><br>
@@ -29,13 +29,13 @@
 				<button class="MenuOption" id="button_toggleMusic" onclick="toggleMusic()" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()">Turn sound off</button> <br><br>
 				<button class="MenuOption" id="button_options" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()"> Choose Management Options</button> <br>
 				</span>
-			</center> 
+			</center>
 
 		<!--menu for handlding choosing your background -->
 			<center>
 				<span id="wrapper_chooseGameBackground">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">Choose your Background</p>
-					<button style="margin-left:15vw;" class="MenuOption" id="button_banker" onclick="pickBackground('banker')">Banker</button> 
+				<p style="float:right; font-size:2vw; margin-top:5vh; margin-right:8vw;">Choose your Background</p>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_banker" onclick="pickBackground('banker')">Banker</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_carpenter"onclick="pickBackground('carpenter')">Carpenter</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_farmer" onclick="pickBackground('farmer')">Farmer</button>
 					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
@@ -45,12 +45,12 @@
 		<!-- Menu for picking names for the family of people -->
 			<center>
 				<span id="wrapper_chooseFamilyName">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">What are your names?</p>
-					<p style="margin-left:15vw;">Your name: <input type="text" id="playername"></p>
-					<p style="margin-left:15vw;">Member 1: <input type="text" id="fname1"></p>
-					<p style="margin-left:15vw;">Member 2: <input type="text" id="fname2"></p>
-					<p style="margin-left:15vw;">Member 3: <input type="text" id="fname3"></p>
-					<p style="margin-left:15vw;">Member 4: <input type="text" id="fname4"></p>
+				<p style="float:right; font-size:2vw; margin-top:5vh; margin-right:8vw;"><br>What are your names?</p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Your name: <input type="text" id="playername"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 1: <input type="text" id="fname1"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 2: <input type="text" id="fname2"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 3: <input type="text" id="fname3"></p>
+					<p style="margin-left:14vw; font-size:1.5vw;">Member 4: <input type="text" id="fname4"></p>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_name_submit" onclick="submitFNames()">Submit</button>
 					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
 				</span>
@@ -59,33 +59,117 @@
 	<!-- Menu for picking which month to leave in -->
 			<center>
 				<span id="wrapper_chooseMonthtoLeave">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">What month would you like to leave in?</p>
-					<button style="margin-left:1vw;" class="MenuOption" id="button_march" onclick="monthPick('march')">March</button>
-					<button style="margin-left:1vw; " class="MenuOption" id="button_april" onclick="monthPick('april')">April</button><br>
+				<p style="float:right; font-size:2vw; margin-top:5vh; margin-right:8vw;"><br>  What month would you like to leave in?</p>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_march" onclick="monthPick('march')">March</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_april" onclick="monthPick('april')">April</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_may" onclick="monthPick('may')">May</button>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_june" onclick="monthPick('june')">June</button><br>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_june" onclick="monthPick('june')">June</button>
 					<button style="margin-left:15vw; " class="MenuOption" id="button_july" onclick="monthPick('july')">July</button>
 					<!--There has to be a help button here, MAY is the optimal month-->
 					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
 				</span>
 			</center>
 
-
+	<!-- Menu for displaying information screen before beginning shopping at Matt's General Store -->
 			<center>
 				<span id="wrapper_shoppingTime">
-				<p style="float:right; font-size:2vw; font-family:  'Just Another Hand', Helvetica, sans-serif; margin-top:5vh; margin-right:8vw;">It's time to shop!</p>
-					<p id="shopping_picture"></p>
-					<p id="shopping_info"></p>
-					<button style="margin-left:15vw; " class="MenuOption" id="button_july" onclick="">Shop</button>
+					<button class="MenuOption" id="button_shoppingTime" style=" width:50vw; height:40vh;" onclick=""> </button>	<br>
+					<center><button  class="MenuOption" id="button_StartShop" onclick="openShop_Matt()">Shop</button> </center>
+				</span>
+			</center>
 
-					<!--<button style="margin-left:15vw;" class="MenuOption" id="button_backgroundInfo">More Info about backgrounds</button> -->
+	<!-- Menu for displaying Matt's General Store -->
+			<center>
+				<span id="wrapper_MattsShop">
+				<p style="float:right; font-size:2vw; margin-top:2vh; margin-right:2vw;margin-bottom:0vw;"><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<button style="margin-left:15vw;" class="MenuOption" id="button_oxen" onclick="shop_for_oxen()">Buy Oxen</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_food" onclick="shop_for_food()">Buy Food</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_clothing" onclick="shop_for_clothes()">Buy Clothing</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_ammunition" onclick="shop_for_ammo()">Buy Ammunition</button>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_spareParts" onclick="shop_spareparts()">Buy Spare Parts</button><br>
+					<button style="margin-left:15vw; " class="MenuOption" id="button_goto_town1" onclick="goTown1_view()">Go to Town</button><br>
+					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_OxenShop">
+				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<span style="font-size:1.6vw;" >I recommend at least six oxen to pull your wagon.<br>The price per oxen is $20 per oxen.<br> 
+					Number of oxen to buy: <input type="number" id="oxen_number">
+					</span> <br>
+					<center><button class="MenuOption" id="button_oxen_buy" onclick="oxen_purchase()">Buy Oxen</button> </center> <br>
+					<span style="font-size:2vw;" id="MattsTotalBill_1">Total Bill: notset</span> <br>
+					<span style="font-size:2vw;" id="currentMoney_1">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_FoodShop">
+				<p style=" font-size:2vw; margin-left:19vw; margin-bottom:0vw; margin-top:1px; "><br><br> Matt's General Store <br>Indepenece, Missouri <br> </p> 
+					<span style=" font-size:1.6vw;"><br> You'll need plenty of flour, sugar, bacon, coffee, and other types of food.<br> I suggest you start out with at least 200 pounds for each person in your party.<br>
+					The price for food is $0.20 per pound of food.<br>
+					Pounds of food to buy: <input type="number" id="foodp_number"> <br></span> 
+				
+					<center><button class="MenuOption" id="button_food_buy" onclick="food_purchase()">Buy Food</button> </center> <br>
+					<span style="font-size:2vw;" id="MattsTotalBill_2">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney_2">Current Money: notset</span>
+					
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_ClothesShop">
+				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<span style=" font-size:1.6vw;">You'll need good, warm clothing, especially for the mountains.<br> I recommend taking at least 2 sets of clothing per person.<br>The price for clothing is $10 per one set. </br>
+					Sets of clothing to buy: <input type="number" id="clothes_number"></br> </span>
+					
+					<center><button class="MenuOption" id="button_clothes_buy" onclick="clothes_purchase()">Buy Clothes</button> </center> <br>
+					<span style="font-size:2vw;" id="MattsTotalBill_3">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney_3">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_AmmoShop">
+				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<span style=" font-size:1.6vw;">You'll need ammunition too.<br> Each box of ammunition contains 20 bullets.<br>The price of ammunition is $2 per box of ammunition.<br>
+					Number of boxes of ammunition to buy: <input type="number" id="ammo_number"></br></span>
+					
+					<center><button class="MenuOption" id="button_ammo_buy" onclick="ammo_purchase()">Buy Ammunition</button> </center> <br>
+					<span style="font-size:2vw;" id="MattsTotalBill_4">Total Bill: notset</span><br>
+					<span style="font-size:2vw;" id="currentMoney_4">Current Money: notset</span>
+				</span>
+			</center>
+
+			<center>
+				<span id="wrapper_SpareShop">
+				<p style="font-size:2vw; margin-left:35vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
+					<span style=" font-size:1.6vw;">Finally, you might want to take along some spare wagon parts. Wagon Wheels, axles, and tongues are liable to break along the way.<br> If you're unable to repair a broken wagon, you'll be in big trouble!
+					<br> The price for a spare wagon wheel is $10 per wheel.<br>
+					The price for a spare wagon axle is $10 per axle<br>
+					The price for a spare wagon tongue is $10 per tongue<br>
+					Number of spare wheels to buy: <input type="number" id="sparewheel_number"></br>
+					Number of spare axles to buy: <input type="number" id="spareaxle_number"></br>
+					Number of spare tongues to buy: <input type="number" id="sparetongue_number"></br> </span>
+					<center><button  class="MenuOption" id="button_spare_buy" onclick="spareparts_purchase()">Buy Spare Parts</button> </center> <br>
+					<span style="font-size:2vw;" id="MattsTotalBill_5">Total Bill: notset </span> &nbsp; &nbsp;
+					<span style="font-size:2vw;" id="currentMoney_5">Current Money: notset</span>
 				</span>
 			</center>
 			
-		</div>		
-		
-		
-		
+			<center>
+				<span id="wrapper_goToTown">
+					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh;" onclick=""> Enter The Town</button> </center>
+				</span>
+			</center>
+			
+
+		</div>
+
+
+
 	</div>
-	</body> 
+	</body>
 </html>

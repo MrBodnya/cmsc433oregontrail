@@ -1,17 +1,21 @@
-body 
+body
 	{
     background-color: black;
 	}
 	#GameBox
 	{
-	width:55vw;
-	height:60vh;
+	width:65vw;
+	height:80vh;
 	border-style:solid;
 	border-width:2px;
 	background-image: url("Images/MainMenu.png");
 	background-size: 100% 100%;
 	margin-top:25vh;
 	margin:auto;
+	-webkit-transition: background-image 0.5s linear;
+	-moz-transition: background-image 0.5s linear;
+	-ms-transition: background-image 0.5s linear;
+	transition: background-image 0.5s linear;
 	}
 	#Title
 	{
@@ -40,19 +44,20 @@ body
 	width:35vh;
 	color:white;
 	}
-	
+
 	div.wrapper_MenuHolder
 	{
 	animation-name: menuHover ;
     animation-duration: 5s;
     animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
+	border-style:none;
 	}
-	
-	@keyframes menuHover 
+
+	@keyframes menuHover
 	{
     0%   {transform: translateY(0px); }
-	
+
     25%  {transform: translateY(5px); }
 
 	75% {transform: translateY(-5px); }
@@ -69,26 +74,79 @@ body
 	width:30vw;
 	height: 45vh;
 	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
 	#wrapper_chooseFamilyName
 	{
-		display: none;
-		width:30vw;
-		height: 45vh;
-		background-size: 100% 100%;
+	display: none;
+	width:30vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
 	#wrapper_chooseMonthtoLeave{
-		display: none;
-		width:30vw;
-		height: 45vh;
-		background-size: 100% 100%;
+	display: none;
+	width:35vw;
+	height: 55vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
 
 	#wrapper_shoppingTime{
-		display: none;
-		width:30vw;
-		height: 45vh;
-		background-size: 100% 100%;
-		color: white;
+	display: none;
+	width:40vw;
+	height: 45vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
-	
+	#wrapper_MattsShop{
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	}
+	#wrapper_OxenShop{
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);	
+	}
+	#wrapper_FoodShop{
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	}
+	#wrapper_ClothesShop{
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	}
+	#wrapper_AmmoShop{
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	}
+	#wrapper_SpareShop{
+	display: none;
+	width:55vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	}
+
+	#wrapper_goToTown{
+	display: none;
+	}
