@@ -12,6 +12,10 @@ body
 	background-size: 100% 100%;
 	margin-top:25vh;
 	margin:auto;
+	-webkit-transition: background-image 0.5s linear;
+	-moz-transition: background-image 0.5s linear;
+	-ms-transition: background-image 0.5s linear;
+	transition: background-image 0.5s linear;
 	}
 	#Title
 	{
@@ -103,17 +107,42 @@ body
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
 	#wrapper_OxenShop{
-		display: none;
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);	
 	}
 	#wrapper_FoodShop{
-		display: none;
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
 	}
 	#wrapper_ClothesShop{
-		display: none;
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
 	}
 	#wrapper_AmmoShop{
-		display: none;
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
 	}
 	#wrapper_SpareShop{
-		display: none;
+	display: none;
+	width:55vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
 	}
