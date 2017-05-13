@@ -70,10 +70,10 @@ function pickBackground(type){
 function makeFamily(){
 
 	document.getElementById("wrapper_chooseGameBackground").style.display = "none";
-	document.getElementById("wrapper_menuOptions").style.display = "none";
 	document.getElementById("wrapper_chooseFamilyName").style.display = "block";
-	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
-	document.getElementById("wrapper_chooseFamilyName").style.backgroundImage = "url('Images/openBook.png')";
+	/*document.getElementById("wrapper_menuOptions").style.display = "none";*/
+	/*document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";*/
+	/*document.getElementById("wrapper_chooseFamilyName").style.backgroundImage = "url('Images/openBook.png')"; */
 
 }
 
@@ -97,7 +97,7 @@ function chooseMonth(){
 
 	document.getElementById("wrapper_chooseFamilyName").style.display = "none";
 	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "block";
-	document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')";
+	/*document.getElementById("wrapper_chooseMonthtoLeave").style.backgroundImage = "url('Images/openBook.png')"; */
 
 }
 
@@ -126,11 +126,9 @@ function timeToShop(){
 	console.log("in timeToShop");
 
 	document.getElementById("wrapper_chooseMonthtoLeave").style.display = "none";
-
 	document.getElementById("wrapper_shoppingTime").style.display = "inline";
 	document.getElementById("GameBox").style.backgroundImage = "Images/GeneralStore.png";
-
-	document.getElementById("button_shoppingTime").innerHTML = "<center>Its Time to Shop!</center><br>Before leaving Independence you \n should buy equipment and \n supplies. You have <font color='red'> " + theGame[0].money + " </font> in \n cash, but you don't have to \n spend it all now. <br> You can buy whatever you need at Matt's General Store.";
+	document.getElementById("button_shoppingTime").innerHTML = "<center>Its Time to Shop!</center><br>Before leaving Independence you should buy equipment and supplies.<br> You have <font color='red'> " + theGame[0].money + " </font> in \n cash, but you don't have to \n spend it all now. <br> You can buy whatever you need at Matt's General Store.";
 
 }
 
@@ -141,7 +139,7 @@ function openShop_Matt(){
 	document.getElementById("wrapper_FoodShop").style.display = "none";
 	document.getElementById("wrapper_ClothesShop").style.display = "none";
 	document.getElementById("wrapper_AmmoShop").style.display = "none";
-	document.getElementById("wrapper_SpareShop").style.display = "none";
+	document.getElementById("wrapper_SpareShop").style.display = "none"; 
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/GeneralStore.png)';
 	document.getElementById("wrapper_MattsShop").style.display = "block";
 	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
@@ -257,7 +255,7 @@ function ammo_purchase(){
 	}else{
 		theGame[0].ammo = Number(numOfAmmo);
 		theGame[0].money -= priceofAmmo;
-		window.alert("Congradulations, you bought" + theGame.ammo+"!");
+		window.alert("Congratulations, you bought" + theGame.ammo+"!");
 		mattsbill+=priceofAmmo;
 		openShop_Matt();
 	}
@@ -420,4 +418,4 @@ function learnTheTrail(){
 		document.getElementById("wrapper_menuOptions").style.display="block";
 	}
 }
-/********************************************** jQuery Functions *********************************************/
+

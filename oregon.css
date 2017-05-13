@@ -1,4 +1,4 @@
-body
+	body
 	{
     background-color: black;
 	}
@@ -25,7 +25,7 @@ body
 	position:relative;
 
 	}
-	button.MenuOption
+	.MenuOption
 	{
 	margin:auto;
 	width:25vh;
@@ -39,7 +39,7 @@ body
 	background-color: Transparent;
 	transition: width 0.4s;
 	}
-	button.MenuOption:hover
+	.MenuOption:hover
 	{
 	width:35vh;
 	color:white;
@@ -68,45 +68,43 @@ body
 	{
 	display:none;
 	}
-	#wrapper_chooseGameBackground
+	#wrapper_chooseGameBackground /*menu for choosing your family background*/
 	{
 	display:none;
+	margin-top: -3vh;
 	width:30vw;
 	height: 45vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
 	}
-	#wrapper_chooseFamilyName
+	#wrapper_chooseFamilyName /*menu for choosing yor family members names*/
 	{
 	display: none;
+	margin-top: -8vh;
 	width:30vw;
 	height: 65vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
 	}
-	#wrapper_chooseMonthtoLeave{
+	#wrapper_chooseMonthtoLeave{ /*menu for choosing which month to begin going down the trail*/
 	display: none;
 	width:35vw;
 	height: 55vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
 	}
 
-	#wrapper_shoppingTime{
+	#wrapper_shoppingTime{ /*message prompt before enting shop, displayed as a single button*/
 	display: none;
 	width:40vw;
 	height: 45vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
-	#wrapper_MattsShop{
-	display: none;
-	width:35vw;
-	height: 65vh;
-	background-size: 100% 100%;
-	font-family:  'Just Another Hand', Helvetica, sans-serif;
-	}
-	#wrapper_OxenShop{
+	#wrapper_MattsShop{ /*menu for the main navigation screen when entering a shop*/
 	display: none;
 	width:35vw;
 	height: 65vh;
@@ -114,7 +112,7 @@ body
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
 	}
-	#wrapper_FoodShop{
+	#wrapper_OxenShop{ /*menu for buying oxen when in a shop*/
 	display: none;
 	width:35vw;
 	height: 65vh;
@@ -122,7 +120,7 @@ body
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
 	}
-	#wrapper_ClothesShop{
+	#wrapper_FoodShop{ /*menu for buying food when in a shop*/
 	display: none;
 	width:35vw;
 	height: 65vh;
@@ -130,7 +128,7 @@ body
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
 	}
-	#wrapper_AmmoShop{
+	#wrapper_ClothesShop{ /*menu for buying clothes when in a shop*/
 	display: none;
 	width:35vw;
 	height: 65vh;
@@ -138,7 +136,15 @@ body
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
 	}
-	#wrapper_SpareShop{
+	#wrapper_AmmoShop{ /*menu for buying ammo when in a shop*/
+	display: none;
+	width:35vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	}
+	#wrapper_SpareShop{ /*menu for buying spare parts when in a shop*/
 	display: none;
 	width:55vw;
 	height: 65vh;
@@ -146,11 +152,10 @@ body
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
 	}
-
-	#wrapper_goToTown{
+	#wrapper_goToTown{ /*menu for intermediate screen displayed before entering a town*/
 	display: none;
 	}
-	#wrapper_townMenu{
+	#wrapper_townMenu{ /*menu for displaying the menu while in town*/
 	display: none;
 	width:35vw;
 	height: 65vh;
@@ -159,24 +164,127 @@ body
 	background-image: url(Images/openBook.png);
 	}
 
-	#wrapper_checksupplies{
-		display: none;
+	/************************Options Menu Logic************************/
+	
+	.contrastSlider{ /*Wrapper for the Menu Transparency div which is within the wrapper_optionsMenu div*/
+	float:right;
+	padding:0.3vw;
+	width:25vh;
+	height:3vw;
+	border-style:none;
+	background-image:url(Images/scrollArt.png);
+	background-size: 100% 100%;
+	background-repeat:no-repeat;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	font-size:3vh;
+	background-color: Transparent;
+	transition: width 0.4s;
 	}
-	#wrapper_lookatmap{
-		display: none;
+	.contrastSlider:hover{
+	color:white;
 	}
-	#wrapper_changepace{
-		display: none;
+
+	#wrapper_optionsMenu{ /*Wrapper to hold all options items to be created */
+	position: absolute;
+	display:block;
+	top:0vw;
+	left:69vw;
+	z-index: 2;
+	border-style:none;
+	height:80vh;
+	/*background-color:rgba(218, 174, 87,0.5);*/
+	border-radius: 20px;	
 	}
-	#wrapper_changefoodrat{
-		display: none;
-	}
-	#wrapper_stoprest{
-		display: none;
-	}
-	#wrapper_trade{
-		display: none;
-	}
-	#wrapper_talk2people{
-		display: none;
-	}
+
+/************************Code to create custom slider FREE USE CODE Soruced from: "https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/" ************************/
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+
+/************************END FREE USE CODE Soruced from: "https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/" ************************/
+>>>>>>> refs/remotes/origin/master
