@@ -99,12 +99,12 @@
 					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
 				</span>
 			</center>
-			
+
 	<!-- Menu for Buying Oxen from General Store-->
 			<center>
 				<span id="wrapper_OxenShop">
 				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
-					<span style="font-size:1.6vw;" >I recommend at least six oxen to pull your wagon.<br>The price per oxen is $20 per oxen.<br> 
+					<span style="font-size:1.6vw;" >I recommend at least six oxen to pull your wagon.<br>The price per oxen is $20 per oxen.<br>
 					Number of oxen to buy: <input type="number" id="oxen_number">
 					</span> <br>
 					<center><button class="MenuOption" id="button_oxen_buy" onclick="oxen_purchase()">Buy Oxen</button> </center> <br>
@@ -112,29 +112,29 @@
 					<span style="font-size:2vw;" id="currentMoney_1">Current Money: notset</span>
 				</span>
 			</center>
-			
+
 	<!-- Menu for Buying Food from General Store-->
 			<center>
 				<span id="wrapper_FoodShop">
-				<p style=" font-size:2vw; margin-left:19vw; margin-bottom:0vw; margin-top:1px; "><br><br> Matt's General Store <br>Indepenece, Missouri <br> </p> 
+				<p style=" font-size:2vw; margin-left:19vw; margin-bottom:0vw; margin-top:1px; "><br><br> Matt's General Store <br>Indepenece, Missouri <br> </p>
 					<span style=" font-size:1.6vw;"><br> You'll need plenty of flour, sugar, bacon, coffee, and other types of food.<br> I suggest you start out with at least 200 pounds for each person in your party.<br>
 					The price for food is $0.20 per pound of food.<br>
-					Pounds of food to buy: <input type="number" id="foodp_number"> <br></span> 
-				
+					Pounds of food to buy: <input type="number" id="foodp_number"> <br></span>
+
 					<center><button class="MenuOption" id="button_food_buy" onclick="food_purchase()">Buy Food</button> </center> <br>
 					<span style="font-size:2vw;" id="MattsTotalBill_2">Total Bill: notset</span><br>
 					<span style="font-size:2vw;" id="currentMoney_2">Current Money: notset</span>
-					
+
 				</span>
 			</center>
-			
+
 	<!-- Menu for Buying Clothes from General Store-->
 			<center>
 				<span id="wrapper_ClothesShop">
 				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
 					<span style=" font-size:1.6vw;">You'll need good, warm clothing, especially for the mountains.<br> I recommend taking at least 2 sets of clothing per person.<br>The price for clothing is $10 per one set. </br>
 					Sets of clothing to buy: <input type="number" id="clothes_number"></br> </span>
-					
+
 					<center><button class="MenuOption" id="button_clothes_buy" onclick="clothes_purchase()">Buy Clothes</button> </center> <br>
 					<span style="font-size:2vw;" id="MattsTotalBill_3">Total Bill: notset</span><br>
 					<span style="font-size:2vw;" id="currentMoney_3">Current Money: notset</span>
@@ -147,13 +147,13 @@
 				<p style="font-size:2vw; margin-left:22vw; margin-top:1px; margin-bottom:0vw;"><br><br> Matt's General Store <br>Indepenece, Missouri</p>
 					<span style=" font-size:1.6vw;">You'll need ammunition too.<br> Each box of ammunition contains 20 bullets.<br>The price of ammunition is $2 per box of ammunition.<br>
 					Number of boxes of ammunition to buy: <input type="number" id="ammo_number"></br></span>
-					
+
 					<center><button class="MenuOption" id="button_ammo_buy" onclick="ammo_purchase()">Buy Ammunition</button> </center> <br>
 					<span style="font-size:2vw;" id="MattsTotalBill_4">Total Bill: notset</span><br>
 					<span style="font-size:2vw;" id="currentMoney_4">Current Money: notset</span>
 				</span>
 			</center>
-			
+
 	<!-- Menu for Buying Spare Parts from General Store-->
 			<center>
 				<span id="wrapper_SpareShop">
@@ -170,30 +170,93 @@
 					<span style="font-size:2vw;" id="currentMoney_5">Current Money: notset</span>
 				</span>
 			</center>
-		
-	<!-- Menu for showing town image before acutally going into town-->		
+
+	<!-- Menu for showing town image before acutally going into town-->
 			<center>
 				<span id="wrapper_goToTown">
 					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goTown1()"> ADD THE CURRENT DATE HERE <br> Enter The Town</button> </center>
 				</span>
-			</center><!--  -->
-			
-	<!-- Menu for Indepence Town? -Potentialy for ALL towns-->			
+
+			</center>
+
+	<!-- Menu for Indepence Town? -Potentialy for ALL towns-->
 		<center>
 				<span id="wrapper_townMenu">
-					<!-- Add your menu here-->	
-				</span>	
+					 <span id = "current_player_status">
+						 <center><p id="weather"></p></center>
+						 <center><p id="health"></p></center>
+						 <center><p id="pace"></p></center>
+						 <center><p id="rations"></p></center>
+					 </span>
+					 <center><button  class="MenuOption" id="button_continuetrail" onclick="">Continue on the trail</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_checksupplies" onclick="supplyCheck()">Check Supplies</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_look@map" onclick="">Look at map</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_changepace" onclick="choosePace()">Change pace</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_changefoodration" onclick="">Change food rations</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_stop2rest" onclick="">Stop to rest</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_attempt2trade" onclick="">Attempt to trade</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_talk2ppl" onclick="">Talk to people</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_buysupplies" onclick="">Buy supplies</button> </center> <br>
+				</span>
 		</center>
-				
-		
-			
-		</div> <!--**************************************************** END wrapper_menuHolder div*******************************************************  -->
 
-		
-	
-	</div> <!--************************************************************************************** END GameBox Div************************************************************************************** -->
+		<center>
+			<span id="wrapper_checksupplies">
+				<center><p>Your Supplies</p></center>
+				<center><p id="oxencheck"></p></center>
+				<center><p id="clothingcheck"></p></center>
+				<center><p id="bulletcheck"></p></center>
+				<center><p id="wheelcheck"></p></center>
+				<center><p id="axlecheck"></p></center>
+				<center><p id="tonguecheck"></p></center>
+				<center><p id="foodcheck"></p></center>
+				<center><p id="moneycheck"></p></center>
+				<center><button class="MenuOption" id="button_back2Town1" onclick="goTown1()">Back</button> </center> <br>
+			</span>
+		</center>
 
+		<center>
+			<span id="wrapper_lookatmap">
 
+			</span>
+		</center>
+
+		<center>
+			<span id="wrapper_changepace">
+				<center><button class="MenuOption" id="stdypace" onclick="choosePace('steady')">A Steady Pace</button></center>
+				<center><button class="MenuOption" id="strspace" onclick="choosePace('strain')">A Strenuous Pace</button></center>
+				<center><button class="MenuOption" id="grlpace" onclick="choosePace('grueli')">A Grueling Pace</button></center>
+				<center><button class="MenuOption" id="paceinfo" onclick="">Info About Paces</button></center>
+				<center><button class="MenuOption" id="back2Town3" onclick="goTown1()">Back</button></center>
+			</span>
+		</center>
+
+		<center>
+			<span id="wrapper_changefoodrat">
+
+			</span>
+		</center>
+
+		<center>
+			<span id="wrapper_stoprest">
+
+			</span>
+		</center>
+
+		<center>
+			<span id="wrapper_trade">
+
+			</span>
+		</center>
+
+		<center>
+			<span id="wrapper_talk2ppl">
+
+			</span>
+		</center>
+
+		</div>
+	</div>	
 
 	<div id="wrapper_optionsMenu">	<!--**************************************************** Options Menu Code*********************************************************************  -->
 			
@@ -219,6 +282,7 @@
 			
 
 		</div> <!--****************************************************************** END Options Menu Code*********************************************************************  -->
+
 
 
 

@@ -11,6 +11,7 @@ function Game(personBackground){
 	this.money = 0;
 	this.type="";
 	this.month = "";
+	this.day = 1;
 	this.oxen = 0;
 	this.food = 0;
 	this.clothes = 0;
@@ -18,6 +19,7 @@ function Game(personBackground){
 	this.wheels = 0;
 	this.axles = 0;
 	this.tongues = 0;
+	this.pace = "";
 
 
 	if (personBackground =="banker"){
@@ -102,19 +104,19 @@ function chooseMonth(){
 function monthPick(month){
 
 	if(month == "march"){
-		this.month = "March";
+		theGame[0].month = "March";
 		timeToShop();
 	}else if(month == "april"){
-		this.month = "April";
+		theGame[0].month = "April";
 		timeToShop();
 	}else if(month == "may"){
-		this.month = "May";
+		theGame[0].month = "May";
 		timeToShop();
 	}else if(month == "june"){
-		this.month = "June";
+		theGame[0].month = "June";
 		timeToShop();
 	}else if(month == "july"){
-		this.month = "july";
+		theGame[0].month = "July";
 		timeToShop();
 	}
 
@@ -292,18 +294,58 @@ function spareparts_purchase(){
 }
 
 function goTown1_view(){
-// Just add a span that shows the town, like a picture of it
-document.getElementById("wrapper_MattsShop").style.display = "none";
-document.getElementById("wrapper_goToTown").style.display = "block";
-document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown.png)';
+	// Just add a span that shows the town, like a picture of it
+	document.getElementById("wrapper_MattsShop").style.display = "none";
+	document.getElementById("wrapper_goToTown").style.display = "block";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown.png)';
+	document.getElementById("button_startTown").innerHTML = theGame[0].month + " " + theGame[0].day + "</br> Enter The Town";
+
 }
 
 function goTown1(){
-// This is where the logic goes for going from just a picture to the twon menu
-document.getElementById("wrapper_goToTown").style.display = "none";
-document.getElementById("wrapper_townMenu").style.display="block";
-document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+	// This is where the logic goes for going from just a picture to the twon menu
+	document.getElementById("wrapper_goToTown").style.display = "none";
+	document.getElementById("wrapper_checksupplies").style.display = "none";
+	document.getElementById("wrapper_changepace").style.display = "none";
+	document.getElementById("wrapper_townMenu").style.display="block";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 }
+
+function supplyCheck(){
+	document.getElementById("wrapper_goToTown").style.display = "none";
+	document.getElementById("wrapper_checksupplies").style.display = "block";
+	document.getElementById("wrapper_townMenu").style.display="none";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+
+	document.getElementById("oxencheck").innerHTML = "Oxen:			" + theGame[0].oxen;
+	document.getElementById("clothingcheck").innerHTML = "Sets of clothing:			" + theGame[0].clothes;
+	document.getElementById("bulletcheck").innerHTML = "Bullets:			" + theGame[0].ammo;
+	document.getElementById("wheelcheck").innerHTML = "Wagon Wheels:			" + theGame[0].wheels;
+	document.getElementById("axlecheck").innerHTML = "Wagon Axles:			" + theGame[0].axles;
+	document.getElementById("tonguecheck").innerHTML = "Wagon Tongues:			" + theGame[0].axles;
+	document.getElementById("foodcheck").innerHTML = "Pounds of Food:			" + theGame[0].food;
+	document.getElementById("moneycheck").innerHTML = "Money Left:			" + theGame[0].money;
+}
+
+function choosePace(pace){
+	document.getElementById("wrapper_changepace").style.display="block";
+	document.getElementById("wrapper_townMenu").style.display="none";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+
+	if(pace == "steady"){
+		theGame[0].pace = pace;
+		window.alert("You have chosen to go at a steady pace.");
+	}else if(pace == "strain"){
+		theGame[0].pace = pace;
+		window.alert("You have chosen to go at a streneous pace.");
+	}else if(pace == "grueli"){
+		theGame[0].pace = pace;
+		window.alert("You have chosen to go at a grueling pace.");
+	}
+
+}
+
+
 
 /********************************************** Main Menu Functions *********************************************/
 
@@ -377,17 +419,3 @@ function learnTheTrail(){
 	}
 }
 
-/*Options Menu Functionality*/
-
-function devConsole_Execute(input){
-	var divtoShow = document.getElementById("devConsoleInput").value;
-	//console.log(divtoShow);
-
-	if (input =="Show"){
-		document.getElementById(divtoShow).style.display = "block";
-	}
-	else if (input =="Hide"){
-		document.getElementById(divtoShow).style.display = "none";
-	}
-
-}

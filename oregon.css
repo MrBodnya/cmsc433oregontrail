@@ -118,7 +118,7 @@
 	height: 65vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
-	background-image: url(Images/openBook.png);	
+	background-image: url(Images/openBook.png);
 	}
 	#wrapper_FoodShop{ /*menu for buying food when in a shop*/
 	display: none;
@@ -287,3 +287,4 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /************************END FREE USE CODE Soruced from: "https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/" ************************/
+>>>>>>> refs/remotes/origin/master
