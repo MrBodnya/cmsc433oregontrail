@@ -166,7 +166,7 @@
 
 	/************************Options Menu Logic************************/
 	
-	#contrastSlider{ /*Wrapper for the Menu Transparency div which is within the wrapper_optionsMenu div*/
+	.contrastSlider{ /*Wrapper for the Menu Transparency div which is within the wrapper_optionsMenu div*/
 	float:right;
 	padding:0.3vw;
 	width:25vh;
@@ -180,7 +180,7 @@
 	background-color: Transparent;
 	transition: width 0.4s;
 	}
-	#contrastSlider:hover{
+	.contrastSlider:hover{
 	color:white;
 	}
 
