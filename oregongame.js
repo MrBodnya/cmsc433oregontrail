@@ -20,6 +20,8 @@ function Game(personBackground){
 	this.axles = 0;
 	this.tongues = 0;
 	this.pace = "";
+	this.ration = "";
+	this.health = 100;
 
 
 	if (personBackground =="banker"){
@@ -139,7 +141,7 @@ function openShop_Matt(){
 	document.getElementById("wrapper_FoodShop").style.display = "none";
 	document.getElementById("wrapper_ClothesShop").style.display = "none";
 	document.getElementById("wrapper_AmmoShop").style.display = "none";
-	document.getElementById("wrapper_SpareShop").style.display = "none"; 
+	document.getElementById("wrapper_SpareShop").style.display = "none";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/GeneralStore.png)';
 	document.getElementById("wrapper_MattsShop").style.display = "block";
 	document.getElementById("wrapper_MattsShop").style.backgroundImage = 'url(Images/openBook.png)';
@@ -307,6 +309,8 @@ function goTown1(){
 	document.getElementById("wrapper_goToTown").style.display = "none";
 	document.getElementById("wrapper_checksupplies").style.display = "none";
 	document.getElementById("wrapper_changepace").style.display = "none";
+	document.getElementById("wrapper_changefoodrat").style.display = "none";
+	document.getElementById("wrapper_stoprest").style.display = "none";
 	document.getElementById("wrapper_townMenu").style.display="block";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 }
@@ -343,6 +347,39 @@ function choosePace(pace){
 		window.alert("You have chosen to go at a grueling pace.");
 	}
 
+}
+
+function chooseFoodRation(ration){
+	document.getElementById("wrapper_changefoodrat").style.display="block";
+	document.getElementById("wrapper_townMenu").style.display="none";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+
+	document.getElementById("foodrat_description").innerHTML = "The amount of food the people in your party eat each day can change. These amounts are:";
+	document.getElementById("filling_desc").innerHTML = "Meals are large and generous.";
+	document.getElementById("meager_desc").innerHTML = "Meals are small, but adequate.";
+	document.getElementById("barebones_desc").innerHTML = "Meals are very small; everyone stays hungry.";
+	if(ration == "fill"){
+		theGame[0].ration = ration;
+		window.alert("You have chosen to eat filling rations!");
+	}else if(ration == "meager"){
+		theGame[0].ration = ration;
+		window.alert("You have choser to eat meager portions of food!");
+	}else if(ration == "bare"){
+		theGame[0].ration = ration;
+		window.alert("You have chosen to eat the minimum bare bones!");
+	}
+}
+
+function stoptoRest(){
+	document.getElementById("wrapper_stoprest").style.display="block";
+	document.getElementById("wrapper_townMenu").style.display="none";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+
+	document.getElementById("daypass_desc").innerHTML = "You have rested and a day has gone by.";
+	theGame[0].day++;
+	if(theGame[0].health < 100){
+		theGame[0] += 10;
+	}
 }
 
 
@@ -418,4 +455,3 @@ function learnTheTrail(){
 		document.getElementById("wrapper_menuOptions").style.display="block";
 	}
 }
-
