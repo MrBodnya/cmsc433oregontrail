@@ -11,14 +11,14 @@
 
 	</head>
 	<body>
-	
+
 	<div id="GameBox"> <!--************************************************************************************** START GameBox Div************************************************************************************** -->
 
 		<center id="Title">The Oregon Trail!</center>
-		
+
 		<div class="wrapper_MenuHolder" id="div_Menu"> <!--**************************************************** START wrapper_menuHolder div*******************************************************  -->
 
-		
+
 
 		<!--invisible span for handling learn about the trail information -->
 			<center>
@@ -192,8 +192,8 @@
 					 <center><button  class="MenuOption" id="button_checksupplies" onclick="supplyCheck()">Check Supplies</button> </center> <br>
 					 <center><button  class="MenuOption" id="button_look@map" onclick="">Look at map</button> </center> <br>
 					 <center><button  class="MenuOption" id="button_changepace" onclick="choosePace()">Change pace</button> </center> <br>
-					 <center><button  class="MenuOption" id="button_changefoodration" onclick="">Change food rations</button> </center> <br>
-					 <center><button  class="MenuOption" id="button_stop2rest" onclick="">Stop to rest</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_changefoodration" onclick="chooseFoodRation()">Change food rations</button> </center> <br>
+					 <center><button  class="MenuOption" id="button_stop2rest" onclick="stoptoRest()">Stop to rest</button> </center> <br>
 					 <center><button  class="MenuOption" id="button_attempt2trade" onclick="">Attempt to trade</button> </center> <br>
 					 <center><button  class="MenuOption" id="button_talk2ppl" onclick="">Talk to people</button> </center> <br>
 					 <center><button  class="MenuOption" id="button_buysupplies" onclick="">Buy supplies</button> </center> <br>
@@ -233,13 +233,21 @@
 
 		<center>
 			<span id="wrapper_changefoodrat">
-
+				<center><p id="foodrat_description"></p></center>
+				<center><p id="filling_desc"></P></center>
+				<center><button class="MenuOption" id="button_filling" onclick="chooseFoodRation('fill')">Filling</button></center>
+				<center><p id="meager_desc"></P></center>
+				<center><button class="MenuOption" id="button_meager" onclick="chooseFoodRation('meager')">Meager</button></center>
+				<center><p id="barebones_desc"></P></center>
+				<center><button class="MenuOption" id="button_bareb" onclick="chooseFoodRation('bare')">Bare Bones</button></center>
+				<center><button class="MenuOption" id="back2town4" onclick="goTown1()">Back</button></center>
 			</span>
 		</center>
 
 		<center>
 			<span id="wrapper_stoprest">
-
+				<center><p id="daypass_desc"></p></center>
+				<center><button class="MenuOption" id="back2town5" onclick="goTown1()">Back</button></center>
 			</span>
 		</center>
 
@@ -256,21 +264,21 @@
 		</center>
 
 		</div>
-	</div>	
+	</div>
 
 	<div id="wrapper_optionsMenu">	<!--**************************************************** Options Menu Code*********************************************************************  -->
-			
-			
+
+
 			<table style="margin-top:54vh; margin-right:2vh;" >
-				
+
 				<tr>
-					<td> <div class="contrastSlider" style="height:12vh;"> 
-							<center> Dev Console: <input type="text" id="devConsoleInput" placeholder="Enter a wrapper_XXX name"> <br> 
-								<button id="button_devConsole" onclick="devConsole_Execute('Show')"> Show </button> 
-								<button id="button_devConsole" onclick="devConsole_Execute('Hide')"> Hide </button> 
-							</center> 
-						</div>  
-					</td>	
+					<td> <div class="contrastSlider" style="height:12vh;">
+							<center> Dev Console: <input type="text" id="devConsoleInput" placeholder="Enter a wrapper_XXX name"> <br>
+								<button id="button_devConsole" onclick="devConsole_Execute('Show')"> Show </button>
+								<button id="button_devConsole" onclick="devConsole_Execute('Hide')"> Hide </button>
+							</center>
+						</div>
+					</td>
 				</tr>
 				<tr>
 					<td> <button  class="contrastSlider" id="button_toggleMusic" onclick="toggleMusic()" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()">Turn sound off</button> </td><td>
@@ -279,7 +287,7 @@
 					<td> <button class="contrastSlider" > Menu Transparency: <input style="width:2.9vw;" id="menu_contrastSlider" type="range" value="contrast" max="1" min="0" step="0.01"/></button> </td>
 				</tr>
 			</table>
-			
+
 
 		</div> <!--****************************************************************** END Options Menu Code*********************************************************************  -->
 

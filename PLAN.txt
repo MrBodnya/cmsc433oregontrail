@@ -7,7 +7,7 @@
 	- End
 1) Play game Menu
 	- Pick what type of person you are   - Sean/ Andrei - complete      \
-	- pick five names    - Andrei - Complete				\	
+	- pick five names    - Andrei - Complete				\
 	- pick month to leave march - july		Andrei - complete		\
 	- allocate money according to who user chose  Andrei - completed		\
 		a) 1600 banker				\
@@ -31,18 +31,18 @@
 		e) wagon axle
 		f) wagon tongues
 		g) pounds of food
-		h) how much money is left		
+		h) how much money is left
 	- Look at map
-	- Change pace
+	- Change pace ------ Completed
 		a) steady pace - 8 mile at a time
 		b) streneous pace - 12 mile at a time
 		c) grueling pace - 16 mile at a time
 		d) help understand it
-	- Change food ration
+	- Change food ration ------ Completed
 		a) filling
 		b) meager
 		c) bare bones
-	- Stop to rest  THIS IPMROVES HEALTH BUT LOSE A DAY
+	- Stop to rest  THIS IPMROVES HEALTH BUT LOSE A DAY ------- Completed
 	- Attempt to trade
 		a) lose days when trading
 		b) randomly select if trade is or isn't going to happen
@@ -69,7 +69,7 @@
 		c) Health
 		d) Food
 		e) Next Landmark
-		f) Miles traveled 
+		f) Miles traveled
 	- river stops/crossing
 		a) Show how scenery looks after asking if they want to see
 		b) Show width and depth of river
@@ -137,7 +137,7 @@ These are the various events that could happen to your party along the trail.
 
 
 
-General Guide 
+General Guide
 https://www.gamefaqs.com/pc/577345-the-oregon-trail/faqs/30964
 
 
