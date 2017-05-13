@@ -4,14 +4,21 @@
 	<link rel="stylesheet" type="text/css" href="oregon.css">
 	<audio id="audio_menuTheme"><source  src="Sound/title_piano_ver.mp3" type="audio/mpeg"> </audio>
 	<audio id="audio_menuSelect"><source  src="Sound/MenuSelect.mp3" type="audio/mpeg"> </audio>
+	<script src="jquery-3.2.1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="oregon_jQuery.js"></script>
 	<script src="oregongame.js"></script>
 
 	</head>
 	<body>
-	<div id="GameBox">
-		<center id="Title">The Oregon Trail!</center>
+	
+	<div id="GameBox"> <!--************************************************************************************** START GameBox Div************************************************************************************** -->
 
-		<div class="wrapper_MenuHolder" id="div_Menu">
+		<center id="Title">The Oregon Trail!</center>
+		
+		<div class="wrapper_MenuHolder" id="div_Menu"> <!--**************************************************** START wrapper_menuHolder div*******************************************************  -->
+
+		
 
 		<!--invisible span for handling learn about the trail information -->
 			<center>
@@ -73,7 +80,7 @@
 	<!-- Menu for displaying information screen before beginning shopping at Matt's General Store -->
 			<center>
 				<span id="wrapper_shoppingTime">
-					<button class="MenuOption" id="button_shoppingTime" style=" width:50vw; height:40vh;" onclick=""> </button>	<br>
+					<button class="MenuOption" id="button_shoppingTime" style="font-size:2vw; width:50vw; height:40vh;" onclick=""> </button>	<br>
 					<center><button  class="MenuOption" id="button_StartShop" onclick="openShop_Matt()">Shop</button> </center>
 				</span>
 			</center>
@@ -169,18 +176,77 @@
 				<span id="wrapper_goToTown">
 					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goTown1()"> ADD THE CURRENT DATE HERE <br> Enter The Town</button> </center>
 				</span>
-			</center>
+			</center><!--  -->
 			
 	<!-- Menu for Indepence Town? -Potentialy for ALL towns-->			
 		<center>
 				<span id="wrapper_townMenu">
-					<!-- Add your menu here--> 
+					<!-- Add your menu here-->
+					
+
+					<table>						
+  						<tr style="position:fixed; top:15vh;">
+   						 	<td style="position:fixed; right:5vw;"><button style="" class="MenuOption" id="button_" onclick="">Continue on trail</button></td>
+    						<td style="position:fixed; " ><button style="" class="MenuOption" id="button_" onclick="">Check Supplies</button></td>
+  						</tr>
+ 						<tr style="position:fixed; top:25vh;">
+    						<td><button style=" " class="MenuOption" id="button_" onclick="">Change Pace</button></td>
+   							<td><button style="; " class="MenuOption" id="button_s" onclick="">Change Food Rations</button></td>
+ 						</tr>
+ 						<tr style="position:fixed; top:35vh;">
+ 						 	<td><button style=" " class="MenuOption" id="button_" onclick="">Stop to rest</button></td>
+ 						 	<td><button style=" " class="MenuOption" id="button_" onclick="">Attempt to trade</button> </td>
+ 						</tr>
+ 						<tr style="position:fixed; top:45vh;">
+ 						 	<td><button style=" " class="MenuOption" id="button_" onclick="">Talk to people</button> </td>
+ 						 	<td><button style="" class="MenuOption" id="button_" onclick="">Buy supplies</button></td>
+ 						</tr>
+					</table>
+
+					
+					
+					
+					
+					
+					
+				
+					
 				</span>	
 		</center>
 				
+		
+			
+		</div> <!--**************************************************** END wrapper_menuHolder div*******************************************************  -->
+
+		
 	
-	
-		</div>
-	</div>
+	</div> <!--************************************************************************************** END GameBox Div************************************************************************************** -->
+
+
+
+	<div id="wrapper_optionsMenu">	<!--**************************************************** Options Menu Code*********************************************************************  -->
+			
+			
+			<table style="margin-top:61vh;" >
+				<tr>
+					<td> <div id="contrastSlider" style="height:12vh;"> 
+							<center> Dev Console: <input type="text" id="devConsoleInput"> <br> 
+								<button id="button_devConsole" onclick="devConsole_Execute('Show')"> Show </button> 
+								<button id="button_devConsole" onclick="devConsole_Execute('Hide')"> Hide </button> 
+							</center> 
+						</div>  
+					</td>	
+				</tr>
+				<tr>
+					<td ><button id="contrastSlider" > Menu Transparency: <input style="width:2.9vw;" id="menu_contrastSlider" type="range" value="contrast" max="1" min="0" step="0.01"/></button> </td>
+				</tr>
+			
+
+		</div> <!--****************************************************************** END Menu Code*********************************************************************  -->
+
+
+
+
+
 	</body>
 </html>
