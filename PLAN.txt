@@ -2,28 +2,28 @@
 	- Treval the trail
 	- Learn about the trail - Sean - done
 	- See the Oregon top ten
-	- Turn sound off and on
+	- Turn sound off and on - Sean done
 	- Choose managemet options
 	- End
 1) Play game Menu
-	- Pick what type of person you are   - Sean/ Andrei - complete
-	- pick five names    - Andrei - Complete
-	- pick month to leave march - july		Andrei - complete
-	- allocate money according to who user chose  Andrei - completed
-		a) 1600 banker
-		b) 800 carpetner 
-		c) 400 farmer
-	- Supply shop default transition
-		a) Oxen
-		b) Sets of clothing
-		c) bullets
-		d) wagon wheels
-		e) wagon axle
-		f) wagon tongues
-		g) pounds of food
+	- Pick what type of person you are   - Sean/ Andrei - complete      \
+	- pick five names    - Andrei - Complete				\
+	- pick month to leave march - july		Andrei - complete		\
+	- allocate money according to who user chose  Andrei - completed		\
+		a) 1600 banker				\
+		b) 800 carpetner 			\
+		c) 400 farmer				\
+	- Supply shop default transition		\
+		a) Oxen					\
+		b) Sets of clothing			\
+		c) bullets				\
+		d) wagon wheels					\
+		e) wagon axle				\
+		f) wagon tongues			\
+		g) pounds of food	\						COMPLETED PLAY GAME MENU
 3) Town menu
-	- Continue trail
-	- Check supplies
+	- Continue trail EVERY 24 MILES TRAVELED IS A DAY
+	- Check supplies  ----- Completed
 		a) Oxen
 		b) Sets of clothing
 		c) bullets
@@ -33,16 +33,16 @@
 		g) pounds of food
 		h) how much money is left
 	- Look at map
-	- Change pace
-		a) steady pace
-		b) streneous pace
-		c) grueling pace
+	- Change pace ------ Completed
+		a) steady pace - 8 mile at a time
+		b) streneous pace - 12 mile at a time
+		c) grueling pace - 16 mile at a time
 		d) help understand it
-	- Change food ration
+	- Change food ration ------ Completed
 		a) filling
 		b) meager
 		c) bare bones
-	- Stop to rest
+	- Stop to rest  THIS IPMROVES HEALTH BUT LOSE A DAY ------- Completed
 	- Attempt to trade
 		a) lose days when trading
 		b) randomly select if trade is or isn't going to happen
@@ -65,11 +65,11 @@
 	- can interupt at any moment for rest menu
 	- Current status
 		a) Date
-		b) Wheater
+		b) Wheater ()
 		c) Health
 		d) Food
 		e) Next Landmark
-		f) Miles traveled 
+		f) Miles traveled
 	- river stops/crossing
 		a) Show how scenery looks after asking if they want to see
 		b) Show width and depth of river
@@ -102,7 +102,42 @@
 
 
 
-General Guide 
+
+
+These are the various events that could happen to your party along the trail.
+
+-The trail is impassable.
+-You had a wagon tongue break.
+-You had a wagon tongue break.
+-You had a wagon axle break.
+-You took the wrong trail.
+-You found [items] in an abandoned wagon.
+-You find some wild berries.
+-You've lost the trail.
+-Bad Water
+-No Water
+-Lost [number] pounds of food due to spoilage.
+-No grass for the oxen.
+-An ox wandered off.
+-An ox is sick.
+-An ox died.
+-You took the wrong trail.
+-A thief stole [x amount of item].
+-A fire in your wagon destroyed [x amount of items].
+-[player] got lost.
+-[player] is sick with typhoid fever.
+-[player] was bitten by a snake.
+-[player] has dysentery.
+-[player] has cholera.
+-[player] is suffering from exhaustion.
+-[player] has a fever.
+-[player] is well again.
+-[player] has taken a turn for the worse.
+-[player] has died.
+
+
+
+General Guide
 https://www.gamefaqs.com/pc/577345-the-oregon-trail/faqs/30964
 
 
