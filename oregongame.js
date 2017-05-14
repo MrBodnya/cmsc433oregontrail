@@ -353,7 +353,7 @@ function spareparts_purchase(){
 
 	var numOfWheels = document.getElementById("sparewheel_number").value;
 	var numOfAxles = document.getElementById("spareaxle_number").value;
-	var numOfTongues = document.getElementById("sparetounge_number").value;
+	var numOfTongues = document.getElementById("sparetongue_number").value;
 	var sparepartPrice = (Number(numOfWheels) + Number(numOfAxles) + Number(numOfTongues)) * 10;
 	if(sparepartPrice > theGame[0].money){
 		window.alert("You do not have enough money to buy all these spare parts!");
@@ -362,7 +362,7 @@ function spareparts_purchase(){
 		theGame[0].axles += Number(numOfAxles);
 		theGame[0].tongues += Number(numOfTongues);
 		theGame[0].money -= sparepartPrice;
-		window.alert= ("Congratulations, you bought" + Number(numOfWheels) + "wheels," + Number(numOfAxles) + "axles," + Number(numOfTongues) + "tongues.");
+		window.alert ("Congratulations, you bought " + Number(numOfWheels) + " wheels, " + Number(numOfAxles) + " axles, and " + Number(numOfTongues) + " tongues.");
 		mattsbill += sparepartPrice;
 		openShop();		
 	}
@@ -465,15 +465,22 @@ function chooseFoodRation(ration){
 }
 
 function stoptoRest(){
-	document.getElementById("wrapper_stoprest").style.display="block";
 	document.getElementById("wrapper_townMenu").style.display="none";
-	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+	document.getElementById("wrapper_stoprest").style.display="block";
+}
 
-	document.getElementById("daypass_desc").innerHTML = "You have rested and a day has gone by.";
-	theGame[0].day++;
-	if(theGame[0].health < 100){
-		theGame[0] += 10;
+function rest(){
+	var days = document.getElementById("input_restDays").value;
+	window.alert("You Have Rested for "+days+" days.");
+	theGame[0].day +=Number(days);
+	
+	if (days > 0){
+	//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE	
+	setRandomTradeValues(); //reset random trader after a day has passed
+	theGame[0].traderPresent = true; //reset trader present so that the player can trade
 	}
+	
+	goTown1();
 }
 
 function attemptTrade(){
@@ -481,7 +488,7 @@ function attemptTrade(){
 	document.getElementById("wrapper_attemptTrade").style.display="block";
 	
 	if(theGame[0].traderPresent == true){
-		document.getElementById("button_acceptTrade").style.display ="block";
+		document.getElementById("button_acceptTrade").style.display ="block"; //show accept trade button if trader is present
 		document.getElementById("trade_traderInfo").innerHTML ="A trader is asking for <font color='red'>"+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+ "</font>, They will trade you <font color='red'>"+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+"</font> in return.";
 		document.getElementById("trade_oxencheck").innerHTML = "Oxen: " + theGame[0].oxen;
 		document.getElementById("trade_clothingcheck").innerHTML = "Sets of clothing: " + theGame[0].clothes;
@@ -493,16 +500,14 @@ function attemptTrade(){
 		document.getElementById("trade_moneycheck").innerHTML = "Money Left: " + theGame[0].money;
 	}
 	else if(theGame[0].traderPresent == false){
-		document.getElementById("button_attemptTradePrompt").innerHTML="No One Wants to trade with you today."
-		document.getElementById("button_acceptTrade").style.display ="none";
+		document.getElementById("trade_traderInfo").innerHTML="No One Wants to trade with you today."
+		document.getElementById("button_acceptTrade").style.display ="none"; //hide accept trade button if trader is not present
 	}
 	
 
 }
 
 function acceptTrade(){
-
-
 	switch (theGame[0].traderItemWanted){
 		case "Oxen":
 			if (theGame[0].oxen < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Oxen to make this trade!");}
@@ -807,42 +812,49 @@ function devConsole_Execute(input){ // show and/or hide an html element or run a
 }
 
 function getDate(intMonth){
+
+	monthsToAdd = Math.floor(theGame[0].day /32); //based on the number of days that have passed, calc the addition months that have passed by diving days by 31
+	intMonth =  Math.floor(theGame[0].month + monthsToAdd); //add the additional number of motnsh to the starting month.
+	actualDay = theGame[0].day % 32;
+	if (actualDay == 0) actualDay = 1;
+	console.log("Months to add: "+monthsToAdd);
+	console.log("Month after addition: "+intMonth);
 	switch (intMonth){
 		case 1:
-			return "January "+ theGame[0].day + ", " + theGame[0].year;
+			return "January "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 2:
-			return "February "+ theGame[0].day + ", " + theGame[0].year;
+			return "February "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 3:
-			return "March "+ theGame[0].day + ", " + theGame[0].year;
+			return "March "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 4:
-			return "April "+ theGame[0].day + ", " + theGame[0].year;
+			return "April "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 5:
-			return "May "+ theGame[0].day + ", " + theGame[0].year;
+			return "May "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 6:
-			return "June "+ theGame[0].day + ", " + theGame[0].year;
+			return "June "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 7:
-			return "July "+ theGame[0].day + ", " + theGame[0].year;
+			return "July "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 8:
-			return "August "+ theGame[0].day + ", " + theGame[0].year;
+			return "August "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 9:
-			return "September "+ theGame[0].day + ", " + theGame[0].year;
+			return "September "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 10:
-			return "October "+ theGame[0].day + ", " + theGame[0].year;
+			return "October "+ actualDay + ", " + theGame[0].year;
 			break;
 		case 11:
-			return "November "+ theGame[0].day + ", " + theGame[0].year;
+			return "November "+ actualDay  + ", " + theGame[0].year;
 			break;
 		case 12:
-			return "December "+ theGame[0].day + ", " + theGame[0].year;
+			return "December "+ actualDay + ", " + theGame[0].year;
 			break;
 	}
 
