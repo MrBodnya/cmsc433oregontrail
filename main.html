@@ -11,8 +11,22 @@
 
 	</head>
 	<body>
-
-	<div id="GameBox"> <!--************************************************************************************** START GameBox Div************************************************************************************** -->
+<canvas id="canvas_rain" style="display:none;"></canvas>
+<div class="sun" id="sun" style=""> <!--This div controls the sun effect, its z index is above the gamebox itself -->
+    <div class="ray_box">
+        <div class="ray ray1"></div>
+        <div class="ray ray2"></div>
+        <div class="ray ray3"></div>
+        <div class="ray ray4"></div>
+        <div class="ray ray5"></div>
+        <div class="ray ray6"></div>
+        <div class="ray ray7"></div>
+        <div class="ray ray8"></div>
+        <div class="ray ray9"></div>
+        <div class="ray ray10"></div>
+    </div>
+</div>
+	<div id="GameBox"> <!--******************************************************************************** START GameBox Div************************************************************************************** -->
 
 		<center id="Title">The Oregon Trail!</center>
 
@@ -290,18 +304,34 @@
 		</center>
 
 		<center>
-			<div id="wrapper_checksupplies" style="font-size:1.5vw;"> <br> <br>
-				<center><span ><u>YOUR SUPPLIES:</u> </span></center>
-				<center><span id="oxencheck"></span></center>
-				<center><span id="clothingcheck"></span></center>
-				<center><span id="bulletcheck"></span></center>
-				<center><span id="wheelcheck"></span></center>
-				<center><span id="axlecheck"></span></center>
-				<center><span id="tonguecheck"></span></center>
-				<center><span id="foodcheck"></span></center>
-				<center><span id="moneycheck"></span></center>
-				<center><button class="MenuOption" id="button_back2Town1" onclick="goTown1()">Back</button> </center> <br>
-			</div>
+			<span id="wrapper_checksupplies" style="font-size:1.5vw;"> <br> <br>
+				
+				<div style="float:right; width:14vw; height: 65vh;"> 
+					<center><span ><u>YOUR SUPPLIES:</u> </span></center>
+					<center><span id="oxencheck"></span></center>
+					<center><span id="clothingcheck"></span></center>
+					<center><span id="bulletcheck"></span></center>
+					<center><span id="wheelcheck"></span></center>
+					<center><span id="axlecheck"></span></center>
+					<center><span id="tonguecheck"></span></center>
+					<center><span id="foodcheck"></span></center>
+					<center><span id="moneycheck"></span></center>
+					<center><button class="MenuOption" id="button_back2Town1" onclick="goTown1()">Back</button> </center> <br>
+				</div>
+				
+	
+			<div id = "current_player_status" style="float:left; width:14vw; height: 65vh;" >
+					<button class="MenuOption" style="margin-left:3vw; width:12vw; height:40vh; font-size:3.5vh;">
+					<span id="family1_status" style="float:left; margin-left:1vw;">Family1 status</span><br>
+					<span id="family2_status" style="float:left; margin-left:1vw;">Family2 status</span><br>
+					<span id="family3_status" style="float:left; margin-left:1vw;">Family3 status</span><br>
+					<span id="family4_status" style="float:left; margin-left:1vw;">Family4 status</span><br>
+					<span id="family5_status" style="float:left; margin-left:1vw;">Family5 status</span><br>
+					</button>	 
+				</div>	 
+
+
+			</span>
 		</center>
 
 		<center>

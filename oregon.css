@@ -1,13 +1,21 @@
 	body
 	{
-    background-color: black;
+    /*background-color: black;*/
+    background: -moz-linear-gradient(top, #7db9e8 0%, #7db9e8 1%, #7db9e8 1%, #7db9e8 2%, #2989d8 20%, #000000 62%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #7db9e8 0%,#7db9e8 1%,#7db9e8 1%,#7db9e8 2%,#2989d8 20%,#000000 62%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #7db9e8 0%,#7db9e8 1%,#7db9e8 1%,#7db9e8 2%,#2989d8 20%,#000000 62%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	}
+	#canvas{
+		z-index:-2;
+		position:absolute;
 	}
 	#GameBox
 	{
 	width:65vw;
 	height:80vh;
 	border-style:solid;
-	border-width:2px;
+	border-width:5px;
 	background-image: url("Images/MainMenu.png");
 	background-size: 100% 100%;
 	margin-top:25vh;
@@ -16,6 +24,10 @@
 	-moz-transition: background-image 0.5s linear;
 	-ms-transition: background-image 0.5s linear;
 	transition: background-image 0.5s linear;
+	-webkit-box-shadow: inset 10px 10px 45px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 10px 10px 45px 8px rgba(0,0,0,0.75);
+    box-shadow: inset 10px 10px 45px 8px rgba(0,0,0,0.75);
+	border-radius:20px;
 	}
 	#Title
 	{
@@ -354,3 +366,120 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /************************END FREE USE CODE Soruced from: "https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/" ************************/
+
+/************************START SUNRAY EFFECT FREE CODE Soruced from: "https://codepen.io/Hackroro/pen/ByrKLZ" ************************/
+
+.sun { 
+  position: absolute;
+	top:0;
+	left:83vw;
+	right:0;
+	bottom:70vh;
+	margin: auto;  
+	width:70px;
+	height:70px;
+	border-radius:50%;	
+	background:white;
+	opacity:1;			
+	box-shadow: 0px 0px 40px 15px white;  
+	z-index: 2;
+}
+
+.ray_box {
+  position: absolute;
+  margin: auto;
+	top:0px;
+	left:0;
+	right:0;
+	bottom:0;	
+  width:70px;  
+  -webkit-animation: ray_anim 120s linear infinite;
+  animation: ray_anim 120s linear infinite;
+}
+.ray {  
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+		background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%); 
+    margin-left:10px;
+    border-radius:80% 80% 0 0;
+    position:absolute;
+    opacity:0.1;
+}
+
+.ray1 {    
+    height:170px;
+    width:30px;
+   -webkit-transform: rotate(180deg);
+    top:-175px;
+    left: 15px;
+}
+.ray2 {
+    height:100px;
+    width:8px;
+   -webkit-transform: rotate(220deg);
+    top:-90px;
+    left: 75px;
+}
+.ray3 {
+    height:170px;
+    width:50px;
+   -webkit-transform: rotate(250deg);
+    top:-80px;
+    left: 100px;
+}
+.ray4 {
+    height:120px;
+    width:14px;
+   -webkit-transform: rotate(305deg);
+    top:30px;
+    left: 100px;
+}
+.ray5 {
+    height:140px;
+    width:30px;
+   -webkit-transform: rotate(-15deg);
+    top:60px;
+    left: 40px;
+}
+.ray6 {
+    height:90px;
+    width:50px;
+   -webkit-transform: rotate(30deg);
+    top:60px;
+    left: -40px;
+}
+.ray7 {
+    height:180px;
+    width:10px;
+   -webkit-transform: rotate(70deg);
+    top:-35px;
+    left: -40px;
+}
+.ray8 {
+    height:120px;
+    width:30px;
+   -webkit-transform: rotate(100deg);
+    top:-45px;
+    left:-90px;
+}
+.ray9 {
+    height:80px;
+    width:10px;
+   -webkit-transform: rotate(120deg);
+    top:-65px;
+    left:-60px;
+}
+.ray10 {
+    height:190px;
+    width:23px;
+   -webkit-transform: rotate(150deg);
+    top:-185px;
+    left: -60px;
+}
+
+
+@-webkit-keyframes ray_anim { 
+		0% { -webkit-transform: rotate(0deg); transform: rotate(0deg);}    
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg);}
+}
+
+/************************END SUNRAY EFFECT FREE CODE Soruced from: "https://codepen.io/Hackroro/pen/ByrKLZ" ************************/

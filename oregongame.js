@@ -21,7 +21,9 @@ function Game(personBackground){
 	this.axles = 0;
 	this.tongues = 0;
 	this.pace = "steady";
-	this.ration = "filling";
+	this.ration = "filling"; //filling = 3lb/per person/day   meager = 2lb/per person/day   scarce = 2lb/per person/day 
+	this.foodperPerson = 3; //pounds of food per person, per day.
+	this.healthReductionMultiplier = 1; //health reduction multiplier per day, the pace will make this either 1, 2 or 3
 	this.health = 100;
 	this.location = "";
 	this.storeType="Matt";
@@ -35,7 +37,6 @@ function Game(personBackground){
 		this.money = 1600;
 		this.pointsMulti = 1;
 		this.type = "banker";
-
 	}
 	else if (personBackground=="carpenter"){
 		this.money = 800;
@@ -139,7 +140,6 @@ function timeToShop(){
 	document.getElementById("wrapper_shoppingTime").style.display = "inline";
 	document.getElementById("GameBox").style.backgroundImage = "Images/GeneralStore.png";
 	document.getElementById("button_shoppingTime").innerHTML = "<center>Its Time to Shop!</center><br>Before leaving Independence you should buy equipment and supplies.<br> You have <font color='red'> " + theGame[0].money + " </font> in \n cash, but you don't have to \n spend it all now. <br> You can buy whatever you need at Matt's General Store.";
-
 }
 
 /****************************************************************** START SHOP MENU CODE ****************************************************************************************/
@@ -404,7 +404,7 @@ function goTown1(){
 	document.getElementById("pace_town").innerHTML = "<u>Pace:</u> "+theGame[0].pace;
 	document.getElementById("rations_town").innerHTML = "<u>Rations:</u> " + getRationStatus();
 
-	console.log("shop bill is "+mattsbill);
+	//console.log("shop bill is "+mattsbill);
 	mattsbill = 0; //resetting the bill counter for the shop, so that it starts at 0 again when you go to the store
 	 //set store type variable so correct store & pricing is set
 }
@@ -415,14 +415,20 @@ function supplyCheck(){
 	document.getElementById("wrapper_townMenu").style.display="none";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 
-	document.getElementById("oxencheck").innerHTML = "Oxen:			" + theGame[0].oxen;
-	document.getElementById("clothingcheck").innerHTML = "Sets of clothing:			" + theGame[0].clothes;
-	document.getElementById("bulletcheck").innerHTML = "Bullets:			" + theGame[0].ammo;
-	document.getElementById("wheelcheck").innerHTML = "Wagon Wheels:			" + theGame[0].wheels;
-	document.getElementById("axlecheck").innerHTML = "Wagon Axles:			" + theGame[0].axles;
-	document.getElementById("tonguecheck").innerHTML = "Wagon Tongues:			" + theGame[0].tongues;
-	document.getElementById("foodcheck").innerHTML = "Pounds of Food:			" + theGame[0].food;
-	document.getElementById("moneycheck").innerHTML = "Money Left:			" + theGame[0].money;
+	document.getElementById("oxencheck").innerHTML = "<u>Oxen:</u> " + theGame[0].oxen;
+	document.getElementById("clothingcheck").innerHTML = "<u>Sets of clothing:</u>	" + theGame[0].clothes;
+	document.getElementById("bulletcheck").innerHTML = "<u>Bullets:</u> " + theGame[0].ammo;
+	document.getElementById("wheelcheck").innerHTML = "<u>Wagon Wheels:</u> " + theGame[0].wheels;
+	document.getElementById("axlecheck").innerHTML = "<u>Wagon Axles:</u> " + theGame[0].axles;
+	document.getElementById("tonguecheck").innerHTML = "<u>Wagon Tongues:</u> " + theGame[0].tongues;
+	document.getElementById("foodcheck").innerHTML = "<u>Pounds of Food:</u> " + theGame[0].food;
+	document.getElementById("moneycheck").innerHTML = "<u>Money Left:</u> " + theGame[0].money;
+
+	document.getElementById("family1_status").innerHTML = "<u>" + theGame[0].game_family[0].p_name + "'s health:</u> " + theGame[0].game_family[0].health;
+	document.getElementById("family2_status").innerHTML = "<u>" +  theGame[0].game_family[1].p_name + "'s health:</u> " + theGame[0].game_family[1].health;
+	document.getElementById("family3_status").innerHTML = "<u>" + theGame[0].game_family[2].p_name + "'s health:</u> " + theGame[0].game_family[2].health;
+	document.getElementById("family4_status").innerHTML = "<u>" + theGame[0].game_family[3].p_name + "'s health:</u> " + theGame[0].game_family[3].health;
+	document.getElementById("family5_status").innerHTML = "<u>" + theGame[0].game_family[4].p_name + "'s health:</u> " + theGame[0].game_family[4].health;
 }
 
 function choosePace(pace){
@@ -432,12 +438,15 @@ function choosePace(pace){
 
 	if(pace == "Steady"){
 		theGame[0].pace = pace;
+		theGame[0].healthReductionMultiplier = 1;
 		window.alert("You have chosen to go at a steady pace.");
 	}else if(pace == "Straining"){
 		theGame[0].pace = pace;
+		theGame[0].healthReductionMultiplier = 2;
 		window.alert("You have chosen to go at a streneous pace.");
 	}else if(pace == "Grueling"){
 		theGame[0].pace = pace;
+		theGame[0].healthReductionMultiplier = 3;
 		window.alert("You have chosen to go at a grueling pace.");
 	}
 
@@ -454,12 +463,15 @@ function chooseFoodRation(ration){
 	document.getElementById("barebones_desc").innerHTML = "<font color='red'>Meals are very small; everyone stays hungry. </font>";
 	if(ration == "filling"){
 		theGame[0].ration = ration;
+		theGame[0].foodperPerson = 3; //each person gets 3lbs of food per day with filling rations
 		window.alert("You have chosen to eat filling rations!");
 	}else if(ration == "meager"){
-		theGame[0].ration = ration;
+		theGame[0].ration = ration; 
+		theGame[0].foodperPerson = 2; //each person gets 2lbs of food per day with meager rations
 		window.alert("You have choser to eat meager portions of food!");
 	}else if(ration == "bare"){
-		theGame[0].ration = ration;
+		theGame[0].ration = ration; 
+		theGame[0].foodperPerson = 1 //each person gets 1lbs of food per day with bare rations
 		window.alert("You have chosen to eat the minimum bare bones!");
 	}
 }
@@ -476,9 +488,26 @@ function rest(){
 	theGame[0].day +=Number(days);
 	
 	if (days > 0){
-	//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE	
-	setRandomTradeValues(); //reset random trader after a day has passed
-	theGame[0].traderPresent = true; //reset trader present so that the player can trade
+		//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE	
+		setRandomTradeValues(); //reset random trader after a day has passed
+		theGame[0].traderPresent = true; //reset trader present so that the player can trade
+
+		var peopleEating = 0; //the below loop will calc total amount of food eaten
+		var healthReduxMultiplier = theGame[0].healthReductionMultiplier; //variable to hold health reduction multiplier
+
+		if (theGame[0].storeType=="Town"){healthReduxMultiplier = 1;} //regardless of current pace, if player is in town, health reduction is set to 1
+		console.log(days+" days have passed, the player is in "+theGame[0].storeType+" so health reduction multiplier is set from "+theGame[0].healthReductionMultiplier+" to "+healthReduxMultiplier);
+		for (i = 0; i < theGame[0].game_family.length; i++){	
+			if (theGame[0].game_family[i].health > 0){ //only people who have more than 0 health may eat
+				theGame[0].game_family[i].health -= (5 * healthReduxMultiplier)*days; //a persons health decreases by 5,10 or 15 points per day due to hunger
+				console.log(theGame[0].game_family[i].p_name +" has lost "+(5 * healthReduxMultiplier)*days+" hp points, health is now: "+ theGame[0].game_family[i].health);
+				theGame[0].game_family[i].health += (theGame[0].foodperPerson * 4)*days //a person gains 4 points of health per lb of food, they gain this health for each day that passes
+				if (theGame[0].game_family[i].health > 100) {theGame[0].game_family[i].health = 100;} //if a persons health exceeds 100, change it back to 100.
+				peopleEating += 1; //increase the number of people who have eaten food by 1
+				console.log(theGame[0].game_family[i].p_name +"has eaten"+(theGame[0].foodperPerson*days)+" lbs of food. and gained "+(theGame[0].foodperPerson * 4)*days+" hp points, health is now: "+theGame[0].game_family[i].health);
+			}
+		}
+		theGame[0].food -= (peopleEating * theGame[0].foodperPerson)*days; //reduce food stock by the number people eating * lb of food per person
 	}
 	
 	goTown1();
@@ -501,6 +530,14 @@ function attemptTrade(){
 		document.getElementById("trade_moneycheck").innerHTML = "Money Left: " + theGame[0].money;
 	}
 	else if(theGame[0].traderPresent == false){
+		document.getElementById("trade_oxencheck").innerHTML = "Oxen: " + theGame[0].oxen;
+		document.getElementById("trade_clothingcheck").innerHTML = "Sets of clothing: " + theGame[0].clothes;
+		document.getElementById("trade_bulletcheck").innerHTML = "Bullets: " + theGame[0].ammo;
+		document.getElementById("trade_wheelcheck").innerHTML = "Wagon Wheels: " + theGame[0].wheels;
+		document.getElementById("trade_axlecheck").innerHTML = "Wagon Axles: " + theGame[0].axles;
+		document.getElementById("trade_tonguecheck").innerHTML = "Wagon Tongues: " + theGame[0].tongues;
+		document.getElementById("trade_foodcheck").innerHTML = "Pounds of Food: " + theGame[0].food;
+		document.getElementById("trade_moneycheck").innerHTML = "Money Left: " + theGame[0].money;
 		document.getElementById("trade_traderInfo").innerHTML="No One Wants to trade with you today."
 		document.getElementById("button_acceptTrade").style.display ="none"; //hide accept trade button if trader is not present
 	}
@@ -658,27 +695,23 @@ function aquireTradeItem(item){
 function calcAverageHealth(){ //takes the average of your family members health 
 	var HealthTotal = 0;
 	for (i = 0; i < theGame[0].game_family.length; i++){
-		console.log(theGame[0].game_family[i].p_name+"'s Health is: "+theGame[0].game_family[i].health);	
+		//console.log(theGame[0].game_family[i].p_name+"'s Health is: "+theGame[0].game_family[i].health);	
 		HealthTotal += theGame[0].game_family[i].health;
 	}
 
-	console.log("Average health is: "+(HealthTotal/5) );
+	//console.log("Average health is: "+(HealthTotal/5) );
 	
 	switch (true){
 		case ( (HealthTotal/5) > 75 ):
-			console.log("<font color='green'>"+(HealthTotal/5)+"</font>");
 			return ("<font color='green'>"+(HealthTotal/5)+"</font>");
 			break;
 		case ( (HealthTotal/5) > 50 ):
-			console.log("<font color='orange'>"+(HealthTotal/5)+"</font>");
 			return ("<font color='orange'>"+(HealthTotal/5)+"</font>");
 			break;
 		case ( (HealthTotal/5) > 25 ):
-			console.log("<font color='purple'>"+(HealthTotal/5)+"</font>");
 			return ("<font color='purple'>"+(HealthTotal/5)+"</font>");
 			break;
 		case ( (HealthTotal/5) > 1 ):
-			console.log("<font color='red'>"+(HealthTotal/5)+"</font>");
 			return ("<font color='red'>"+(HealthTotal/5)+"</font>");
 			break;
 	}
