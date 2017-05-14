@@ -467,6 +467,7 @@ function chooseFoodRation(ration){
 function stoptoRest(){
 	document.getElementById("wrapper_townMenu").style.display="none";
 	document.getElementById("wrapper_stoprest").style.display="block";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlackScreen.png)';
 }
 
 function rest(){
