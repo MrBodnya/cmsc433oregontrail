@@ -492,22 +492,28 @@ function rest(){
 		setRandomTradeValues(); //reset random trader after a day has passed
 		theGame[0].traderPresent = true; //reset trader present so that the player can trade
 
-		var peopleEating = 0; //the below loop will calc total amount of food eaten
 		var healthReduxMultiplier = theGame[0].healthReductionMultiplier; //variable to hold health reduction multiplier
-
+		var foodEatenPerPerson = (theGame[0].foodperPerson * days) //variable that holds the amount of food each person will be eating is lbs of food per person * the number of days that pass
+		var foodEatenPerPerson_AfterStockCheck = (theGame[0].foodperPerson * days); //variable will determine the final amount of lbs the player will eat, if they are attempting to eat more than exists
 		if (theGame[0].storeType=="Town"){healthReduxMultiplier = 1;} //regardless of current pace, if player is in town, health reduction is set to 1
 		console.log(days+" days have passed, the player is in "+theGame[0].storeType+" so health reduction multiplier is set from "+theGame[0].healthReductionMultiplier+" to "+healthReduxMultiplier);
 		for (i = 0; i < theGame[0].game_family.length; i++){	
 			if (theGame[0].game_family[i].health > 0){ //only people who have more than 0 health may eat
 				theGame[0].game_family[i].health -= (5 * healthReduxMultiplier)*days; //a persons health decreases by 5,10 or 15 points per day due to hunger
 				console.log(theGame[0].game_family[i].p_name +" has lost "+(5 * healthReduxMultiplier)*days+" hp points, health is now: "+ theGame[0].game_family[i].health);
-				theGame[0].game_family[i].health += (theGame[0].foodperPerson * 4)*days //a person gains 4 points of health per lb of food, they gain this health for each day that passes
+				
+				if(  foodEatenPerPerson >  theGame[0].food){ //this person needs to eat more food than is left, they will only eat whatever is left in stock instead
+					foodEatenPerPerson_AfterStockCheck = theGame[0].food;
+				}
+
+				theGame[0].food -= foodEatenPerPerson_AfterStockCheck; //reduce food stock by the total amount this individual is eating after the stock check.
+				theGame[0].game_family[i].health += (foodEatenPerPerson_AfterStockCheck * 4) //a person gains 4 points of health per lb of food, they gain this health for each day that passes: total lbs of food eaten * 4hp points
 				if (theGame[0].game_family[i].health > 100) {theGame[0].game_family[i].health = 100;} //if a persons health exceeds 100, change it back to 100.
-				peopleEating += 1; //increase the number of people who have eaten food by 1
-				console.log(theGame[0].game_family[i].p_name +"has eaten"+(theGame[0].foodperPerson*days)+" lbs of food. and gained "+(theGame[0].foodperPerson * 4)*days+" hp points, health is now: "+theGame[0].game_family[i].health);
+				if (theGame[0].game_family[i].health < 0) {theGame[0].game_family[i].health = 0; window.alert(theGame[0].game_family[i].p_name +" HAS DIED NOOOOOOOOOOOO!!!!! ;("); }
+
+				console.log(theGame[0].game_family[i].p_name +" has eaten "+foodEatenPerPerson_AfterStockCheck+" lbs of food. and gained "+(foodEatenPerPerson_AfterStockCheck * 4)+" hp points, health is now: "+theGame[0].game_family[i].health);
 			}
 		}
-		theGame[0].food -= (peopleEating * theGame[0].foodperPerson)*days; //reduce food stock by the number people eating * lb of food per person
 	}
 	
 	goTown1();
@@ -713,6 +719,17 @@ function calcAverageHealth(){ //takes the average of your family members health
 			break;
 		case ( (HealthTotal/5) > 1 ):
 			return ("<font color='red'>"+(HealthTotal/5)+"</font>");
+			break;
+		case ((HealthTotal/5) == 0):
+			document.getElementsByTagName("body")[0].style.background = "#890808";
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlackScreen.png)';
+			document.getElementById("div_Menu").style.display ="none";
+			setTimeout(function() {
+    		// rest of code here
+    		window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
+			location.reload();
+			}, 00);
+			
 			break;
 	}
 	return "Invalid health amount";
