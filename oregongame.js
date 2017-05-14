@@ -508,40 +508,44 @@ function attemptTrade(){
 }
 
 function acceptTrade(){
+	var itemTraded = false;
 	switch (theGame[0].traderItemWanted){
 		case "Oxen":
-			if (theGame[0].oxen < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Oxen to make this trade!");}
-			else{ theGame[0].oxen -= theGame[0].traderItemQuantityWanted;}
+			if (theGame[0].oxen < theGame[0].traderItemQuantityWanted ){window.alert("You do not have enough Oxen to make this trade!"); }
+			else{ theGame[0].oxen -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
 		case "Set of Clothing":
 			if (theGame[0].clothes < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Clothing to make this trade!");}
-			else{theGame[0].clothes -= theGame[0].traderItemQuantityWanted;}
+			else{theGame[0].clothes -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
 		case "Bullets":
 			if (theGame[0].ammo < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Bullets to make this trade!");}
-			else{theGame[0].ammo -= theGame[0].traderItemQuantityWanted;}
+			else{theGame[0].ammo -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
 		case "Wagon Wheels":
 			if (theGame[0].wheels < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Wheels to make this trade!");}
-			else{theGame[0].wheels -= theGame[0].traderItemQuantityWanted;}
+			else{theGame[0].wheels -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
 		case "Wagon Axles":
 			if (theGame[0].axles < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Axles to make this trade!");}
-			else{theGame[0].axles -= theGame[0].traderItemQuantityWanted;}
+			else{theGame[0].axles -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
 		case "Wagon Tonges":
 			if (theGame[0].tongues < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Tongues to make this trade!");}
-			else{theGame[0].tongues -= theGame[0].traderItemQuantityWanted;}
+			else{theGame[0].tongues -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
 		case "Pounds of Food":
 			if (theGame[0].food < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Pounds of Food to make this trade!");}
-			else{theGame[0].food -= theGame[0].traderItemQuantityWanted;}
+			else{theGame[0].food -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
 	}
-	aquireTradeItem(theGame[0].traderItemGiven);	
-	theGame[0].traderPresent = false; //after a trade is complete, they will no longer be present (for the day).
-	goTown1();
-	window.alert("You have succesfully traded "+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+" for "+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+" in return!");
+	if(itemTraded == true){
+		aquireTradeItem(theGame[0].traderItemGiven);	
+		theGame[0].traderPresent = false; //after a trade is complete, they will no longer be present (for the day).
+		goTown1();	
+		window.alert("You have succesfully traded "+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+" for "+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+" in return!");
+	}
+	
 }
 
 
