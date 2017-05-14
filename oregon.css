@@ -171,7 +171,7 @@
 	#wrapper_checksupplies{
 	display:none;
 	width:30vw;
-	height: 45vh;
+	height: 50vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
@@ -224,6 +224,9 @@
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
+	}
+	#wrapper_attemptTrade{
+	display:none;
 	}
 	/********************************************END TOWN MENU CSS & ALL ITS SUB-MENUS*********************************************/
 

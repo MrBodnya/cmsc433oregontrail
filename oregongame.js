@@ -21,10 +21,15 @@ function Game(personBackground){
 	this.axles = 0;
 	this.tongues = 0;
 	this.pace = "steady";
-	this.ration = "";
+	this.ration = "filling";
 	this.health = 100;
 	this.location = "";
 	this.storeType="Matt";
+	this.traderItemWanted = "";
+	this.traderItemQuantityWanted = 0;
+	this.traderItemGiven ="";
+	this.traderItemQuantityGiven = 0;
+	this.traderPresent = true; //variable to determine whether the player has traded once for that day or not
 
 	if (personBackground =="banker"){
 		this.money = 1600;
@@ -137,6 +142,7 @@ function timeToShop(){
 
 }
 
+/****************************************************************** START SHOP MENU CODE ****************************************************************************************/
 function openShop(){
 	//setup page
 	document.getElementById("wrapper_shoppingTime").style.display = "none";
@@ -154,6 +160,7 @@ function openShop(){
 	document.getElementById("currentMoney").innerHTML = "Current Money: "+theGame[0].money ;
 	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: "+mattsbill;
 	document.getElementById("store_location_main").innerHTML = theGame[0].location; //set store location
+	document.getElementById("store_date_main").innerHTML = getDate(theGame[0].month); //set store date
 	switch (theGame[0].storeType){
 		case "Matt":
 			document.getElementById("store_name_main").innerHTML = "Matt's General Store"; //set store name
@@ -163,9 +170,6 @@ function openShop(){
 			document.getElementById("button_goto_town").onclick = goTown1;
 			break;
 	}
-	
-
-
 }
 
 function shop_for_oxen(){
@@ -177,6 +181,7 @@ function shop_for_oxen(){
 	document.getElementById("currentMoney_1").innerHTML = "Current Money: "+theGame[0].money ;
 	document.getElementById("MattsTotalBill_1").innerHTML = "Total Bill: " + mattsbill;
 	document.getElementById("store_location_oxen").innerHTML = theGame[0].location; //set store location
+	document.getElementById("store_date_oxen").innerHTML = getDate(theGame[0].month); //set store date
 	console.log("The store type is:"+theGame[0].storeType);
 	switch (theGame[0].storeType){
 		case "Matt":
@@ -214,6 +219,7 @@ function shop_for_food(){
 	document.getElementById("currentMoney_2").innerHTML = "Current Money: "+theGame[0].money ;
 	document.getElementById("MattsTotalBill_2").innerHTML = "Total Bill: " + mattsbill;
 	document.getElementById("store_location_food").innerHTML = theGame[0].location; //set store location
+	document.getElementById("store_date_food").innerHTML = getDate(theGame[0].month); //set store date
 
 	switch (theGame[0].storeType){
 		case "Matt":
@@ -237,7 +243,7 @@ function food_purchase(){
 	}else{
 		theGame[0].food += Number(numOfFood);
 		theGame[0].money -= priceofFood;
-		window.alert("Congradulations, you bought "+Number(numOfFood)+" pounds of food!");
+		window.alert("Congratulations, you bought "+Number(numOfFood)+" pounds of food!");
 		mattsbill += priceofFood;
 		openShop();			
 	}
@@ -253,6 +259,7 @@ function shop_for_clothes(){
 	document.getElementById("currentMoney_3").innerHTML = "Current Money: "+theGame[0].money ;
 	document.getElementById("MattsTotalBill_3").innerHTML = "Total Bill: " + mattsbill;
 	document.getElementById("store_location_clothes").innerHTML = theGame[0].location; //set store location
+	document.getElementById("store_date_clothes").innerHTML = getDate(theGame[0].month); //set store date
 	switch (theGame[0].storeType){
 		case "Matt":
 			document.getElementById("store_name_clothes").innerHTML = "Matt's General Store"; //set store name	
@@ -274,7 +281,7 @@ function clothes_purchase(){
 	}else{
 		theGame[0].clothes += Number(numOfClothes);
 		theGame[0].money -= priceofClothes;
-		window.alert("Congradulations, you bought" + Number(numOfClothes).clothes+" Clothes!");
+		window.alert("Congratulations, you bought" + Number(numOfClothes).clothes+" Clothes!");
 		mattsbill+=priceofClothes;
 		openShop();			
 	}
@@ -290,6 +297,7 @@ function shop_for_ammo(){
 	document.getElementById("currentMoney_4").innerHTML = "Current Money: "+theGame[0].money ;
 	document.getElementById("MattsTotalBill_4").innerHTML = "Total Bill: " + mattsbill;
 	document.getElementById("store_location_ammo").innerHTML = theGame[0].location; //set store location
+	document.getElementById("store_date_ammo").innerHTML = getDate(theGame[0].month); //set store date
 
 	switch (theGame[0].storeType){
 		case "Matt":
@@ -327,7 +335,8 @@ function shop_spareparts(){
 	//set variables
 	document.getElementById("currentMoney_5").innerHTML = "Current Money: "+theGame[0].money ;
 	document.getElementById("MattsTotalBill_5").innerHTML = "Total Bill: " + mattsbill;
-	document.getElementById("store_location_spare").innerHTML = theGame[0].location; //set store location
+	document.getElementById("store_location_spare").innerHTML =theGame[0].location; //set store location
+	document.getElementById("store_date_spare").innerHTML = getDate(theGame[0].month); //set store date
 	switch (theGame[0].storeType){
 		case "Matt":
 			document.getElementById("store_name_spare").innerHTML = "Matt's General Store"; //set store name
@@ -343,8 +352,8 @@ function spareparts_purchase(){
 	document.getElementById("MattsTotalBill").innerHTML = "Total Bill: " + mattsbill;
 
 	var numOfWheels = document.getElementById("sparewheel_number").value;
-	var numOfAxles = document.getElementById("sparewheel_number").value;
-	var numOfTongues = document.getElementById("sparewheel_number").value;
+	var numOfAxles = document.getElementById("spareaxle_number").value;
+	var numOfTongues = document.getElementById("sparetounge_number").value;
 	var sparepartPrice = (Number(numOfWheels) + Number(numOfAxles) + Number(numOfTongues)) * 10;
 	if(sparepartPrice > theGame[0].money){
 		window.alert("You do not have enough money to buy all these spare parts!");
@@ -359,6 +368,11 @@ function spareparts_purchase(){
 	}
 }
 
+/******************************************************************END SHOP MENU CODE ****************************************************************************************/
+
+
+/******************************************************************START TOWN MENU CODE ****************************************************************************************/
+
 function goTown1_view(){
 	// Just add a span that shows the town, like a picture of it
 	document.getElementById("wrapper_MattsShop").style.display = "none";
@@ -366,6 +380,7 @@ function goTown1_view(){
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown.png)';
 	document.getElementById("button_startTown").innerHTML = getDate(theGame[0].month) + "</br> Enter The Town";
 	theGame[0].storeType = "Town";
+	setRandomTradeValues();
 
 }
 
@@ -377,6 +392,7 @@ function goTown1(){
 	document.getElementById("wrapper_changefoodrat").style.display = "none";
 	document.getElementById("wrapper_stoprest").style.display = "none";
 	document.getElementById("wrapper_MattsShop").style.display = "none";
+	document.getElementById("wrapper_attemptTrade").style.display="none";
 	document.getElementById("wrapper_townMenu").style.display="block";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 
@@ -386,7 +402,7 @@ function goTown1(){
 	document.getElementById("location_town").innerHTML = "<u>"+theGame[0].location+"</u>";
 	document.getElementById("health_town").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
 	document.getElementById("pace_town").innerHTML = "<u>Pace:</u> "+theGame[0].pace;
-	document.getElementById("rations_town").innerHTML = "<u>Rations:</u> " + getRationStatus(theGame[0].food);
+	document.getElementById("rations_town").innerHTML = "<u>Rations:</u> " + getRationStatus();
 
 	console.log("shop bill is "+mattsbill);
 	mattsbill = 0; //resetting the bill counter for the shop, so that it starts at 0 again when you go to the store
@@ -404,7 +420,7 @@ function supplyCheck(){
 	document.getElementById("bulletcheck").innerHTML = "Bullets:			" + theGame[0].ammo;
 	document.getElementById("wheelcheck").innerHTML = "Wagon Wheels:			" + theGame[0].wheels;
 	document.getElementById("axlecheck").innerHTML = "Wagon Axles:			" + theGame[0].axles;
-	document.getElementById("tonguecheck").innerHTML = "Wagon Tongues:			" + theGame[0].axles;
+	document.getElementById("tonguecheck").innerHTML = "Wagon Tongues:			" + theGame[0].tongues;
 	document.getElementById("foodcheck").innerHTML = "Pounds of Food:			" + theGame[0].food;
 	document.getElementById("moneycheck").innerHTML = "Money Left:			" + theGame[0].money;
 }
@@ -414,13 +430,13 @@ function choosePace(pace){
 	document.getElementById("wrapper_townMenu").style.display="none";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 
-	if(pace == "steady"){
+	if(pace == "Steady"){
 		theGame[0].pace = pace;
 		window.alert("You have chosen to go at a steady pace.");
-	}else if(pace == "strain"){
+	}else if(pace == "Straining"){
 		theGame[0].pace = pace;
 		window.alert("You have chosen to go at a streneous pace.");
-	}else if(pace == "grueling"){
+	}else if(pace == "Grueling"){
 		theGame[0].pace = pace;
 		window.alert("You have chosen to go at a grueling pace.");
 	}
@@ -436,7 +452,7 @@ function chooseFoodRation(ration){
 	document.getElementById("filling_desc").innerHTML = "<font color='green'>Meals are large and generous.</font>";
 	document.getElementById("meager_desc").innerHTML = "<font color='orange'>Meals are small, but adequate.</font>";
 	document.getElementById("barebones_desc").innerHTML = "<font color='red'>Meals are very small; everyone stays hungry. </font>";
-	if(ration == "fill"){
+	if(ration == "filling"){
 		theGame[0].ration = ration;
 		window.alert("You have chosen to eat filling rations!");
 	}else if(ration == "meager"){
@@ -459,6 +475,72 @@ function stoptoRest(){
 		theGame[0] += 10;
 	}
 }
+
+function attemptTrade(){
+	document.getElementById("wrapper_townMenu").style.display="none";	
+	document.getElementById("wrapper_attemptTrade").style.display="block";
+	
+	if(theGame[0].traderPresent == true){
+		document.getElementById("button_acceptTrade").style.display ="block";
+		document.getElementById("trade_traderInfo").innerHTML ="A trader is asking for <font color='red'>"+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+ "</font>, They will trade you <font color='red'>"+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+"</font> in return.";
+		document.getElementById("trade_oxencheck").innerHTML = "Oxen: " + theGame[0].oxen;
+		document.getElementById("trade_clothingcheck").innerHTML = "Sets of clothing: " + theGame[0].clothes;
+		document.getElementById("trade_bulletcheck").innerHTML = "Bullets: " + theGame[0].ammo;
+		document.getElementById("trade_wheelcheck").innerHTML = "Wagon Wheels: " + theGame[0].wheels;
+		document.getElementById("trade_axlecheck").innerHTML = "Wagon Axles: " + theGame[0].axles;
+		document.getElementById("trade_tonguecheck").innerHTML = "Wagon Tongues: " + theGame[0].tongues;
+		document.getElementById("trade_foodcheck").innerHTML = "Pounds of Food: " + theGame[0].food;
+		document.getElementById("trade_moneycheck").innerHTML = "Money Left: " + theGame[0].money;
+	}
+	else if(theGame[0].traderPresent == false){
+		document.getElementById("button_attemptTradePrompt").innerHTML="No One Wants to trade with you today."
+		document.getElementById("button_acceptTrade").style.display ="none";
+	}
+	
+
+}
+
+function acceptTrade(){
+
+
+	switch (theGame[0].traderItemWanted){
+		case "Oxen":
+			if (theGame[0].oxen < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Oxen to make this trade!");}
+			else{ theGame[0].oxen -= theGame[0].traderItemQuantityWanted;}
+			break;
+		case "Set of Clothing":
+			if (theGame[0].clothes < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Clothing to make this trade!");}
+			else{theGame[0].clothes -= theGame[0].traderItemQuantityWanted;}
+			break;
+		case "Bullets":
+			if (theGame[0].ammo < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Bullets to make this trade!");}
+			else{theGame[0].ammo -= theGame[0].traderItemQuantityWanted;}
+			break;
+		case "Wagon Wheels":
+			if (theGame[0].wheels < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Wheels to make this trade!");}
+			else{theGame[0].wheels -= theGame[0].traderItemQuantityWanted;}
+			break;
+		case "Wagon Axles":
+			if (theGame[0].axles < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Axles to make this trade!");}
+			else{theGame[0].axles -= theGame[0].traderItemQuantityWanted;}
+			break;
+		case "Wagon Tonges":
+			if (theGame[0].tongues < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Tongues to make this trade!");}
+			else{theGame[0].tongues -= theGame[0].traderItemQuantityWanted;}
+			break;
+		case "Pounds of Food":
+			if (theGame[0].food < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Pounds of Food to make this trade!");}
+			else{theGame[0].food -= theGame[0].traderItemQuantityWanted;}
+			break;
+	}
+	aquireTradeItem(theGame[0].traderItemGiven);	
+	theGame[0].traderPresent = false; //after a trade is complete, they will no longer be present (for the day).
+	goTown1();
+	window.alert("You have succesfully traded "+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+" for "+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+" in return!");
+}
+
+
+/******************************************************************END TOWN MENU CODE ****************************************************************************************/
 
 
 
@@ -537,6 +619,31 @@ function learnTheTrail(){
 }
 
 /*********************************Helper Functions*********************************/
+function aquireTradeItem(item){
+	switch (item){
+		case "Oxen":
+			theGame[0].oxen += theGame[0].traderItemQuantityGiven;
+			break;
+		case "Set of Clothing":	
+			theGame[0].clothes += theGame[0].traderItemQuantityGiven;
+			break;
+		case "Bullets":	
+			theGame[0].ammo += theGame[0].traderItemQuantityGiven;	
+			break;
+		case "Wagon Wheels":
+			theGame[0].wheels += theGame[0].traderItemQuantityGiven;
+			break;
+		case "Wagon Axles":
+			theGame[0].axles += theGame[0].traderItemQuantityGiven;
+			break;
+		case "Wagon Tonges":
+			theGame[0].tongues += theGame[0].traderItemQuantityGiven;
+			break;
+		case "Pounds of Food":
+			theGame[0].food += theGame[0].traderItemQuantityGiven;
+			break;
+	}
+}
 
 function calcAverageHealth(){ //takes the average of your family members health 
 	var HealthTotal = 0;
@@ -569,25 +676,100 @@ function calcAverageHealth(){ //takes the average of your family members health
 
 }
 
-function devConsole_Execute(input){
+function setRandomTradeValues(){
+	var randomNumberBetween0and6 = Math.floor(Math.random() * 7); //get a random num in the range of 7 numbers, (0 to 6)
+	var second_randomNumberBetween0and6  = Math.floor(Math.random() * 7);
+	switch (randomNumberBetween0and6){
+		case 0:
+			theGame[0].traderItemWanted = "Oxen";
+			var numItems = Math.floor(Math.random() * 5) + 1;
+			break
+		case 1:
+			theGame[0].traderItemWanted = "Set of Clothing";
+			var numItems = Math.floor(Math.random() * 5) + 1;
+			theGame[0].traderItemQuantityWanted = numItems;
+			break;
+		case 2:
+			theGame[0].traderItemWanted = "Bullets";
+			var numItems = Math.floor(Math.random() * 200) + 20;
+			theGame[0].traderItemQuantityWanted = numItems;
+			break;
+		case 3:
+			theGame[0].traderItemWanted = "Wagon Wheels";
+			var numItems = Math.floor(Math.random() * 3) + 1;
+			theGame[0].traderItemQuantityWanted = numItems;
+			break;
+		case 4:
+			theGame[0].traderItemWanted = "Wagon Axles";
+			var numItems = Math.floor(Math.random() * 3) + 1;
+			theGame[0].traderItemQuantityWanted = numItems;
+			break;
+		case 5:
+			theGame[0].traderItemWanted = "Wagon Tongues";
+			var numItems = Math.floor(Math.random() * 3) + 1;
+			theGame[0].traderItemQuantityWanted = numItems;
+			break;
+		case 6:
+			theGame[0].traderItemWanted = "Pounds of Food";
+			var numItems = Math.floor(Math.random() * 200) + 1;
+			theGame[0].traderItemQuantityWanted = numItems;
+			break;
+	}
+	switch(second_randomNumberBetween0and6){
+		case 0:
+			theGame[0].traderItemGiven = "Oxen";
+			var numItems = Math.floor(Math.random() * 5) + 1;
+			theGame[0].traderItemQuantityGiven = numItems;
+			break
+		case 1:
+			theGame[0].traderItemGiven = "Set of Clothing";
+			var numItems = Math.floor(Math.random() * 5) + 1;
+			theGame[0].traderItemQuantityGiven = numItems;
+			break;
+		case 2:
+			theGame[0].traderItemGiven = "Bullets";
+			var numItems = Math.floor(Math.random() * 200) + 20;
+			theGame[0].traderItemQuantityGiven = numItems;
+			break;
+		case 3:
+			theGame[0].traderItemGiven = "Wagon Wheels";
+			var numItems = Math.floor(Math.random() * 3) + 1;
+			theGame[0].traderItemQuantityGiven = numItems;
+			break;
+		case 4:
+			theGame[0].traderItemGiven = "Wagon Axles";
+			var numItems = Math.floor(Math.random() * 3) + 1;
+			theGame[0].traderItemQuantityGiven = numItems;
+			break;
+		case 5:
+			theGame[0].traderItemGiven = "Wagon Tongues";
+			var numItems = Math.floor(Math.random() * 3) + 1;
+			theGame[0].traderItemQuantityGiven = numItems;
+			break;
+		case 6:
+			theGame[0].traderItemGiven = "Pounds of Food";
+			var numItems = Math.floor(Math.random() * 200) + 1;
+			theGame[0].traderItemQuantityGiven = numItems;
+			break;
+
+	}
+
+}
+
+function devConsole_Execute(input){ // show and/or hide an html element or run a function
 	
 	
 	switch(input){
-		case "Show1":
+		case "Show1": //show inputted html element
 			var TagToChange = document.getElementById("devConsoleInput").value;
 			document.getElementById(TagToChange).style.display = "block";
 			break;
-		case "Hide1":
+		case "Hide1"://hide inputted html element
 			var TagToChange = document.getElementById("devConsoleInput").value;
 			document.getElementById(TagToChange).style.display = "none";
 			break;
-		case "Show2":
-			var TagToChange = document.getElementById("devConsoleInput_2").value;
-			document.getElementById(TagToChange).style.display = "block";
-			break;
-		case "Hide2":
-			var TagToChange = document.getElementById("devConsoleInput_2").value;
-			document.getElementById(TagToChange).style.display = "none";
+		case "executeFunction": //run inputted function
+			eval(document.getElementById("devConsoleInput_2").value);
 			break;
 		case "fakeGame":
 			theGame[0] = new Game("banker");
@@ -595,25 +777,31 @@ function devConsole_Execute(input){
 			theGame[0].pointsMulti = 1; //points multiplier
 			theGame[0].money = 1600;
 			theGame[0].type="Banker";
-			theGame[0].month = 1;
+			theGame[0].month = 3;
 			theGame[0].day = 1;
-			theGame[0].oxen = 20;
-			theGame[0].food = 20;
-			theGame[0].clothes = 20;
-			theGame[0].ammo = 20;
-			theGame[0].wheels = 20;
-			theGame[0].axles = 20;
-			theGame[0].tongues = 20;
+			theGame[0].oxen = 200;
+			theGame[0].food = 2000;
+			theGame[0].clothes = 200;
+			theGame[0].ammo = 200;
+			theGame[0].wheels = 200;
+			theGame[0].axles = 200;
+			theGame[0].tongues = 200;
 			theGame[0].pace = "steady";
-			theGame[0].ration = "";
+			theGame[0].ration = "filling";
 			theGame[0].health = 100;
 			theGame[0].location ="Independence, Missouri";
 			theGame[0].storeType ="Town";
+			theGame[0].traderItemWanted = "";
+			theGame[0].traderItemQuantityWanted = 0;
+			theGame[0].traderItemGiven ="";
+			theGame[0].traderItemQuantityGiven = 0;
+			theGame[0].traderPresent = true; //variable to determine whether the player has traded once for that day or not
 			theGame[0].game_family[0] = new Person("Satan");
 			theGame[0].game_family[1] = new Person("Sean");
 			theGame[0].game_family[2] = new Person("Andrei");
 			theGame[0].game_family[3] = new Person("Christy");
 			theGame[0].game_family[4] = new Person("Malik");
+			setRandomTradeValues();
 			break;	
 	}
 }
@@ -661,19 +849,16 @@ function getDate(intMonth){
 	return "Invalid month number";
 }
 
-function getRationStatus(foodPounds){ //recommended food is 200lb per person
+function getRationStatus(){ //recommended food is 200lb per person
 
-	switch (true){
-		case (foodPounds >= 800):
+	switch (theGame[0].ration){
+		case "filling":
 			return "<font color='green'> Filling </font>";
-		case (foodPounds >= 600):
-			return "<font color='orange'>Adequate</font>";
-		case (foodPounds >= 250 && foodPounds  < 500):
-			return "<font color='purple'>Running Low </font>";
-		case (foodPounds >= 0):
-			return "<font color='red'>Scarce </font>";
-
-
+		case "meager":
+			return "<font color='orange'>Meager</font>";
+		case "bare":
+			return "<font color='purple'>Bare</font>";
 	}
 
 }
+
