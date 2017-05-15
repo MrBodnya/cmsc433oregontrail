@@ -890,7 +890,7 @@ function typhoidFever(){
 
 function snakeBite(){
 	var bittenPerson = Math.floor(Math.random()*4)+0;
-	window.alert(theGame[0].game_family[bittenPerson].name + " has been bitten by a snake.");
+	window.alert(theGame[0].game_family[bittenPerson].p_name + " has been bitten by a snake.");
 	theGame[0].game_family[bittenPerson].health -= 2;
 }
 
@@ -907,7 +907,7 @@ function exhaustion(){
 }
 
 function fever(){
-	
+
 }
 
 function wellAgain(){
@@ -1304,7 +1304,7 @@ function killPersonRandom(){
 	var who = Math.floor((Math.random()*4)+0);
 	if(Number(theGame[0].game_family[who].health) != 0){
 		theGame[0].game_family[who].health = 0;
-		window.alert(theGame[0].game_family[who].name + " has died.");
+		window.alert(theGame[0].game_family[who].p_name + " has died.");
 	}else{
 		killPerson();
 	}
