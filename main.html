@@ -42,6 +42,7 @@
 			</center>
 
 		<!--options for for handlding main menu information -->
+
 			<center>
 				<span id="wrapper_menuOptions">
 				<button class="MenuOption" id="button_startGame" onclick="startGame()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Travel the Trail</button> <br><br>
@@ -102,9 +103,9 @@
 	<!-- Menu for displaying a General Store -->
 			<center>
 				<span id="wrapper_MattsShop">
+				
 
-
-				<div id="store_Options" style="float:right; width:17vw; height: 65vh ;">
+				<div id="store_Options" style="float:right; width:17vw; height: 65vh ;"> 
 				<br><br><br>
 					<button  class="MenuOption" id="button_oxen" onclick="shop_for_oxen()">Buy Oxen</button>
 					<button  class="MenuOption" id="button_food" onclick="shop_for_food()">Buy Food</button>
@@ -115,15 +116,15 @@
 					<span style="font-size:2vw;" id="MattsTotalBill">Total Bill: notset</span>&nbsp; &nbsp;
 					<span style="font-size:2vw;" id="currentMoney">Current Money: notset</span>
 				</div>
-
+				
 				<div id = "store_info" style="float:left; width:17vw; height: 65vh;" >
 					<br><br>
 					<button class="MenuOption" style=" margin-left:3vw; width:15vw; height:30vh; font-size:3.5vh;">
 						 <span id="store_name_main" style="text-decoration: underline; float:left; margin-left:1vw;">Matt's General Store</span><br>
 						 <span id="store_location_main" style="text-decoration: underline; float:left; margin-left:1vw;">Location: notset</span><br>
 						 <span id="store_date_main" style="text-decoration: underline; float:left; margin-left:1vw;">Current Date:noset</span><br>
-					 </button>
-				</div>
+					 </button>	 
+				</div>	 
 
 
 				</span>
@@ -132,7 +133,7 @@
 	<!-- Menu for Buying Oxen from General Store-->
 			<center>
 				<span id="wrapper_OxenShop">
-
+				
 				<div id="store_Options" style="float:right; width:17vw; height: 65vh ;"> <br><br><br>
 				<span style="font-size:1.6vw;" >I recommend at least six oxen to pull your wagon.<br>The price per oxen is $20 per oxen.<br>
 					Number of oxen to buy: <input type="number" id="oxen_number">
@@ -149,8 +150,8 @@
 						 <span id="store_name_oxen" style="text-decoration: underline; float:left; margin-left:1vw;">Matt's General Store</span><br>
 						 <span id="store_location_oxen" style="text-decoration: underline; float:left; margin-left:1vw;">Location: notset</span><br>
 						 <span id="store_date_oxen" style="text-decoration: underline; float:left; margin-left:1vw;">Current Date: notset</span><br>
-					 </button>
-				</div>
+					 </button>	 
+				</div>	
 				</span>
 			</center>
 
@@ -173,8 +174,8 @@
 						 <span id="store_name_food" style="text-decoration: underline; float:left; margin-left:1vw;">Matt's General Store</span><br>
 						 <span id="store_location_food" style="text-decoration: underline; float:left; margin-left:1vw;">Location: notset</span><br>
 						 <span id="store_date_food" style="text-decoration: underline; float:left; margin-left:1vw;">Current Date: notset</span><br>
-					 </button>
-				</div>
+					 </button>	 
+				</div>	
 
 
 
@@ -200,8 +201,8 @@
 						 <span id="store_name_clothes" style="text-decoration: underline; float:left; margin-left:1vw;">Matt's General Store</span><br>
 						 <span id="store_location_clothes" style="text-decoration: underline; float:left; margin-left:1vw;">Location: notset</span><br>
 						 <span id="store_date_clothes" style="text-decoration: underline; float:left; margin-left:1vw;">Current Date: notset</span><br>
-					 </button>
-				</div>
+					 </button>	 
+				</div>	
 
 
 
@@ -227,8 +228,8 @@
 						 <span id="store_name_ammo" style="float:left; margin-left:1vw;">Matt's General Store</span><br>
 						 <span id="store_location_ammo" style="float:left; margin-left:1vw;">Location: notset</span><br>
 						 <span id="store_date_ammo" style="float:left; margin-left:1vw;">Current Date: notset</span><br>
-					 </button>
-				</div>
+					 </button>	 
+				</div>	
 			</center>
 
 	<!-- Menu for Buying Spare Parts from General Store-->
@@ -245,7 +246,7 @@
 					Number of spare tongues to buy: <input type="number" id="sparetongue_number"></br> </span>
 					<center><button  class="MenuOption" id="button_spare_buy" onclick="spareparts_purchase()">Buy Spare Parts</button> </center> <br>
 					<span style="font-size:2vw;" id="MattsTotalBill_5">Total Bill: notset </span> &nbsp; &nbsp;
-					<span style="font-size:2vw;" id="currentMoney_5">Current Money: notset</span> </center>
+					<span style="font-size:2vw;" id="currentMoney_5">Current Money: notset</span> </center> 
 				</div>
 
 
@@ -255,8 +256,8 @@
 						 <span id="store_name_spare" style="text-decoration: underline; float:left; margin-left:1vw;">Matt's General Store</span><br>
 						 <span id="store_location_spare" style="text-decoration: underline; float:left; margin-left:1vw;">Location: notset</span><br>
 						 <span id="store_date_spare" style="text-decoration: underline; float:left; margin-left:1vw;">Current Date: notset</span><br>
-					 </button>
-				</div>
+					 </button>	
+				</div>	
 
 
 				</span>
@@ -274,8 +275,8 @@
 		<center>
 				<span id="wrapper_townMenu">
 
-				<div style="float:right; width:17vw; height: 65vh ;">
-				<br><br><br> <button  class="MenuOption" id="button_continuetrail" onclick="">Continue on the trail</button>  <br>
+				<div style="float:right; width:17vw; height: 65vh ;"> 
+				<br><br><br> <button  class="MenuOption" id="button_continuetrail" onclick="startTrail()">Continue on the trail</button>  <br>
 					 <button  class="MenuOption" id="button_checksupplies" onclick="supplyCheck()">Check Supplies</button> <br>
 					 <button  class="MenuOption" id="button_look@map" onclick="">Look at map</button>  <br>
 					 <button  class="MenuOption" id="button_changepace" onclick="choosePace()">Change pace</button> <br>
@@ -283,9 +284,9 @@
 					 <button  class="MenuOption" id="button_stop2rest" onclick="stoptoRest()">Stop to rest</button>  <br>
 					 <button  class="MenuOption" id="button_attempt2trade" onclick="attemptTrade()">Attempt to trade</button> <br>
 					 <button  class="MenuOption" id="button_talk2ppl" onclick="">Talk to people</button>  <br>
-					 <button  class="MenuOption" id="button_buysupplies" onclick="openShop('Town')">Buy supplies</button>
+					 <button  class="MenuOption" id="button_buysupplies" onclick="openShop('Town')">Buy supplies</button> 
 				</div>
-
+				
 
 
 				<div id = "current_player_status" style="float:left; width:17vw; height: 65vh;" >
@@ -297,16 +298,16 @@
 						 <span id="health_town" style="float:left; margin-left:1vw;">Current Health:</span><br>
 						 <span id="pace_town" style="float:left; margin-left:1vw;">Current Pace:</span><br>
 						 <span id="rations_town" style="float:left; margin-left:1vw;">Current Rations:</span>
-					 </button>
-				</div>
+					 </button>	 
+				</div>	 
 
 				</span>
 		</center>
 
 		<center>
 			<span id="wrapper_checksupplies" style="font-size:1.5vw;"> <br> <br>
-
-				<div style="float:right; width:14vw; height: 65vh;">
+				
+				<div style="float:right; width:14vw; height: 65vh;"> 
 					<center><span ><u>YOUR SUPPLIES:</u> </span></center>
 					<center><span id="oxencheck"></span></center>
 					<center><span id="clothingcheck"></span></center>
@@ -318,8 +319,8 @@
 					<center><span id="moneycheck"></span></center>
 					<center><button class="MenuOption" id="button_back2Town1" onclick="goTown1()">Back</button> </center> <br>
 				</div>
-
-
+				
+	
 			<div id = "current_player_status" style="float:left; width:14vw; height: 65vh;" >
 					<button class="MenuOption" style="margin-left:3vw; width:12vw; height:40vh; font-size:3.5vh;">
 					<span id="family1_status" style="float:left; margin-left:1vw;">Family1 status</span><br>
@@ -327,8 +328,8 @@
 					<span id="family3_status" style="float:left; margin-left:1vw;">Family3 status</span><br>
 					<span id="family4_status" style="float:left; margin-left:1vw;">Family4 status</span><br>
 					<span id="family5_status" style="float:left; margin-left:1vw;">Family5 status</span><br>
-					</button>
-				</div>
+					</button>	 
+				</div>	 
 
 
 			</span>
@@ -352,7 +353,7 @@
 
 		<center>
 			<span id="wrapper_changefoodrat"> <br> <br>
-				<center><span id="foodrat_description"></span></center>
+				<center><span id="foodrat_description"></span></center> 
 				<center><span id="filling_desc"></span></center>
 				<center><button class="MenuOption" id="button_filling" onclick="chooseFoodRation('filling')">Filling</button></center>
 				<center><span id="meager_desc"></span></center>
@@ -369,12 +370,6 @@
 				<center>Hows many days would you like to rest? <br><input type="number" id="input_restDays"> </center>
 				<center><button class="MenuOption" id="button_restDays" onclick="rest()">Rest</button></center>
 				<center><button class="MenuOption" id="back2town6" onclick="goTown1()">Back</button></center>
-			</span>
-		</center>
-
-		<center>
-			<span id="wrapper_trade">
-
 			</span>
 		</center>
 
@@ -398,12 +393,41 @@
 					<center><span id="trade_moneycheck"></span></center>
 				</span>
 				<span id="trade_traderInfo">
-
+				
 				</span>
 				</button><br>
 					<center><button  class="MenuOption" id="button_acceptTrade" onclick="acceptTrade()">Accept Trade</button> </center>
 					<center><button  class="MenuOption" id="button_back2Town6" onclick="goTown1()">Back</button> </center>
 			</div>
+		</center>
+
+		<center>
+				<span id="wrapper_travel">
+
+					<div id="trailAnimation" style=" width:50vw; height: 35vh; border-style:solid; border-radius: 10px;"> 	
+						<div id="wagon"> </div>
+						<div id="destination"> </div>
+						<div id="grass"> </div>
+					</div>
+				
+					<div id="reached_destinationPrompt">
+						<button class="MenuOption" id="button_destinationPrompt" style="font-size:2vw; width:40vw; height:30vh;" onclick=""> </button>
+						<center><button  class="MenuOption" id="button_StartShop" style="width:15vw; height:15vh;" onclick="">Look Around</button> </center>  
+					</div>
+
+					<div id = "trail_current_player_status" style=" width:50vw; height: 35vh; border-style:solid;" >
+					 <button class="MenuOption" id="button_startTrail" onclick="beginMoving()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Continue</button> <br>
+					 <button class="MenuOption" style=" margin-left:3vw; width:25vw; height:30vh; font-size:3.5vh;">
+					 	<center><span id="trail_date" style="float:left; margin-left:3vw;">Date: </span><br> </center>
+					 	<center><span id="trail_weather" style="float:left; margin-left:3vw;">Weather: </span><br> </center>
+					 	<center><span id="trail_health" style="float:left; margin-left:3vw;">Health:</span><br> </center>
+					 	<center><span id="trail_food" style="float:left; margin-left:3vw;">Food: </span><br> </center>
+					 	<center><span id="trail_nextLandmark" style="float:left; margin-left:3vw;">Next Landmark: </span><br> </center>
+					 	<center><span id="trail_milesTraveled" style="float:left; margin-left:3vw;">Miles Traveled: </span> </center>
+					 </button>
+					</div>	 
+
+				</span>
 		</center>
 
 		<center>
@@ -428,6 +452,7 @@
 				<center><button class="MenuOption" id="back_to_river" onclick="displayRiver()">Back</button></center>
 			</span>
 		</center>
+			
 
 
 		</div> <!--**************************************************** END wrapper_menuHolder div*******************************************************  -->
@@ -437,11 +462,11 @@
 
 <span style="opacity:0.8;">
 	<div id="wrapper_optionsMenu">	<!--**************************************************** Options Menu Code*********************************************************************  -->
-
+		
 			<table style="margin-top:44vh; margin-right:2vh;" >
 				<tr>
 					<td> <div class="contrastSlider" style="height:23vh;">
-							<center> Dev Console: <input type="text" id="devConsoleInput" placeholder="Enter a wrapper_XXX name" value="wrapper_townMenu"> <br>
+							<center> Dev Console: <input type="text" id="devConsoleInput" placeholder="Enter a wrapper_XXX name" value="wrapper_menuOptions"> <br>
 								<button id="button_devConsole" onclick="devConsole_Execute('Show1')"> Show </button>
 								<button id="button_devConsole" onclick="devConsole_Execute('Hide1')"> Hide </button>
 								<input type="text" id="devConsoleInput_2" placeholder="Enter a wrapper_XXX name" value="openShop();"> <br>
@@ -451,7 +476,7 @@
 						</div>
 					</td>
 				</tr>
-
+				
 				<tr>
 					<td> <button  class="contrastSlider" id="button_toggleMusic" onclick="toggleMusic()" onmouseover="playMenuHoverSound()"onmouseout="stopMenuHoverSound()">Turn sound off</button> </td><td>
 				</tr>

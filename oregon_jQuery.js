@@ -8,7 +8,7 @@ $(document).ready(function() {
 var canvas = $('#canvas')[0];
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-
+  
   if(canvas.getContext) {
     var ctx = canvas.getContext('2d');
     var w = canvas.width;
@@ -16,8 +16,8 @@ var canvas = $('#canvas')[0];
     ctx.strokeStyle = 'rgba(174,194,224,0.5)';
     ctx.lineWidth = 1;
     ctx.lineCap = 'round';
-
-
+    
+    
     var init = [];
     var maxParts = 1000;
     for(var a = 0; a < maxParts; a++) {
@@ -29,12 +29,12 @@ var canvas = $('#canvas')[0];
         ys: Math.random() * 10 + 10
       })
     }
-
+    
     var particles = [];
     for(var b = 0; b < maxParts; b++) {
       particles[b] = init[b];
     }
-
+    
     function draw() {
       ctx.clearRect(0, 0, w, h);
       for(var c = 0; c < particles.length; c++) {
@@ -46,7 +46,7 @@ var canvas = $('#canvas')[0];
       }
       move();
     }
-
+    
     function move() {
       for(var b = 0; b < particles.length; b++) {
         var p = particles[b];
@@ -58,9 +58,9 @@ var canvas = $('#canvas')[0];
         }
       }
     }
-
+    
     setInterval(draw, 30);
-
+    
   }
 /*********************************END RAINY EFFECT FREE CODE SOURCED FROM: https://codepen.io/ruigewaard/details/JHDdF**********************************/
 });
