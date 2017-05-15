@@ -109,26 +109,26 @@ These are the various events that could happen to your party along the trail.
 -You had a wagon tongue break.
 -You had a wagon tongue break.
 -You had a wagon axle break.
--You took the wrong trail.
--You found [items] in an abandoned wagon.
--You find some wild berries.
--You've lost the trail.
--Lost [number] pounds of food due to spoilage.
--No grass for the oxen.*
--An ox wandered off.*
--An ox died.
--A thief stole [x amount of item].
--A fire in your wagon destroyed [x amount of items].*
--[player] got lost.
+-You took the wrong trail. --- Completed
+-You found [items] in an abandoned wagon. --- Completed
+-You find some wild berries.  --- Completed
+-You've lost the trail. ---- COmpelted 
+-Lost [number] pounds of food due to spoilage. --- COmpelted
+-No grass for the oxen.* ---- Compelted
+-An ox wandered off.* ---- Completed
+-An ox died. --- COmpelted
+-A thief stole [x amount of item]. ---- Completed
+-A fire in your wagon destroyed [x amount of items].* ---- Completed
+-[player] got lost. --- Completed
 -[player] is sick with typhoid fever.
--[player] was bitten by a snake.
+-[player] was bitten by a snake. ---- Completed
 -[player] has dysentery.
 -[player] has cholera.
 -[player] is suffering from exhaustion.*
 -[player] has a fever.
 -[player] is well again.
 -[player] has taken a turn for the worse.*
--[player] has died.
+-[player] has died. --- Completed
 
 
 

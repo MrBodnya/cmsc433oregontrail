@@ -889,7 +889,9 @@ function typhoidFever(){
 }
 
 function snakeBite(){
-
+	var bittenPerson = Math.floor(Math.random()*4)+0;
+	window.alert(theGame[0].game_family[bittenPerson].name + " has been bitten by a snake.");
+	theGame[0].game_family[bittenPerson].health -= 2;
 }
 
 function dysentery(){
@@ -905,7 +907,7 @@ function exhaustion(){
 }
 
 function fever(){
-
+	
 }
 
 function wellAgain(){
@@ -913,10 +915,6 @@ function wellAgain(){
 }
 
 function takenWorst(){
-
-}
-
-function hasDied(){
 
 }
 
