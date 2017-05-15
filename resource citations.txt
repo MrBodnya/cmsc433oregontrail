@@ -8,3 +8,5 @@ using image of matt cropped: http://www.today.com/popculture/savannah-has-typhoi
 Code:
 
 Custom Slider CSS: https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+SunRay Effects: https://codepen.io/Hackroro/details/ByrKLZ
+Rainy Day Effects: https://codepen.io/ruigewaard/details/JHDdF
