@@ -942,7 +942,7 @@ function fever(){
 function wellAgain(){
 	var i = 0;
 	for(i = 0; i < 5; i++){
-		if(theGame[0].game_family[i].condition!="" && (theGame[0].game_family[i].health > 20){
+		if(theGame[0].game_family[i].condition!="" && theGame[0].game_family[i].health > 20){
 			window.alert(theGame[0].game_family[i].p_name + " has gotten better.");
 			theGame[0].game_family[i].condition = "";
 		}
@@ -952,7 +952,7 @@ function wellAgain(){
 function takenWorst(){
 	var i = 0;
 	for(i = 0; i < 5; i++){
-		if(theGame[0].game_family[i].condition!="" && (theGame[0].game_family[i].health < 20){
+		if(theGame[0].game_family[i].condition != "" && theGame[0].game_family[i].health < 20){
 			window.alert(theGame[0].game_family[i].p_name + " has taken a turn for the worst.");
 		}
 	}
