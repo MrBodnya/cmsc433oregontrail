@@ -260,7 +260,9 @@
 	#wrapper_rivermenuinfo{
 		display: none;
 	}
-	
+	#wrapper_goToDestination{
+		display:none;
+	}
 	/********************************************END TOWN MENU CSS & ALL ITS SUB-MENUS*********************************************/
 
 	/****************************************************************START TRAVEL THE TRAIL CSS *****************************************************************/

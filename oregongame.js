@@ -38,7 +38,7 @@ function Game(personBackground){
 	this.destinationName ="";
 	this.points = 0;
 	this.wagonAWheels = 4;
-	this.wagonAAxles = 1;
+	this.wagonAAxles = 2;
 	this.wagonATongue = 1;
 
 	if (personBackground =="banker"){
@@ -61,6 +61,7 @@ function Game(personBackground){
 function Person(name){ //a person object, which has a name and health value, this constructor is used when creating a family for the first time
 	this.health = 100; //hunger for new people begins at 100
 	this.p_name = name;
+	this.condition ="";
 }
 
 function selectGameBackground(){
@@ -382,13 +383,20 @@ function spareparts_purchase(){
 /******************************************************************START TOWN MENU CODE ****************************************************************************************/
 
 function goTown1_view(){
-	// Just add a span that shows the town, like a picture of it
+	if(theGame[0].oxen == 0){ //the player cannot go to town if they have not bought atleast 1 oxen
+	window.alert("You need to buy atleast 1 oxen before going to town!!!");
+	}
+	else{
+		// Just add a span that shows the town, like a picture of it
 	document.getElementById("wrapper_MattsShop").style.display = "none";
 	document.getElementById("wrapper_goToTown").style.display = "block";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown.png)';
 	document.getElementById("button_startTown").innerHTML = getDate(theGame[0].month) + "</br> Enter The Town";
 	theGame[0].storeType = "Town";
 	setRandomTradeValues();
+	}
+
+	
 
 }
 
@@ -640,8 +648,16 @@ function startTrail(){
 
 /******************************************************************START TRAVEL TRAIL CODE ****************************************************************************************/
 
+function goToDestination_view(){
+	// Just add a span that shows the town, like a picture of it
+	
+	document.getElementById("wrapper_goToDestination").style.display = "block";
+	document.getElementById("wrapper_travel").style.display = "none";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/KansasRiver.png)';
+	document.getElementById("button_startDestination").innerHTML = getDate(theGame[0].month) + "</br> Go to The River";
+	theGame[0].storeType = "Independence, Missouri";
 
-
+}
 
 
 function setDestinationVariables(destination){
@@ -666,7 +682,9 @@ function beginMoving(){
 		//PUT RANDOM FUNCTIONS HERE
 		//choose a random event (an event does not have to occur)
 		//process diseases on family 
-		//
+		randomEventGenerator();
+		processDisease();
+		//SEND PLAYER BACK TO MENU IF PLAYER OXEN AMOUNT IS < 0
 		setTimeout(function() {
     		// rest of code here
     		beginMoving(); //attempt to begin moving the wagon again
@@ -715,7 +733,8 @@ function animateWagon(miles){
 	theGame[0].milesLeft = theGame[0].milesLeft - Number(miles); //reduce miles to destination by miles that the player has traveled
 	console.log("miles left AFTER move: "+theGame[0].milesLeft);
 	console.log("going to move wagon to "+pixelsToMove+"vw, new position will be: "+wagonPos+" total miles traveled: "+theGame[0].currentMilesTraveled);
-	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ theGame[0].milesLeft; //update ui elements
+	var MilesLeftshown = theGame[0].milesLeft; if(MilesLeftshown < 0){ MilesLeftshown = 0;} //this makes it so negative values are not displayed for miles left
+	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ MilesLeftshown; //update ui elements
 	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled; //update ui elements
 }
 
@@ -854,6 +873,7 @@ function wagonWheelBreak(){
 	if(repair == 1){
 		window.alert("Could not repair the wagon.");
 		// Would you like to use a spare?
+		
 		if(theGame[0].wheels > 0){
 			window.alert("Replaced the wheel with a spare!");
 			theGame[0].wagonAWheels++;
@@ -861,6 +881,7 @@ function wagonWheelBreak(){
 		}else{
 			window.alert("You do not have any spare wheels to change out the broken wheel.");
 			// Cannot move on until wagon wheel are 4;
+			//SEND PLAYER BACK TO MAIN MENU
 		}
 	}else{
 		window.alert("Wagon wheel successfully repaired!");
@@ -870,11 +891,51 @@ function wagonWheelBreak(){
 
 function wagonAxleBreak(){
 	theGame[0].wagonAAxles--;
+	window.alert("Your wagon axle has broken!");
+	//Would you like to repair it?
+	var repair = Math.floor((Math.random()*2))+1;
+	if(repair == 1){
+		window.alert("Could not repair the wagon.");
+		// Would you like to use a spare?
+		
+		if(theGame[0].axles > 0){
+			window.alert("Replaced the axle with a spare!");
+			theGame[0].wagonAAxles++;
+			theGame[0].axles--;
+		}else{
+			window.alert("You do not have any spare axles to change out the broken axle.");
+			// Cannot move on until wagon axle are 2
+			//SEND PLAYER BACK TO MAIN MENU
+		}
+	}else{
+		window.alert("Wagon Axle successfully repaired!");
+		theGame[0].wagonAAxles++;
+	}
 
 }
 
 function wagonTongueBreak(){
 	theGame[0].wagonATongue--;
+	window.alert("Your wagon tongue has broken!");
+	//Would you like to repair it?
+	var repair = Math.floor((Math.random()*2))+1;
+	if(repair == 1){
+		window.alert("Could not repair the wagon.");
+		// Would you like to use a spare?
+		
+		if(theGame[0].tongues > 0){
+			window.alert("Replaced the axle with a spare!");
+			theGame[0].wagonATongue++;
+			theGame[0].tongues--;
+		}else{
+			window.alert("You do not have any spare tongues to change out the broken tongue.");
+			// Cannot move on until wagon axle are 2
+			//SEND PLAYER BACK TO MAIN MENU
+		}
+	}else{
+		window.alert("Wagon tongue successfully repaired!");
+		theGame[0].wagonATongue++;
+	}
 }
 
 function tookWrongTrail(){
@@ -890,43 +951,43 @@ function findItems(){
 	switch(itemNum){
 		case 1:
 		case 8:
-		itemGot = Math.floor((Math.randrom() * Number(theGame[0].oxen))+1);
+		itemGot = Math.floor((Math.random() * Number(theGame[0].oxen))+1);
 		theGame[0].oxen += itemGot;
 		window.alert("You have found " + itemGot + " oxen.");
 		break;
 		case 2:
 		case 9:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].clothes))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].clothes))+1);
 		theGame[0].clothes += itemGot;
 		window.alert("You have found " + itemGot + " clothes.");
 		break;
 		case 3:
 		case 10:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].ammo))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].ammo))+1);
 		theGame[0].ammo += itemGot;
 		window.alert("You have found " + itemGot + " bullets.");
 		break;
 		case 4:
 		case 11:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].wheels))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].wheels))+1);
 		theGame[0].wheels += itemGot;
 		window.alert("You have found " + itemGot + " wheels.");
 		break;
 		case 5:
 		case 12:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].axles))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].axles))+1);
 		theGame[0].axles += itemGot;
 		window.alert("You have found " + itemGot + " axles.");
 		break;
 		case 6:
 		case 13:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].tongues))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].tongues))+1);
 		theGame[0].tongues += itemLost;
 		window.alert("You have found " + itemGot + " tongues.");
 		break;
 		case 7:
 		case 14:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].food))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].food))+1);
 		theGame[0].food += itemGot;
 		window.alert("You have found " + itemGot + " pounds of food.");
 		break;
@@ -1032,45 +1093,37 @@ function snakeBite(){
 }
 
 function dysentery(){
-	var infect = Math.floor(Math.random()*4)+0;
-	if(theGame[0].game_family[infect].health < 80){
-		theGame[0].game_family[infect].condition = "dysentery";
-	}else{
-		dysentery();
-	}
+	for (var i=0; i<theGame[0].game_family.length; i++){
+		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "dysentery"; break;}
+	} 
+
 }
 
 function cholera(){
-	var infect = Math.floor(Math.random()*4)+0;
-	if(theGame[0].game_family[infect].health < 80){
-		theGame[0].game_family[infect].condition = "cholera";
-	}else{
-		cholera();
-	}
+	for (var i=0; i<theGame[0].game_family.length; i++){
+		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "cholera"; break;}
+	} 
 }
 
 function exhaustion(){
-	var infect = Math.floor(Math.random()*4)+0;
-	if(theGame[0].game_family[infect].health < 80){
-		theGame[0].game_family[infect].condition = "exhaustion";
-	}else{
-		exhaustion();
-	}
+	
+for (var i=0; i<theGame[0].game_family.length; i++){
+		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "exhaustion"; break;}
+	} 
 }
 
 function fever(){
-	var infect = Math.floor(Math.random()*4)+0;
-	if(theGame[0].game_family[infect].health < 80){
-		theGame[0].game_family[infect].condition = "fever";
-	}else{
-		fever();
-	}
+	
+	for (var i=0; i<theGame[0].game_family.length; i++){
+		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "fever"; break;}
+	} 
 }
 
 function wellAgain(){
 	var i = 0;
 	for(i = 0; i < 5; i++){
 		if(theGame[0].game_family[i].condition!="" && theGame[0].game_family[i].health > 20){
+			console.log("THE CONDITION IS: "+theGame[0].game_family[i].condition);
 			window.alert(theGame[0].game_family[i].p_name + " has gotten better.");
 			theGame[0].game_family[i].condition = "";
 		}
@@ -1444,43 +1497,44 @@ function loseItem(){
 	switch(itemNum){
 		case 1:
 		case 8:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].oxen))+1);
+		Math.floor(Math.random() * ( ( Number(theGame[0].oxen -1 )) - min + 1)) + min;
+		itemLost = Math.floor((Math.random() * Number(theGame[0].oxen ))+1);
 		theGame[0].oxen -= itemLost;
 		window.alert("You have lost " + itemLost + " oxen.");
 		break;
 		case 2:
 		case 9:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].clothes))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].clothes))+1);
 		theGame[0].clothes -= itemLost;
 		window.alert("You have lost " + itemLost + " clothes.");
 		break;
 		case 3:
 		case 10:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].ammo))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].ammo))+1);
 		theGame[0].ammo -= itemLost;
 		window.alert("You have lost " + itemLost + " bullets.");
 		break;
 		case 4:
 		case 11:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].wheels))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].wheels))+1);
 		theGame[0].wheels -= itemLost;
 		window.alert("You have lost " + itemLost + " wheels.");
 		break;
 		case 5:
 		case 12:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].axles))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].axles))+1);
 		theGame[0].axles -= itemLost;
 		window.alert("You have lost " + itemLost + " axles.");
 		break;
 		case 6:
 		case 13:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].tongues))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].tongues))+1);
 		theGame[0].tongues -= itemLost;
 		window.alert("You have lost " + itemLost + " tongues.");
 		break;
 		case 7:
 		case 14:
-		itemLost = Math.floor((Math.randrom() * Number(theGame[0].food))+1);
+		itemLost = Math.floor((Math.random() * Number(theGame[0].food))+1);
 		theGame[0].food -= itemLost;
 		window.alert("You have lost " + itemLost + " pounds of food.");
 		break;
@@ -1506,99 +1560,116 @@ function randomEventGenerator(){
 	switch (eventHappen){
 		case 1:
 		case 2:
+			break;
 		case 3:
-		wagonWheelBreak();
-		break;
+			wagonWheelBreak();
+			break;
 		case 4:
 		case 5:
+			break;
 		case 6:
-		wagonTongueBreak();
-		break;
+			wagonTongueBreak();
+			break;
 		case 7:
 		case 8:
+			break;
 		case 9:
-		wagonAxleBreak();
-		break;
+			wagonAxleBreak();
+			break;
 		case 10:
 		case 11:
+			break;
 		case 12:
-		tookWrongTrail();
-		break;
+			tookWrongTrail();
+			break;
 		case 13:
 		case 14:
 		case 15:
-		findItems();
-		break;
+			findItems();
+			break;
 		case 16:
 		case 17:
 		case 18:
-		findBarries();
-		break;
+			findBarries();
+			break;
 		case 19:
 		case 20:
+			break;
 		case 21:
-		lostTrail();
-		break;
+			lostTrail();
+			break;
 		case 22:
 		case 23:
+			break;
 		case 24:
-		lostFood();
-		break;
+			lostFood();
+			break;
 		case 25:
 		case 26:
+			break;
 		case 27:
-		noGrass();
-		break;
+			noGrass();
+			break;
 		case 28:
 		case 29:
+			break;
 		case 30:
-		oxWonder();
-		break;
+			oxWonder();
+			break;
 		case 31:
 		case 32:
+			break;
 		case 33:
-		oxDied();
-		break;
+			oxDied();
+			break;
 		case 34:
+			break;
 		case 35:
 		case 36:
-		thiefStole();
-		break;
+			thiefStole();
+			break;
 		case 37:
 		case 38:
+			break;
 		case 39:
-		wagonFire();
-		break;
+			wagonFire();
+			break;
 		case 40:
 		case 41:
+			break;
 		case 42:
-		p_gotLost();
-		break;
+			p_gotLost();
+			break;
 		case 43:
 		case 44:
+			break;
 		case 45:
-		snakeBite();
-		break;
+			snakeBite();
+			break;
 		case 46:
 		case 47:
+			break;
 		case 48:
-		dysentery();
-		break;
+			dysentery();
+			break;
 		case 49:
 		case 50:
+			break;
 		case 51:
-		cholera();
-		break;
+			cholera();
+			break;
 		case 52:
 		case 53:
+			break;
 		case 54:
-		exhaustion();
-		break;
+			exhaustion();
+			break;
 		case 55:
 		case 56:
+			break;
 		case 57:
-		fever();
-		break;
+			fever();
+			break;
 	}
 }
 
