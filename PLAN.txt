@@ -131,6 +131,13 @@ These are the various events that could happen to your party along the trail.
 -[player] has died. --- Completed
 
 
+Have to check to make sure more than one oxen before allowed to leave town.
+If oxen is 0 can't move
+if wagon actual wheels less than 4 can't go onward
+can't go on without setting names, have to have names.
+
+
+
 
 General Guide
 https://www.gamefaqs.com/pc/577345-the-oregon-trail/faqs/30964
