@@ -121,7 +121,7 @@
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
 	/******************************************** SHOP MENU CSS & ALL ITS SUB-MENUS*********************************************/
-	#wrapper_MattsShop{ 
+	#wrapper_MattsShop{
 	display: none;
 	width:35vw;
 	height: 65vh;
@@ -279,6 +279,13 @@
 	border-radius: 20px;
 	}
 
+	#wrapper_rivermenu{
+		display: none;
+	}
+	#wrapper_rivermenuinfo{
+		display: none;
+	}
+
 /************************Code to create custom slider FREE USE CODE Soruced from: "https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/" ************************/
 input[type=range] {
   -webkit-appearance: none;
@@ -373,19 +380,19 @@ input[type=range]:focus::-ms-fill-upper {
 
 /************************START SUNRAY EFFECT FREE CODE Soruced from: "https://codepen.io/Hackroro/pen/ByrKLZ" ************************/
 
-.sun { 
+.sun {
   position: absolute;
 	top:0;
 	left:83vw;
 	right:0;
 	bottom:70vh;
-	margin: auto;  
+	margin: auto;
 	width:70px;
 	height:70px;
-	border-radius:50%;	
+	border-radius:50%;
 	background:white;
-	opacity:1;			
-	box-shadow: 0px 0px 40px 15px white;  
+	opacity:1;
+	box-shadow: 0px 0px 40px 15px white;
 	z-index: 2;
 }
 
@@ -395,21 +402,21 @@ input[type=range]:focus::-ms-fill-upper {
 	top:0px;
 	left:0;
 	right:0;
-	bottom:0;	
-  width:70px;  
+	bottom:0;
+  width:70px;
   -webkit-animation: ray_anim 120s linear infinite;
   animation: ray_anim 120s linear infinite;
 }
-.ray {  
+.ray {
     background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
-		background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%); 
+		background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
     margin-left:10px;
     border-radius:80% 80% 0 0;
     position:absolute;
     opacity:0.1;
 }
 
-.ray1 {    
+.ray1 {
     height:170px;
     width:30px;
    -webkit-transform: rotate(180deg);
@@ -481,8 +488,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
-@-webkit-keyframes ray_anim { 
-		0% { -webkit-transform: rotate(0deg); transform: rotate(0deg);}    
+@-webkit-keyframes ray_anim {
+		0% { -webkit-transform: rotate(0deg); transform: rotate(0deg);}
     100% { -webkit-transform: rotate(360deg); transform: rotate(360deg);}
 }
 

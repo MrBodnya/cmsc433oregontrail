@@ -43,7 +43,7 @@
 		b) meager
 		c) bare bones
 	- Stop to rest  THIS IPMROVES HEALTH BUT LOSE A DAY ------- Completed
-	- Attempt to trade
+	- Attempt to trade ------- Completed
 		a) lose days when trading
 		b) randomly select if trade is or isn't going to happen
 		c) randomly generate what to trade
@@ -73,7 +73,7 @@
 	- river stops/crossing
 		a) Show how scenery looks after asking if they want to see
 		b) Show width and depth of river
-		c) menu
+		c) menu  ------ COMPLETED
 			- attempt to ford the river
 			- caulk the wagon and float it across
 			- take a ferry across
