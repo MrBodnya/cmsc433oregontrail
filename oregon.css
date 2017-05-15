@@ -121,7 +121,7 @@
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	}
 	/******************************************** SHOP MENU CSS & ALL ITS SUB-MENUS*********************************************/
-	#wrapper_MattsShop{
+	#wrapper_MattsShop{ 
 	display: none;
 	width:35vw;
 	height: 65vh;
@@ -244,7 +244,84 @@
 	#wrapper_attemptTrade{
 	display:none;
 	}
+	#wrapper_travel{
+	display:none;
+	width:50vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	}
+	
+	#wrapper_rivermenu{
+		display: none;
+	}
+	#wrapper_rivermenuinfo{
+		display: none;
+	}
+	
 	/********************************************END TOWN MENU CSS & ALL ITS SUB-MENUS*********************************************/
+
+	/****************************************************************START TRAVEL THE TRAIL CSS *****************************************************************/
+	#wagon{
+	display:block;
+	position:absolute;
+	width:12vw;
+	height:12vh;
+	top:7.5vw;
+	bottom:5vw;
+	left:45vw;
+	background-size: 100% 100%;
+	background-image: url(Images/Wagon.png);
+	-webkit-transition: left 0.5s linear;
+	-moz-transition: left 0.5s linear;
+	-ms-transition: left 0.5s linear;
+	transition: left 0.5s linear;
+	}	
+	#destination{
+	display:block;
+	position:absolute;
+	width:10vw;
+	height:17vh;
+	top:7.5vw;
+	bottom:5vw;
+	left:10vw;
+	/*right:5vw;*/
+	background-size: 100% 100%;
+	background-image: url(Images/river.png);
+	}
+	#grass{
+	display:block;
+	position:absolute;
+	width:51vw;
+	height:18vh;
+	top:8vw;
+	bottom:5vw;
+	left:8vw;
+	/*right:5vw;*/
+	background-size: 100% 100%;
+	background-image: url(Images/grass.svg);
+	z-index:3;
+	}
+	#trailAnimation{
+	background: #7db9e8; /* Old browsers */
+	background: -moz-linear-gradient(top, #7db9e8 0%, #7db9e8 1%, #7db9e8 1%, #7db9e8 2%, #2989d8 4%, #000000 33%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #7db9e8 0%,#7db9e8 1%,#7db9e8 1%,#7db9e8 2%,#2989d8 4%,#000000 33%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #7db9e8 0%,#7db9e8 1%,#7db9e8 1%,#7db9e8 2%,#2989d8 4%,#000000 33%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	}
+	#reached_destinationPrompt{
+	display:none;
+	position: absolute;
+	width:51vw;
+	height:50vh;
+	top:4vw;
+	bottom:5vw;
+	left:8vw;
+	z-index:3;
+	}
+
+	/****************************************************************END TRAVEL THE TRAIL CSS *****************************************************************/
 
 
 	/********************************************Options Menu Logic********************************************/
@@ -277,13 +354,6 @@
 	height:80vh;
 	/*background-color:rgba(218, 174, 87,0.5);*/
 	border-radius: 20px;
-	}
-
-	#wrapper_rivermenu{
-		display: none;
-	}
-	#wrapper_rivermenuinfo{
-		display: none;
 	}
 
 /************************Code to create custom slider FREE USE CODE Soruced from: "https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/" ************************/
@@ -380,19 +450,19 @@ input[type=range]:focus::-ms-fill-upper {
 
 /************************START SUNRAY EFFECT FREE CODE Soruced from: "https://codepen.io/Hackroro/pen/ByrKLZ" ************************/
 
-.sun {
+.sun { 
   position: absolute;
 	top:0;
 	left:83vw;
 	right:0;
 	bottom:70vh;
-	margin: auto;
+	margin: auto;  
 	width:70px;
 	height:70px;
-	border-radius:50%;
+	border-radius:50%;	
 	background:white;
-	opacity:1;
-	box-shadow: 0px 0px 40px 15px white;
+	opacity:1;			
+	box-shadow: 0px 0px 40px 15px white;  
 	z-index: 2;
 }
 
@@ -402,21 +472,21 @@ input[type=range]:focus::-ms-fill-upper {
 	top:0px;
 	left:0;
 	right:0;
-	bottom:0;
-  width:70px;
+	bottom:0;	
+  width:70px;  
   -webkit-animation: ray_anim 120s linear infinite;
   animation: ray_anim 120s linear infinite;
 }
-.ray {
+.ray {  
     background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
-		background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+		background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%); 
     margin-left:10px;
     border-radius:80% 80% 0 0;
     position:absolute;
     opacity:0.1;
 }
 
-.ray1 {
+.ray1 {    
     height:170px;
     width:30px;
    -webkit-transform: rotate(180deg);
@@ -488,8 +558,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
-@-webkit-keyframes ray_anim {
-		0% { -webkit-transform: rotate(0deg); transform: rotate(0deg);}
+@-webkit-keyframes ray_anim { 
+		0% { -webkit-transform: rotate(0deg); transform: rotate(0deg);}    
     100% { -webkit-transform: rotate(360deg); transform: rotate(360deg);}
 }
 

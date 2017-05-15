@@ -12,7 +12,7 @@ function Game(personBackground){
 	this.type="";
 	this.month = 0;
 	this.day = 1;
-	this.year = 1848;
+	this.year = 1848; 
 	this.oxen = 0;
 	this.food = 0;
 	this.clothes = 0;
@@ -20,8 +20,8 @@ function Game(personBackground){
 	this.wheels = 0;
 	this.axles = 0;
 	this.tongues = 0;
-	this.pace = "steady";
-	this.ration = "filling"; //filling = 3lb/per person/day   meager = 2lb/per person/day   scarce = 2lb/per person/day
+	this.pace = "Steady";
+	this.ration = "filling"; //filling = 3lb/per person/day   meager = 2lb/per person/day   scarce = 2lb/per person/day 
 	this.foodperPerson = 3; //pounds of food per person, per day.
 	this.healthReductionMultiplier = 1; //health reduction multiplier per day, the pace will make this either 1, 2 or 3
 	this.health = 100;
@@ -32,6 +32,11 @@ function Game(personBackground){
 	this.traderItemGiven ="";
 	this.traderItemQuantityGiven = 0;
 	this.traderPresent = true; //variable to determine whether the player has traded once for that day or not
+	this.milesToDestination = 0;
+	this.currentMilesTraveled = 0;
+	this.milesLeft = 0;
+	this.destinationName ="";
+	this.points = 0;
 	this.wagonAWheels = 4;
 	this.wagonAAxles = 1;
 	this.wagonATongue = 1;
@@ -56,7 +61,6 @@ function Game(personBackground){
 function Person(name){ //a person object, which has a name and health value, this constructor is used when creating a family for the first time
 	this.health = 100; //hunger for new people begins at 100
 	this.p_name = name;
-	this.condition = "";
 }
 
 function selectGameBackground(){
@@ -209,7 +213,7 @@ function oxen_purchase(){
 		theGame[0].money -= priceofOxen;
 		window.alert("Congratulations, you bought " + Number(numOfOxen) + "!");
 		mattsbill += priceofOxen;
-		openShop();
+		openShop();							
 	}
 }
 
@@ -232,7 +236,7 @@ function shop_for_food(){
 		case "Town":
 			document.getElementById("store_name_food").innerHTML = "Town General Store";
 			break;
-
+		
 	}
 }
 
@@ -249,7 +253,7 @@ function food_purchase(){
 		theGame[0].money -= priceofFood;
 		window.alert("Congratulations, you bought "+Number(numOfFood)+" pounds of food!");
 		mattsbill += priceofFood;
-		openShop();
+		openShop();			
 	}
 }
 
@@ -266,7 +270,7 @@ function shop_for_clothes(){
 	document.getElementById("store_date_clothes").innerHTML = getDate(theGame[0].month); //set store date
 	switch (theGame[0].storeType){
 		case "Matt":
-			document.getElementById("store_name_clothes").innerHTML = "Matt's General Store"; //set store name
+			document.getElementById("store_name_clothes").innerHTML = "Matt's General Store"; //set store name	
 			break;
 		case "Town":
 			document.getElementById("store_name_clothes").innerHTML = "Town General Store";
@@ -287,7 +291,7 @@ function clothes_purchase(){
 		theGame[0].money -= priceofClothes;
 		window.alert("Congratulations, you bought" + Number(numOfClothes).clothes+" Clothes!");
 		mattsbill+=priceofClothes;
-		openShop();
+		openShop();			
 	}
 }
 
@@ -326,7 +330,7 @@ function ammo_purchase(){
 		theGame[0].money -= priceofAmmo;
 		window.alert("Congratulations, you bought" + Number(numOfAmmo)+"!");
 		mattsbill+=priceofAmmo;
-		openShop();
+		openShop();			
 	}
 }
 
@@ -347,7 +351,7 @@ function shop_spareparts(){
 			break;
 		case "Town":
 			document.getElementById("store_name_spare").innerHTML = "Town General Store";
-			break;
+			break;	
 	}
 }
 
@@ -368,7 +372,7 @@ function spareparts_purchase(){
 		theGame[0].money -= sparepartPrice;
 		window.alert ("Congratulations, you bought " + Number(numOfWheels) + " wheels, " + Number(numOfAxles) + " axles, and " + Number(numOfTongues) + " tongues.");
 		mattsbill += sparepartPrice;
-		openShop();
+		openShop();		
 	}
 }
 
@@ -401,7 +405,7 @@ function goTown1(){
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 
 	//set variables
-
+	
 	document.getElementById("date_town").innerHTML = "<u>"+getDate(theGame[0].month)+"</u>";
 	document.getElementById("location_town").innerHTML = "<u>"+theGame[0].location+"</u>";
 	document.getElementById("health_town").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
@@ -470,11 +474,11 @@ function chooseFoodRation(ration){
 		theGame[0].foodperPerson = 3; //each person gets 3lbs of food per day with filling rations
 		window.alert("You have chosen to eat filling rations!");
 	}else if(ration == "meager"){
-		theGame[0].ration = ration;
+		theGame[0].ration = ration; 
 		theGame[0].foodperPerson = 2; //each person gets 2lbs of food per day with meager rations
 		window.alert("You have choser to eat meager portions of food!");
 	}else if(ration == "bare"){
-		theGame[0].ration = ration;
+		theGame[0].ration = ration; 
 		theGame[0].foodperPerson = 1 //each person gets 1lbs of food per day with bare rations
 		window.alert("You have chosen to eat the minimum bare bones!");
 	}
@@ -488,11 +492,13 @@ function stoptoRest(){
 
 function rest(){
 	var days = document.getElementById("input_restDays").value;
-	window.alert("You Have Rested for "+days+" days.");
-	theGame[0].day +=Number(days);
+	
 
+	if(theGame[0].storeType =="Town"){ window.alert("You Have Rested for "+days+" days."); }
+	theGame[0].day +=Number(days);
+	
 	if (days > 0){
-		//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE
+		//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE	
 		setRandomTradeValues(); //reset random trader after a day has passed
 		theGame[0].traderPresent = true; //reset trader present so that the player can trade
 
@@ -501,11 +507,11 @@ function rest(){
 		var foodEatenPerPerson_AfterStockCheck = (theGame[0].foodperPerson * days); //variable will determine the final amount of lbs the player will eat, if they are attempting to eat more than exists
 		if (theGame[0].storeType=="Town"){healthReduxMultiplier = 1;} //regardless of current pace, if player is in town, health reduction is set to 1
 		console.log(days+" days have passed, the player is in "+theGame[0].storeType+" so health reduction multiplier is set from "+theGame[0].healthReductionMultiplier+" to "+healthReduxMultiplier);
-		for (i = 0; i < theGame[0].game_family.length; i++){
+		for (i = 0; i < theGame[0].game_family.length; i++){	
 			if (theGame[0].game_family[i].health > 0){ //only people who have more than 0 health may eat
 				theGame[0].game_family[i].health -= (5 * healthReduxMultiplier)*days; //a persons health decreases by 5,10 or 15 points per day due to hunger
 				console.log(theGame[0].game_family[i].p_name +" has lost "+(5 * healthReduxMultiplier)*days+" hp points, health is now: "+ theGame[0].game_family[i].health);
-
+				
 				if(  foodEatenPerPerson >  theGame[0].food){ //this person needs to eat more food than is left, they will only eat whatever is left in stock instead
 					foodEatenPerPerson_AfterStockCheck = theGame[0].food;
 				}
@@ -513,20 +519,26 @@ function rest(){
 				theGame[0].food -= foodEatenPerPerson_AfterStockCheck; //reduce food stock by the total amount this individual is eating after the stock check.
 				theGame[0].game_family[i].health += (foodEatenPerPerson_AfterStockCheck * 4) //a person gains 4 points of health per lb of food, they gain this health for each day that passes: total lbs of food eaten * 4hp points
 				if (theGame[0].game_family[i].health > 100) {theGame[0].game_family[i].health = 100;} //if a persons health exceeds 100, change it back to 100.
-				if (theGame[0].game_family[i].health < 0) {theGame[0].game_family[i].health = 0; window.alert(theGame[0].game_family[i].p_name +" HAS DIED NOOOOOOOOOOOO!!!!! ;("); }
+				if (theGame[0].game_family[i].health <= 0) {theGame[0].game_family[i].health = 0; window.alert(theGame[0].game_family[i].p_name +" HAS DIED NOOOOOOOOOOOO!!!!! ;("); }
 
 				console.log(theGame[0].game_family[i].p_name +" has eaten "+foodEatenPerPerson_AfterStockCheck+" lbs of food. and gained "+(foodEatenPerPerson_AfterStockCheck * 4)+" hp points, health is now: "+theGame[0].game_family[i].health);
 			}
 		}
 	}
-
-	goTown1();
+	
+	if(theGame[0].storeType =="Town"){
+		goTown1();	
+	}
+	else if (theGame[0].storeType =="Trail"){
+		//do not go back to town
+	}
+	
 }
 
 function attemptTrade(){
-	document.getElementById("wrapper_townMenu").style.display="none";
+	document.getElementById("wrapper_townMenu").style.display="none";	
 	document.getElementById("wrapper_attemptTrade").style.display="block";
-
+	
 	if(theGame[0].traderPresent == true){
 		document.getElementById("button_acceptTrade").style.display ="block"; //show accept trade button if trader is present
 		document.getElementById("trade_traderInfo").innerHTML ="A trader is asking for <font color='red'>"+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+ "</font>, They will trade you <font color='red'>"+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+"</font> in return.";
@@ -551,7 +563,7 @@ function attemptTrade(){
 		document.getElementById("trade_traderInfo").innerHTML="No One Wants to trade with you today."
 		document.getElementById("button_acceptTrade").style.display ="none"; //hide accept trade button if trader is not present
 	}
-
+	
 
 }
 
@@ -588,15 +600,128 @@ function acceptTrade(){
 			break;
 	}
 	if(itemTraded == true){
-		aquireTradeItem(theGame[0].traderItemGiven);
+		aquireTradeItem(theGame[0].traderItemGiven);	
 		theGame[0].traderPresent = false; //after a trade is complete, they will no longer be present (for the day).
-		goTown1();
+		goTown1();	
 		window.alert("You have succesfully traded "+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+" for "+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+" in return!");
+	}
+	
+}
+
+function startTrail(){
+	document.getElementById("wrapper_townMenu").style.display = "none";
+	document.getElementById("wrapper_travel").style.display = "block";
+	
+	//set variables
+	switch(theGame[0].location){
+		case "Independence, Missouri":
+			setDestinationVariables("Kansas River");//sets your miles variables according to the kansas river	
+			break;
+		//add more cases here when adding more destinations	
+	}
+
+
+	document.getElementById("wagon").style.left = "45vw";
+	wagonPos = 45;
+	theGame[0].storeType = "Trail";
+	document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
+	document.getElementById("trail_health").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
+	//SET THE WEATHER HERE
+	document.getElementById("trail_food").innerHTML ="<u>Food:</u> "+ theGame[0].food+"lbs";
+	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ theGame[0].milesLeft;
+	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled;
+
+
+}
+
+
+/******************************************************************END TOWN MENU CODE ****************************************************************************************/
+
+
+/******************************************************************START TRAVEL TRAIL CODE ****************************************************************************************/
+
+
+
+
+
+function setDestinationVariables(destination){
+	switch (destination){
+		case "Kansas River":
+			theGame[0].currentMilesTraveled = 0;
+			theGame[0].milesToDestination = 102;
+			theGame[0].milesLeft = 102; //this is just to display to the ui 
+			theGame[0].destinationName ="Kansas River";
+			break;
+		//Add More cases here
 	}
 
 }
 
-/******************************************************************END TOWN MENU CODE ****************************************************************************************/
+function beginMoving(){
+	
+	if (theGame[0].milesLeft > 0){
+		moveWagon(); //move the wagon if we are not at the destination
+		console.log("moving");
+		rest(); //rest a day after traveling 
+		//PUT RANDOM FUNCTIONS HERE
+		//choose a random event (an event does not have to occur)
+		//process diseases on family 
+		//
+		setTimeout(function() {
+    		// rest of code here
+    		beginMoving(); //attempt to begin moving the wagon again
+			}, 1000);
+		document.getElementById("input_restDays").value = 1;
+		document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
+		document.getElementById("trail_food").innerHTML = "<u>Food: </u>" + theGame[0].food +"lbs";
+		document.getElementById("trail_health").innerHTML = "<u>Avg Health: </u>" + calcAverageHealth();
+	}
+	else{ //you have reached the destination
+		document.getElementById("reached_destinationPrompt").style.display = "block";
+		document.getElementById("button_destinationPrompt").innerHTML = "You have reached "+ theGame[0].destinationName+"!";
+		theGame[0].location = "Kansas River";	
+
+	}
+}
+
+function moveWagon(){ //calculates the number of miles that will be traveled for the day, based on your pace and moves the wagon accordingly
+		var milestoTravel = 0;
+		switch (theGame[0].pace){
+			case "Steady":
+				milestoTravel = ( Math.floor(Math.random() * (15 - 12 + 1)) + 12) + Number(theGame[0].oxen);
+				console.log("Your pace is: "+ theGame[0].pace+" today the wagon will move "+milestoTravel+" miles.");
+				animateWagon(milestoTravel);
+				break;
+			case "Straining":
+				milestoTravel = ( Math.floor(Math.random() * (25 - 22 + 1)) + 22) + Number(theGame[0].oxen);
+				console.log("Your pace is: "+ theGame[0].pace +" today the wagon will move "+milestoTravel+" miles.");
+				animateWagon(milestoTravel);
+				break;
+			case "Grueling":
+				milestoTravel = ( Math.floor(Math.random() * (28 - 25 + 1)) + 25) + Number(theGame[0].oxen);
+				console.log("Your pace is: "+ theGame[0].pace +" today the wagon will move "+milestoTravel+" miles.");
+				animateWagon(milestoTravel);
+				break;
+		}
+}
+
+var wagonPos = 45; //the start of the wagon position is always 45vw;
+function animateWagon(miles){
+	var pixelsToMove = (25/theGame[0].milesToDestination)*miles; //total pixels to move is (25vw / milesToDestination) * number of miles
+	wagonPos -= pixelsToMove; //new wagon pos is old wagon pos - pixels moved
+	document.getElementById("wagon").style.left = wagonPos + 'vw';
+	console.log("miles left before move: "+theGame[0].milesLeft);
+	theGame[0].currentMilesTraveled = theGame[0].currentMilesTraveled + Number(miles); //add how many miles were traveled to the current miles traveled variable
+	theGame[0].milesLeft = theGame[0].milesLeft - Number(miles); //reduce miles to destination by miles that the player has traveled
+	console.log("miles left AFTER move: "+theGame[0].milesLeft);
+	console.log("going to move wagon to "+pixelsToMove+"vw, new position will be: "+wagonPos+" total miles traveled: "+theGame[0].currentMilesTraveled);
+	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ theGame[0].milesLeft; //update ui elements
+	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled; //update ui elements
+}
+
+
+
+/******************************************************************END TRAVEL TRAIL CODE ****************************************************************************************/
 
 /*************************************************************RIVER MENU AF*************************************************/
 var river_depth = 0;
@@ -699,7 +824,7 @@ function ferryRiver(){
 }
 
 function wait4River(){
-	document.getElementsById("input_restDays").value = 1;
+	document.getElementById("input_restDays").value = 1;
 	rest();
 	setRiver(cur_river);
 	window.alert("River conditions changed.");
@@ -715,7 +840,10 @@ function riverInfo(){
 	document.getElementById("river_info5").innerHTML = "To wait a for conditions to change means spending a day at the river hoping the conditions improve.";
 }
 
-/********************************************** Random Acts For Travel *****************BITCH DICK***********************/
+/*************************************************************END RIVER MENU AF*************************************************/
+
+
+/**********************************************START Random Acts For Travel ****************************************/
 
  // Something like this?
 function wagonWheelBreak(){
@@ -752,7 +880,7 @@ function wagonTongueBreak(){
 function tookWrongTrail(){
 	var daysLost = Math.floor(Math.random() * 7)+1;
 	window.alert("You have taken the wrong trail, you have wondered " + daysLost + " days getting back on track.");
-	document.getElementsById("input_restDays").value = daysLost;
+	document.getElementById("input_restDays").value = daysLost;
 	rest();
 }
 
@@ -814,7 +942,7 @@ function findBarries(){
 function lostTrail(){
 	var daysLost = Math.floor(Math.random() * 7)+1;
 	window.alert("You have lost the trail, you have wondered " + daysLost + " days getting back on track.");
-	document.getElementsById("input_restDays").value = daysLost;
+	document.getElementById("input_restDays").value = daysLost;
 	rest();
 }
 
@@ -830,7 +958,7 @@ function noGrass(){
 
 function oxWonder(){
 	window.alert("Your oxen has wandered off, you lose a day recapturing it.");
-	document.getElementsById("input_restDays").value = 1;
+	document.getElementById("input_restDays").value = 1;
 	rest();
 }
 
@@ -893,7 +1021,7 @@ function wagonFire(){
 
 function p_gotLost(){
 	window.alert("Member of your party has goten lost, you lose a day to find them.");
-	document.getElementsById("input_restDays").value = 1;
+	document.getElementById("input_restDays").value = 1;
 	rest();
 }
 
@@ -973,6 +1101,10 @@ function processDisease(){
 		}
 	}
 }
+
+/**********************************************END Random Acts For Travel ****************************************/
+
+
 
 /********************************************** Main Menu Functions *********************************************/
 
@@ -1054,11 +1186,11 @@ function aquireTradeItem(item){
 		case "Oxen":
 			theGame[0].oxen += theGame[0].traderItemQuantityGiven;
 			break;
-		case "Set of Clothing":
+		case "Set of Clothing":	
 			theGame[0].clothes += theGame[0].traderItemQuantityGiven;
 			break;
-		case "Bullets":
-			theGame[0].ammo += theGame[0].traderItemQuantityGiven;
+		case "Bullets":	
+			theGame[0].ammo += theGame[0].traderItemQuantityGiven;	
 			break;
 		case "Wagon Wheels":
 			theGame[0].wheels += theGame[0].traderItemQuantityGiven;
@@ -1075,15 +1207,15 @@ function aquireTradeItem(item){
 	}
 }
 
-function calcAverageHealth(){ //takes the average of your family members health
+function calcAverageHealth(){ //takes the average of your family members health 
 	var HealthTotal = 0;
 	for (i = 0; i < theGame[0].game_family.length; i++){
-		//console.log(theGame[0].game_family[i].p_name+"'s Health is: "+theGame[0].game_family[i].health);
+		//console.log(theGame[0].game_family[i].p_name+"'s Health is: "+theGame[0].game_family[i].health);	
 		HealthTotal += theGame[0].game_family[i].health;
 	}
 
 	//console.log("Average health is: "+(HealthTotal/5) );
-
+	
 	switch (true){
 		case ( (HealthTotal/5) > 75 ):
 			return ("<font color='green'>"+(HealthTotal/5)+"</font>");
@@ -1105,8 +1237,8 @@ function calcAverageHealth(){ //takes the average of your family members health
     		// rest of code here
     		window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
 			location.reload();
-			}, 00);
-
+			}, 300);
+			
 			break;
 	}
 	return "Invalid health amount";
@@ -1194,8 +1326,8 @@ function setRandomTradeValues(){
 }
 
 function devConsole_Execute(input){ // show and/or hide an html element or run a function
-
-
+	
+	
 	switch(input){
 		case "Show1": //show inputted html element
 			var TagToChange = document.getElementById("devConsoleInput").value;
@@ -1216,14 +1348,14 @@ function devConsole_Execute(input){ // show and/or hide an html element or run a
 			theGame[0].type="Banker";
 			theGame[0].month = 3;
 			theGame[0].day = 1;
-			theGame[0].oxen = 200;
+			theGame[0].oxen = 3;
 			theGame[0].food = 2000;
 			theGame[0].clothes = 200;
 			theGame[0].ammo = 200;
 			theGame[0].wheels = 200;
 			theGame[0].axles = 200;
 			theGame[0].tongues = 200;
-			theGame[0].pace = "steady";
+			theGame[0].pace = "Steady";
 			theGame[0].ration = "filling";
 			theGame[0].health = 100;
 			theGame[0].location ="Independence, Missouri";
@@ -1239,7 +1371,7 @@ function devConsole_Execute(input){ // show and/or hide an html element or run a
 			theGame[0].game_family[3] = new Person("Christy");
 			theGame[0].game_family[4] = new Person("Malik");
 			setRandomTradeValues();
-			break;
+			break;	
 	}
 }
 
@@ -1469,3 +1601,4 @@ function randomEventGenerator(){
 		break;
 	}
 }
+
