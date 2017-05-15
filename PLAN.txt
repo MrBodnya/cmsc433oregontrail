@@ -72,7 +72,7 @@
 		f) Miles traveled
 	- river stops/crossing
 		a) Show how scenery looks after asking if they want to see
-		b) Show width and depth of river
+		b) Show width and depth of river -- COMPLETED
 		c) menu  ------ COMPLETED
 			- attempt to ford the river
 			- caulk the wagon and float it across
@@ -106,7 +106,6 @@
 
 These are the various events that could happen to your party along the trail.
 
--The trail is impassable.
 -You had a wagon tongue break.
 -You had a wagon tongue break.
 -You had a wagon axle break.
@@ -114,25 +113,21 @@ These are the various events that could happen to your party along the trail.
 -You found [items] in an abandoned wagon.
 -You find some wild berries.
 -You've lost the trail.
--Bad Water
--No Water
 -Lost [number] pounds of food due to spoilage.
--No grass for the oxen.
--An ox wandered off.
--An ox is sick.
+-No grass for the oxen.*
+-An ox wandered off.*
 -An ox died.
--You took the wrong trail.
 -A thief stole [x amount of item].
--A fire in your wagon destroyed [x amount of items].
+-A fire in your wagon destroyed [x amount of items].*
 -[player] got lost.
 -[player] is sick with typhoid fever.
 -[player] was bitten by a snake.
 -[player] has dysentery.
 -[player] has cholera.
--[player] is suffering from exhaustion.
+-[player] is suffering from exhaustion.*
 -[player] has a fever.
 -[player] is well again.
--[player] has taken a turn for the worse.
+-[player] has taken a turn for the worse.*
 -[player] has died.
 
 

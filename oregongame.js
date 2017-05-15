@@ -710,6 +710,217 @@ function riverInfo(){
 	document.getElementById("river_info5").innerHTML = "To wait a for conditions to change means spending a day at the river hoping the conditions improve.";
 }
 
+/********************************************** Random Acts For Travel *****************BITCH DICK***********************/
+
+ // Something like this?
+function wagonWheelBreak(){
+	window.alert("Your wagon wheel has broken!");
+	//Would you like to repair it?
+	var repair = Math.floor((Math.random()*2))+1;
+	if(repair == 1){
+		window.alert("Could not repair the wagon.");
+		// Would you like to use a spare?
+		if(theGame[0].wheels > 0){
+			window.alert("Replaced the wheel with a spare!");
+			theGame[0].wheels--;
+		}else{
+			window.alert("You do not have any spare wheels to change out the broken wheel.");
+			// Cannot move on until wagon wheel are above 4;
+		}
+	}else{
+		window.alert("Wagon wheel successfully repaired!");
+	}
+}
+
+function wagonAxleBreak(){
+
+}
+
+function wagonTongueBreak(){
+
+}
+
+function tookWrongTrail(){
+	var daysLost = Math.floor(Math.random() * 7)+1;
+	window.alert("You have taken the wrong trail, you have wondered " + daysLost + " days getting back on track.");
+	rest(daysLost);
+}
+
+function findItems(){
+	var itemNum = Math.floor((Math.random() * 14)+1);
+	var itemGot = 0;
+	switch(itemNum){
+		case 1:
+		case 8:
+		itemGot = Math.floor((Math.randrom() * Number(theGame[0].oxen))+1);
+		theGame[0].oxen += itemGot;
+		window.alert("You have found " + itemGot + " oxen.");
+		break;
+		case 2:
+		case 9:
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].clothes))+1);
+		theGame[0].clothes += itemGot;
+		window.alert("You have found " + itemGot + " clothes.");
+		break;
+		case 3:
+		case 10:
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].ammo))+1);
+		theGame[0].ammo += itemGot;
+		window.alert("You have found " + itemGot + " bullets.");
+		break;
+		case 4:
+		case 11:
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].wheels))+1);
+		theGame[0].wheels += itemGot;
+		window.alert("You have found " + itemGot + " wheels.");
+		break;
+		case 5:
+		case 12:
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].axles))+1);
+		theGame[0].axles += itemGot;
+		window.alert("You have found " + itemGot + " axles.");
+		break;
+		case 6:
+		case 13:
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].tongues))+1);
+		theGame[0].tongues += itemLost;
+		window.alert("You have found " + itemGot + " tongues.");
+		break;
+		case 7:
+		case 14:
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].food))+1);
+		theGame[0].food += itemGot;
+		window.alert("You have found " + itemGot + " pounds of food.");
+		break;
+	}
+}
+
+function findBarries(){
+	var barriesFound = Math.floor(Math.random()*20)+1;
+	window.alert("You have found " + barriesFound + " barries.");
+	theGame[0].food += Math.floor(barriesFound/4);
+}
+
+function lostTrail(){
+	var daysLost = Math.floor(Math.random() * 7)+1;
+	window.alert("You have lost the trail, you have wondered " + daysLost + " days getting back on track.");
+	rest(daysLost);
+}
+
+function lostFood(){
+	var foodloss = Math.floor(Math.random() * Number(theGame[0].food))+1;
+	window.alert( foodloss + " pounds of food have spoiled.");
+	theGame[0].food -= foodloss;
+}
+
+function noGrass(){
+	window.alert("There is no grass here.");
+}
+
+function oxWonder(){
+	window.alert("Your oxen has wandered off, you lose a day recapturing it.");
+	rest(1);
+}
+
+function oxDied(){
+	window.alert("One of your oxen has died.");
+	theGame[0].oxen--;
+}
+
+function thiefStole(){
+
+	var numofItemsStolen = Math.floor(Math.random()*4)+1;
+	window.alert("A theif has stolen items from you at night.");
+	switch (numofItemsStolen) {
+		case 1:
+		loseItem();
+		break;
+		case 2:
+		loseItem();
+		loseItem();
+		break;
+		case 3:
+		loseItem();
+		loseItem();
+		loseItem();
+		break;
+		case 4:
+		loseItem();
+		loseItem();
+		loseItem();
+		loseItem();
+		break;
+	}
+
+}
+
+function wagonFire(){
+	var numofItemsBurned = Math.floor(Math.random()*4)+1;
+	window.alert("A fire has erupted, you have lost items.");
+	switch (numofItemsBurned) {
+		case 1:
+		loseItem();
+		break;
+		case 2:
+		loseItem();
+		loseItem();
+		break;
+		case 3:
+		loseItem();
+		loseItem();
+		loseItem();
+		break;
+		case 4:
+		loseItem();
+		loseItem();
+		loseItem();
+		loseItem();
+		break;
+	}
+}
+
+function p_gotLost(){
+	window.alert("Member of your party has goten lost, you lose a day to find them.");
+	rest(1);
+}
+
+function typhoidFever(){
+
+}
+
+function snakeBite(){
+
+}
+
+function dysentery(){
+
+}
+
+function cholera(){
+
+}
+
+function exhaustion(){
+
+}
+
+function fever(){
+
+}
+
+function wellAgain(){
+
+}
+
+function takenWorst(){
+
+}
+
+function hasDied(){
+
+}
+
+
 /********************************************** Main Menu Functions *********************************************/
 
 function startGame(){
@@ -1048,43 +1259,43 @@ function loseItem(){
 	switch(itemNum){
 		case 1:
 		case 8:
-		itemLost = Math.floor((Math.randrom() * theGame[0].oxen)+1);
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].oxen))+1);
 		theGame[0].oxen -= itemLost;
 		window.alert("You have lost " + itemLost + " oxen.");
 		break;
 		case 2:
 		case 9:
-		itemLost = Math.floor((Math.randrom() * theGame[0].clothes)+1);
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].clothes))+1);
 		theGame[0].clothes -= itemLost;
 		window.alert("You have lost " + itemLost + " clothes.");
 		break;
 		case 3:
 		case 10:
-		itemLost = Math.floor((Math.randrom() * theGame[0].ammo)+1);
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].ammo))+1);
 		theGame[0].ammo -= itemLost;
 		window.alert("You have lost " + itemLost + " bullets.");
 		break;
 		case 4:
 		case 11:
-		itemLost = Math.floor((Math.randrom() * theGame[0].wheels)+1);
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].wheels))+1);
 		theGame[0].wheels -= itemLost;
 		window.alert("You have lost " + itemLost + " wheels.");
 		break;
 		case 5:
 		case 12:
-		itemLost = Math.floor((Math.randrom() * theGame[0].axles)+1);
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].axles))+1);
 		theGame[0].axles -= itemLost;
 		window.alert("You have lost " + itemLost + " axles.");
 		break;
 		case 6:
 		case 13:
-		itemLost = Math.floor((Math.randrom() * theGame[0].tongues)+1);
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].tongues))+1);
 		theGame[0].tongues -= itemLost;
 		window.alert("You have lost " + itemLost + " tongues.");
 		break;
 		case 7:
 		case 14:
-		itemLost = Math.floor((Math.randrom() * theGame[0].food)+1);
+		itemLost = Math.floor((Math.randrom() * Number(theGame[0].food))+1);
 		theGame[0].food -= itemLost;
 		window.alert("You have lost " + itemLost + " pounds of food.");
 		break;
@@ -1093,7 +1304,7 @@ function loseItem(){
 
 function killPersonRandom(){
 	var who = Math.floor((Math.random()*4)+0);
-	if(theGame[0].game_family[who].health != 0){
+	if(Number(theGame[0].game_family[who].health) != 0){
 		theGame[0].game_family[who].health = 0;
 		window.alert(theGame[0].game_family[who].name + " has died.");
 	}else{
