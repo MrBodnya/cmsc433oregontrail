@@ -9,6 +9,7 @@
 	-moz-transition: background-image 0.5s linear;
 	-ms-transition: background-image 0.5s linear;
 	transition: background-image 0.5s linear;
+	overflow:hidden;
 	}
 	#canvas{
 		z-index:-2;
@@ -252,7 +253,7 @@
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
 	background-image: url(Images/openBook.png);
 	}
-	
+
 	#wrapper_rivermenu{
 		display: none;
 	}
