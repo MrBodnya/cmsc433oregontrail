@@ -32,6 +32,9 @@ function Game(personBackground){
 	this.traderItemGiven ="";
 	this.traderItemQuantityGiven = 0;
 	this.traderPresent = true; //variable to determine whether the player has traded once for that day or not
+	this.wagonAWheels = 4;
+	this.wagonAAxles = 1;
+	this.wagonATongue = 1;
 
 	if (personBackground =="banker"){
 		this.money = 1600;
@@ -53,6 +56,7 @@ function Game(personBackground){
 function Person(name){ //a person object, which has a name and health value, this constructor is used when creating a family for the first time
 	this.health = 100; //hunger for new people begins at 100
 	this.p_name = name;
+	this.condition = "";
 }
 
 function selectGameBackground(){
@@ -695,7 +699,8 @@ function ferryRiver(){
 }
 
 function wait4River(){
-	rest(1);
+	document.getElementsById("input_restDays").value = 1;
+	rest();
 	setRiver(cur_river);
 	window.alert("River conditions changed.");
 }
@@ -714,6 +719,7 @@ function riverInfo(){
 
  // Something like this?
 function wagonWheelBreak(){
+	theGame[0].wagonAWheels--;
 	window.alert("Your wagon wheel has broken!");
 	//Would you like to repair it?
 	var repair = Math.floor((Math.random()*2))+1;
@@ -722,28 +728,32 @@ function wagonWheelBreak(){
 		// Would you like to use a spare?
 		if(theGame[0].wheels > 0){
 			window.alert("Replaced the wheel with a spare!");
+			theGame[0].wagonAWheels++;
 			theGame[0].wheels--;
 		}else{
 			window.alert("You do not have any spare wheels to change out the broken wheel.");
-			// Cannot move on until wagon wheel are above 4;
+			// Cannot move on until wagon wheel are 4;
 		}
 	}else{
 		window.alert("Wagon wheel successfully repaired!");
+		theGame[0].wagonAWheels++;
 	}
 }
 
 function wagonAxleBreak(){
+	theGame[0].wagonAAxles--;
 
 }
 
 function wagonTongueBreak(){
-
+	theGame[0].wagonATongue--;
 }
 
 function tookWrongTrail(){
 	var daysLost = Math.floor(Math.random() * 7)+1;
 	window.alert("You have taken the wrong trail, you have wondered " + daysLost + " days getting back on track.");
-	rest(daysLost);
+	document.getElementsById("input_restDays").value = daysLost;
+	rest();
 }
 
 function findItems(){
@@ -804,7 +814,8 @@ function findBarries(){
 function lostTrail(){
 	var daysLost = Math.floor(Math.random() * 7)+1;
 	window.alert("You have lost the trail, you have wondered " + daysLost + " days getting back on track.");
-	rest(daysLost);
+	document.getElementsById("input_restDays").value = daysLost;
+	rest();
 }
 
 function lostFood(){
@@ -819,7 +830,8 @@ function noGrass(){
 
 function oxWonder(){
 	window.alert("Your oxen has wandered off, you lose a day recapturing it.");
-	rest(1);
+	document.getElementsById("input_restDays").value = 1;
+	rest();
 }
 
 function oxDied(){
@@ -881,11 +893,8 @@ function wagonFire(){
 
 function p_gotLost(){
 	window.alert("Member of your party has goten lost, you lose a day to find them.");
-	rest(1);
-}
-
-function typhoidFever(){
-
+	document.getElementsById("input_restDays").value = 1;
+	rest();
 }
 
 function snakeBite(){
@@ -895,29 +904,75 @@ function snakeBite(){
 }
 
 function dysentery(){
-
+	var infect = Math.floor(Math.random()*4)+0;
+	if(theGame[0].game_family[infect].health < 80){
+		theGame[0].game_family[infect].condition = "dysentery";
+	}else{
+		dysentery();
+	}
 }
 
 function cholera(){
-
+	var infect = Math.floor(Math.random()*4)+0;
+	if(theGame[0].game_family[infect].health < 80){
+		theGame[0].game_family[infect].condition = "cholera";
+	}else{
+		cholera();
+	}
 }
 
 function exhaustion(){
-
+	var infect = Math.floor(Math.random()*4)+0;
+	if(theGame[0].game_family[infect].health < 80){
+		theGame[0].game_family[infect].condition = "exhaustion";
+	}else{
+		exhaustion();
+	}
 }
 
 function fever(){
-
+	var infect = Math.floor(Math.random()*4)+0;
+	if(theGame[0].game_family[infect].health < 80){
+		theGame[0].game_family[infect].condition = "fever";
+	}else{
+		fever();
+	}
 }
 
 function wellAgain(){
-
+	var i = 0;
+	for(i = 0; i < 5; i++){
+		if(theGame[0].game_family[i].condition!="" && (theGame[0].game_family[i].health > 20){
+			window.alert(theGame[0].game_family[i].p_name + " has gotten better.");
+			theGame[0].game_family[i].condition = "";
+		}
+	}
 }
 
 function takenWorst(){
-
+	var i = 0;
+	for(i = 0; i < 5; i++){
+		if(theGame[0].game_family[i].condition!="" && (theGame[0].game_family[i].health < 20){
+			window.alert(theGame[0].game_family[i].p_name + " has taken a turn for the worst.");
+		}
+	}
 }
 
+function processDisease(){
+	wellAgain();
+	takenWorst();
+	for(var i = 0; i < 5; i++){
+		if(theGame[0].game_family[i].condition!="dysentery"){
+			theGame[0].game_family[i].health -= 5;
+		}else if(theGame[0].game_family[i].condition!="cholera"){
+			theGame[0].game_family[i].health -= 7;
+		}else if(theGame[0].game_family[i].condition!="exhaustion"){
+			theGame[0].game_family[i].health -= 3;
+		}else if(theGame[0].game_family[i].condition!="fever"){
+			theGame[0].game_family[i].health -= 9;
+		}
+	}
+}
 
 /********************************************** Main Menu Functions *********************************************/
 
@@ -1307,5 +1362,110 @@ function killPersonRandom(){
 		window.alert(theGame[0].game_family[who].p_name + " has died.");
 	}else{
 		killPerson();
+	}
+}
+
+function checkHealth(member){
+	return theGame[0].game_family[member].health;
+}
+
+function randomEventGenerator(){
+	var eventHappen = Math.floor(Math.random()*54)-1;
+	switch (eventHappen){
+		case 1:
+		case 2:
+		case 3:
+		wagonWheelBreak();
+		break;
+		case 4:
+		case 5:
+		case 6:
+		wagonTongueBreak();
+		break;
+		case 7:
+		case 8:
+		case 9:
+		wagonAxleBreak();
+		break;
+		case 10:
+		case 11:
+		case 12:
+		tookWrongTrail();
+		break;
+		case 13:
+		case 14:
+		case 15:
+		findItems();
+		break;
+		case 16:
+		case 17:
+		case 18:
+		findBarries();
+		break;
+		case 19:
+		case 20:
+		case 21:
+		lostTrail();
+		break;
+		case 22:
+		case 23:
+		case 24:
+		lostFood();
+		break;
+		case 25:
+		case 26:
+		case 27:
+		noGrass();
+		break;
+		case 28:
+		case 29:
+		case 30:
+		oxWonder();
+		break;
+		case 31:
+		case 32:
+		case 33:
+		oxDied();
+		break;
+		case 34:
+		case 35:
+		case 36:
+		thiefStole();
+		break;
+		case 37:
+		case 38:
+		case 39:
+		wagonFire();
+		break;
+		case 40:
+		case 41:
+		case 42:
+		p_gotLost();
+		break;
+		case 43:
+		case 44:
+		case 45:
+		snakeBite();
+		break;
+		case 46:
+		case 47:
+		case 48:
+		dysentery();
+		break;
+		case 49:
+		case 50:
+		case 51:
+		cholera();
+		break;
+		case 52:
+		case 53:
+		case 54:
+		exhaustion();
+		break;
+		case 55:
+		case 56:
+		case 57:
+		fever();
+		break;
 	}
 }
