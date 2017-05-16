@@ -5,7 +5,7 @@ using image of matt cropped: http://www.today.com/popculture/savannah-has-typhoi
 	GeneralStore.png: https://pixabay.com/en/old-vintage-retro-trade-past-1578895/
 	IndepedenceTown2.jpg: http://gde-fon.com/download/painting_autumn_town_village_settlement_Street_pud/439911/1680x1050
 	grass.svg: https://pixabay.com/p-303857/?no_redirect
-
+	campfire: http://bestanimations.com/Nature/Fire/Fire.html
 Code:
 
 Custom Slider CSS: https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/

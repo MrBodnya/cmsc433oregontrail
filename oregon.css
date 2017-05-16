@@ -187,7 +187,7 @@
 	}
 	#wrapper_checksupplies{
 	display:none;
-	width:30vw;
+	width:35vw;
 	height: 50vh;
 	background-size: 100% 100%;
 	font-family:  'Just Another Hand', Helvetica, sans-serif;
@@ -255,16 +255,40 @@
 	}
 
 	#wrapper_rivermenu{
-		display: none;
+	display: none;
+	width:50vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	font-size:2vw;
 	}
 	#wrapper_rivermenuinfo{
-		display: none;
+	display: none;
+	width:50vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	font-size:2vw;
 	}
 	#wrapper_goToDestination{
 		display:none;
 	}
 	#wrapper_travel_pause_menu{
 		display: none;
+	}
+	#riverAnimation{
+	display:none;
+	position: absolute;
+	width:50vw;
+	height:50vh;
+	top:4vw;
+	bottom:5vw;
+	left:6.5vw;
+	background-image:url(Images/riverCross.gif);
+	background-size: 100% 100%;
+
 	}
 	/********************************************END TOWN MENU CSS & ALL ITS SUB-MENUS*********************************************/
 
@@ -283,6 +307,19 @@
 	-moz-transition: left 0.5s linear;
 	-ms-transition: left 0.5s linear;
 	transition: left 0.5s linear;
+	animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-name: wagonAnimate ;
+	}
+	@keyframes wagonAnimate
+	{
+    0%   {background-image: url(Images/Wagon2.png); }
+
+    33%  {background-image: url(Images/Wagon.png); }
+
+	66% {background-image: url(Images/Wagon2.png); }
+
+	100% {background-image: url(Images/Wagon.png);}
 	}
 	#destination{
 	display:block;

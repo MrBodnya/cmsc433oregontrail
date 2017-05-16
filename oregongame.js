@@ -40,6 +40,9 @@ function Game(personBackground){
 	this.wagonAWheels = 4;
 	this.wagonAAxles = 2;
 	this.wagonATongue = 1;
+	this.currWrapper ="";
+	this.currMenu = "";
+	this.continueTrail = true;
 
 	if (personBackground =="banker"){
 		this.money = 1600;
@@ -290,7 +293,7 @@ function clothes_purchase(){
 	}else{
 		theGame[0].clothes += Number(numOfClothes);
 		theGame[0].money -= priceofClothes;
-		window.alert("Congratulations, you bought" + Number(numOfClothes).clothes+" Clothes!");
+		window.alert("Congratulations, you bought " + Number(numOfClothes)+" Clothes!");
 		mattsbill+=priceofClothes;
 		openShop();			
 	}
@@ -329,7 +332,7 @@ function ammo_purchase(){
 	}else{
 		theGame[0].ammo += Number(numOfAmmo);
 		theGame[0].money -= priceofAmmo;
-		window.alert("Congratulations, you bought" + Number(numOfAmmo)+"!");
+		window.alert("Congratulations, you bought " + Number(numOfAmmo)+"!");
 		mattsbill+=priceofAmmo;
 		openShop();			
 	}
@@ -396,11 +399,12 @@ function goTown1_view(){
 	setRandomTradeValues();
 	}
 
-	
-
+	theGame[0].currWrapper = "wrapper_goToTown";
+	theGame[0].currMenu = "wrapper_townMenu";
 }
 
 function goTown1(){
+	theGame[0].currMenu = "wrapper_townMenu";
 	// This is where the logic goes for going from just a picture to the twon menu
 	document.getElementById("wrapper_goToTown").style.display = "none";
 	document.getElementById("wrapper_checksupplies").style.display = "none";
@@ -413,7 +417,6 @@ function goTown1(){
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 
 	//set variables
-	
 	document.getElementById("date_town").innerHTML = "<u>"+getDate(theGame[0].month)+"</u>";
 	document.getElementById("location_town").innerHTML = "<u>"+theGame[0].location+"</u>";
 	document.getElementById("health_town").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
@@ -426,6 +429,8 @@ function goTown1(){
 }
 
 function supplyCheck(){
+	theGame[0].currWrapper ="wrapper_checksupplies";
+	document.getElementById(theGame[0].currMenu).style.display ="none";
 	document.getElementById("wrapper_goToTown").style.display = "none";
 	document.getElementById("wrapper_checksupplies").style.display = "block";
 	document.getElementById("wrapper_townMenu").style.display="none";
@@ -440,6 +445,7 @@ function supplyCheck(){
 	document.getElementById("foodcheck").innerHTML = "<u>Pounds of Food:</u> " + theGame[0].food;
 	document.getElementById("moneycheck").innerHTML = "<u>Money Left:</u> " + theGame[0].money;
 
+document.getElementById("location_status").innerHTML = "<u> Current Location: </u> <font color='green'>" + theGame[0].location;+"</font>";
 	document.getElementById("family1_status").innerHTML = "<u>" + theGame[0].game_family[0].p_name + "'s health:</u> " + theGame[0].game_family[0].health;
 	document.getElementById("family2_status").innerHTML = "<u>" +  theGame[0].game_family[1].p_name + "'s health:</u> " + theGame[0].game_family[1].health;
 	document.getElementById("family3_status").innerHTML = "<u>" + theGame[0].game_family[2].p_name + "'s health:</u> " + theGame[0].game_family[2].health;
@@ -448,9 +454,10 @@ function supplyCheck(){
 }
 
 function choosePace(pace){
+	theGame[0].currWrapper ="wrapper_changepace";
+	document.getElementById(theGame[0].currMenu).style.display ="none";
 	document.getElementById("wrapper_changepace").style.display="block";
 	document.getElementById("wrapper_townMenu").style.display="none";
-	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 
 	if(pace == "Steady"){
 		theGame[0].pace = pace;
@@ -469,9 +476,10 @@ function choosePace(pace){
 }
 
 function chooseFoodRation(ration){
+	theGame[0].currWrapper ="wrapper_changefoodrat";
+	document.getElementById(theGame[0].currMenu).style.display ="none";
 	document.getElementById("wrapper_changefoodrat").style.display="block";
 	document.getElementById("wrapper_townMenu").style.display="none";
-	document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 
 	document.getElementById("foodrat_description").innerHTML = "The amount of food the people in your party eat each day can change. Choose:";
 	document.getElementById("filling_desc").innerHTML = "<font color='green'>Meals are large and generous.</font>";
@@ -493,6 +501,9 @@ function chooseFoodRation(ration){
 }
 
 function stoptoRest(){
+	theGame[0].currWrapper ="wrapper_stoprest";
+	console.log(theGame[0].currMenu);
+	document.getElementById(theGame[0].currMenu).style.display ="none";
 	document.getElementById("wrapper_townMenu").style.display="none";
 	document.getElementById("wrapper_stoprest").style.display="block";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlackScreen.png)';
@@ -500,8 +511,6 @@ function stoptoRest(){
 
 function rest(){
 	var days = document.getElementById("input_restDays").value;
-	
-
 	if(theGame[0].storeType =="Town"){ window.alert("You Have Rested for "+days+" days."); }
 	theGame[0].day +=Number(days);
 	
@@ -544,6 +553,9 @@ function rest(){
 }
 
 function attemptTrade(){
+
+	theGame[0].currWrapper ="wrapper_attemptTrade";
+	document.getElementById(theGame[0].currMenu).style.display ="none";
 	document.getElementById("wrapper_townMenu").style.display="none";	
 	document.getElementById("wrapper_attemptTrade").style.display="block";
 	
@@ -572,7 +584,6 @@ function attemptTrade(){
 		document.getElementById("button_acceptTrade").style.display ="none"; //hide accept trade button if trader is not present
 	}
 	
-
 }
 
 function acceptTrade(){
@@ -612,18 +623,25 @@ function acceptTrade(){
 		theGame[0].traderPresent = false; //after a trade is complete, they will no longer be present (for the day).
 		goTown1();	
 		window.alert("You have succesfully traded "+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+" for "+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+" in return!");
+		document.getElementById("button_acceptTrade").style.display ="none";
 	}
 	
 }
 
 function startTrail(){
+	theGame[0].currMenu ="wrapper_travel_pause_menu";
+	theGame[0].currWrapper ="wrapper_travel";
 	document.getElementById("wrapper_townMenu").style.display = "none";
 	document.getElementById("wrapper_travel").style.display = "block";
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/MainMenu.png)';
 	
 	//set variables
 	switch(theGame[0].location){
 		case "Independence, Missouri":
 			setDestinationVariables("Kansas River");//sets your miles variables according to the kansas river	
+			break;
+		case "Kansas River":
+			setDestinationVariables("Big Blue River");//sets your miles variables according to the kansas river	
 			break;
 		//add more cases here when adding more destinations	
 	}
@@ -636,10 +654,25 @@ function startTrail(){
 	document.getElementById("trail_health").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
 	//SET THE WEATHER HERE
 	document.getElementById("trail_food").innerHTML ="<u>Food:</u> "+ theGame[0].food+"lbs";
-	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ theGame[0].milesLeft;
+	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ theGame[0].milesLeft +"("+theGame[0].destinationName+")";
 	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled;
 
 
+}
+function goBackToMenu(){
+	console.log("Switching from "+theGame[0].currWrapper+" to "+theGame[0].currMenu)
+	document.getElementById(theGame[0].currWrapper).style.display ="none";
+	document.getElementById(theGame[0].currMenu).style.display ="block";
+	
+	switch (theGame[0].currMenu){
+		case "wrapper_townMenu":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';	
+			break;
+		case "wrapper_travel_pause_menu":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/campfire.gif)';	
+			break;
+	
+	}
 }
 
 
@@ -648,18 +681,44 @@ function startTrail(){
 
 /******************************************************************START TRAVEL TRAIL CODE ****************************************************************************************/
 
-function goToDestination_view(){
+function goToDestination_view1(){ //show view before entering destination
 	// Just add a span that shows the town, like a picture of it
-	
+	theGame[0].currWrapper ="wrapper_goToDestination";
 	document.getElementById("wrapper_goToDestination").style.display = "block";
 	document.getElementById("wrapper_travel").style.display = "none";
-	document.getElementById("GameBox").style.backgroundImage = 'url(Images/KansasRiver.png)';
-	document.getElementById("button_startDestination").innerHTML = getDate(theGame[0].month) + "</br> Go to The River";
-	theGame[0].storeType = "Independence, Missouri";
+
+	document.getElementById("button_startDestination").innerHTML = getDate(theGame[0].month) + "</br> Enter";
+	//console.log(theGame[0].location);
+	switch (theGame[0].destinationName){
+		case "Kansas River":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/KansasRiver.png)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Big Blue River":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/BigBlueRiver.png)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+
+	}
+
 
 }
 
+function goToDestination(){ //enters destination itself
 
+	switch (theGame[0].location){
+		case "Kansas River":
+			displayRiver();
+			break;
+		case "Big Blue River":
+			displayRiver();
+			break;
+
+	}
+
+}
+var wagonPos; //the start of the wagon position is always 45vw;
+var TempMilesLeft;
 function setDestinationVariables(destination){
 	switch (destination){
 		case "Kansas River":
@@ -667,39 +726,96 @@ function setDestinationVariables(destination){
 			theGame[0].milesToDestination = 102;
 			theGame[0].milesLeft = 102; //this is just to display to the ui 
 			theGame[0].destinationName ="Kansas River";
+			TempMilesLeft = theGame[0].milesLeft;
+			setRiver("Kansas River");
+			wagonPos = 45; 
+			break;
+		case "Big Blue River":
+			theGame[0].currentMilesTraveled = 102;
+			theGame[0].milesToDestination = 185;
+			theGame[0].milesLeft = 83; //this is just to display to the ui 
+			theGame[0].destinationName ="Big Blue River";
+			TempMilesLeft = theGame[0].milesLeft;
+			setRiver("Big Blue River");
+			wagonPos = 45; 
+			break;
+		case "xxx": //CHANGE
+			theGame[0].currentMilesTraveled = 0;
+			theGame[0].milesToDestination = 102;
+			theGame[0].milesLeft = 102; //this is just to display to the ui 
+			theGame[0].destinationName ="Kansas River";
+			TempMilesLeft = theGame[0].milesLeft;
+			setRiver(XXX); //CHANGE
+			wagonPos = 45; 
 			break;
 		//Add More cases here
 	}
 
 }
 
-function beginMoving(){
-	
-	if (theGame[0].milesLeft > 0){
-		moveWagon(); //move the wagon if we are not at the destination
-		console.log("moving");
-		rest(); //rest a day after traveling 
-		//PUT RANDOM FUNCTIONS HERE
-		//choose a random event (an event does not have to occur)
-		//process diseases on family 
-		randomEventGenerator();
-		processDisease();
-		//SEND PLAYER BACK TO MENU IF PLAYER OXEN AMOUNT IS < 0
-		setTimeout(function() {
-    		// rest of code here
-    		beginMoving(); //attempt to begin moving the wagon again
-			}, 1000);
-		document.getElementById("input_restDays").value = 1;
-		document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
-		document.getElementById("trail_food").innerHTML = "<u>Food: </u>" + theGame[0].food +"lbs";
-		document.getElementById("trail_health").innerHTML = "<u>Avg Health: </u>" + calcAverageHealth();
-	}
-	else{ //you have reached the destination
-		document.getElementById("reached_destinationPrompt").style.display = "block";
-		document.getElementById("button_destinationPrompt").innerHTML = "You have reached "+ theGame[0].destinationName+"!";
-		theGame[0].location = "Kansas River";	
+function pauseOrStarTrail(choice){
+	if(choice =="start"){
+		theGame[0].continueTrail = true;
+		beginMoving();
 
 	}
+	else if(choice =="pause"){
+		theGame[0].continueTrail = false;
+		beginMoving();
+	}
+}
+
+function continueOnTrail(){
+	if(theGame[0].milesLeft <=0){ //then you are pressing continue trail after finishing reaching a destination, so we reset your destination variables to the next place
+		document.getElementById("reached_destinationPrompt").style.display ="none";
+		document.getElementById("wrapper_travel_pause_menu").style.display ="none";
+		startTrail();
+
+	}
+	else{ //if miels is not <=0 then we are on a destination still, bring you back to the trail without restarting varaibles
+	document.getElementById("GameBox").style.backgroundImage = 'url(Images/MainMenu.png)';
+	document.getElementById("wrapper_travel_pause_menu").style.display ="none";
+	document.getElementById("wrapper_travel").style.display ="block";	
+	}
+
+
+	
+}
+
+
+function beginMoving(){
+	if(theGame[0].continueTrail == true){
+		if (theGame[0].milesLeft > 0){
+			moveWagon(); //move the wagon if we are not at the destination
+			console.log("moving");
+			rest(); //rest a day after traveling 
+			//PUT RANDOM FUNCTIONS HERE
+			//choose a random event (an event does not have to occur)
+			//process diseases on family 
+			randomEventGenerator();
+			processDisease();
+			//SEND PLAYER BACK TO MENU IF PLAYER OXEN AMOUNT IS < 0
+			setTimeout(function() {
+	    		// rest of code here
+	    		beginMoving(); //attempt to begin moving the wagon again
+				}, 1000);
+			document.getElementById("input_restDays").value = 1;
+			document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
+			document.getElementById("trail_food").innerHTML = "<u>Food: </u>" + theGame[0].food +"lbs";
+			document.getElementById("trail_health").innerHTML = "<u>Avg Health: </u>" + calcAverageHealth();
+		}
+		else{ //you have reached the destination
+			document.getElementById("reached_destinationPrompt").style.display = "block";
+			document.getElementById("button_destinationPrompt").innerHTML = "You have reached "+ theGame[0].destinationName+"!";
+			theGame[0].location = theGame[0].destinationName; //update location to destination name
+
+		}
+	}
+	else if(theGame[0].continueTrail == false){ //go back to travel pause menu
+		goBackToMenu();
+	}
+	
+	
 }
 
 function moveWagon(){ //calculates the number of miles that will be traveled for the day, based on your pace and moves the wagon accordingly
@@ -723,9 +839,10 @@ function moveWagon(){ //calculates the number of miles that will be traveled for
 		}
 }
 
-var wagonPos = 45; //the start of the wagon position is always 45vw;
+
+
 function animateWagon(miles){
-	var pixelsToMove = (25/theGame[0].milesToDestination)*miles; //total pixels to move is (25vw / milesToDestination) * number of miles
+	var pixelsToMove = (25/TempMilesLeft)*miles; //total pixels to move is (25vw / milesToDestination) * number of miles
 	wagonPos -= pixelsToMove; //new wagon pos is old wagon pos - pixels moved
 	document.getElementById("wagon").style.left = wagonPos + 'vw';
 	console.log("miles left before move: "+theGame[0].milesLeft);
@@ -734,7 +851,7 @@ function animateWagon(miles){
 	console.log("miles left AFTER move: "+theGame[0].milesLeft);
 	console.log("going to move wagon to "+pixelsToMove+"vw, new position will be: "+wagonPos+" total miles traveled: "+theGame[0].currentMilesTraveled);
 	var MilesLeftshown = theGame[0].milesLeft; if(MilesLeftshown < 0){ MilesLeftshown = 0;} //this makes it so negative values are not displayed for miles left
-	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ MilesLeftshown; //update ui elements
+	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ MilesLeftshown +"("+theGame[0].destinationName+")"; //update ui elements
 	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled; //update ui elements
 }
 
@@ -749,10 +866,13 @@ var ferry_price = 0;
 var cur_river = "";
 
 function displayRiver(){
-	//document.getElementById("").style.display="none";
+	document.getElementById(theGame[0].currWrapper).style.display="none";
+
+	theGame[0].currWrapper ="wrapper_rivermenu";
+
 	document.getElementById("wrapper_rivermenuinfo").style.display="none";
 	document.getElementById("wrapper_rivermenu").style.display="block";
-	document.getElementById("river_info_name").innerHTML = "River: " + cur_river;
+	document.getElementById("river_info_name").innerHTML = "River: " + theGame[0].destinationName;
 	document.getElementById("river_info_width").innerHTML = "River Width: " + river_width;
 	document.getElementById("river_info_depth").innerHTML = "River Depth: " + river_depth;
 
@@ -761,12 +881,12 @@ function displayRiver(){
 function setRiver(river){
 	var riverD = (Math.random() * 10) + 1;
 	var riverW = Math.floor(Math.random() * (1200-200+1))+200;
-	if(river == "kasnasriver"){
+	if(river == "Kansas River"){
 		river_depth = riverD;
 		river_width = riverW;
 		ferry_price = 5;
 		cur_river = river;
-	}else if(river == "bbriver"){
+	}else if(river == "Big Blue River"){
 		river_depth = riverD;
 		river_width = riverW;
 		ferry_price = 7;
@@ -782,6 +902,9 @@ function setRiver(river){
 		ferry_price = 11;
 		cur_river = river;
 	}
+	document.getElementById("river_info_name").innerHTML = "River: " + theGame[0].destinationName;
+	document.getElementById("river_info_width").innerHTML = "River Width: " + river_width;
+	document.getElementById("river_info_depth").innerHTML = "River Depth: " + river_depth;
 
 }
 function fordRiver(){
@@ -801,9 +924,25 @@ function fordRiver(){
 			break;
 		}
 
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCrossFail.gif)';	
+		document.getElementById("riverAnimation").style.display ="block";		
+		setTimeout(function() {
+	    		// rest of code here
+	    	document.getElementById("riverAnimation").style.display ="none";
+	    	goBackToMenu();
+		}, 4950);
+		window.alert("Your family almost died fording the river!");
 	}else{
+		document.getElementById("wrapper_rivermenu").style.display ="block";
+		
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCross.gif)';	
+		document.getElementById("riverAnimation").style.display ="block";		
+		setTimeout(function() {
+	    		// rest of code here	
+	    	document.getElementById("riverAnimation").style.display ="none";
+	    	goBackToMenu();
+		}, 4500);
 		window.alert("You have forded the river successfully!");
-		// go to div passed river
 	}
 }
 
@@ -825,10 +964,28 @@ function caulkRiver(){
 			killPersonRandom();
 			break;
 		}
+		//show river animtion
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCrossFail.gif)';	
+		document.getElementById("riverAnimation").style.display ="block";		
+		setTimeout(function() {
+	    		// rest of code here
+	    	document.getElementById("riverAnimation").style.display ="none";
+	    	goBackToMenu();
+		}, 4950);
 		// go to div passed river
-	}else{
-		window.alert("You have caulked the river successfully!");
-		// go to div passed river
+		window.alert("Your family almost died caulking the river!");
+	}else{	
+		//show river animtion
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCross.gif)';	
+		document.getElementById("riverAnimation").style.display ="block";		
+		setTimeout(function() {
+	    	// rest of code here
+	    	document.getElementById("riverAnimation").style.display ="none";
+	    	goBackToMenu();
+		}, 4500);
+	    // go to div passed river
+	    window.alert("You have caulked the river successfully!");
+	
 	}
 }
 
@@ -837,8 +994,15 @@ function ferryRiver(){
 		window.alert("Sorry, not enough money to pay for ferry!");
 	}else{
 		theGame[0].money -= ferry_price;
-		window.alert("You have successfully crossed the river!");
-		// go to div passed river
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverFerry.gif)';	
+		document.getElementById("riverAnimation").style.display ="block";		
+		setTimeout(function() {
+	    	// rest of code here
+	    	document.getElementById("riverAnimation").style.display ="none";
+	    	goBackToMenu();
+		}, 7700);
+	    // go to div passed river
+	    window.alert("You have successfully crossed the river!");
 	}
 }
 
@@ -1166,8 +1330,6 @@ function startGame(){
 
 }
 
-
-
 //Functionality for sfx sound on hover menu items
 function playMenuHoverSound()
 {
@@ -1234,6 +1396,15 @@ function learnTheTrail(){
 }
 
 /*********************************Helper Functions*********************************/
+function setNextDestination(){
+	switch(theGame[0].location){
+		case "Kansas River":
+
+		case "Big Blue River":
+	}
+}
+
+
 function aquireTradeItem(item){
 	switch (item){
 		case "Oxen":
@@ -1497,7 +1668,7 @@ function loseItem(){
 	switch(itemNum){
 		case 1:
 		case 8:
-		Math.floor(Math.random() * ( ( Number(theGame[0].oxen -1 )) - min + 1)) + min;
+		Math.floor(Math.random() * ( ( Number(theGame[0].oxen -1 )) - 1 + 1)) + 1;
 		itemLost = Math.floor((Math.random() * Number(theGame[0].oxen ))+1);
 		theGame[0].oxen -= itemLost;
 		window.alert("You have lost " + itemLost + " oxen.");

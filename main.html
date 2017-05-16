@@ -2,7 +2,7 @@
 	<head>
 	<link href='http://fonts.googleapis.com/css?family=Just+Another+Hand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="oregon.css">
-	<audio id="audio_menuTheme"><source  src="Sound/title_piano_ver.mp3" type="audio/mpeg"> </audio>
+	<audio id="audio_menuTheme"><source  src="Sound/Music.mp3" type="audio/mpeg"> </audio>
 	<audio id="audio_menuSelect"><source  src="Sound/MenuSelect.mp3" type="audio/mpeg"> </audio>
 	<script src="jquery-3.2.1.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -266,7 +266,7 @@
 	<!-- Menu for showing town image before acutally going into town-->
 			<center>
 				<span id="wrapper_goToTown">
-					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goTown1()"> ADD THE CURRENT DATE HERE <br> Enter The Town</button> </center>
+					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goBackToMenu()"> ADD THE CURRENT DATE HERE <br> Enter The Town</button> </center>
 				</span>
 
 			</center>
@@ -317,12 +317,13 @@
 					<center><span id="tonguecheck"></span></center>
 					<center><span id="foodcheck"></span></center>
 					<center><span id="moneycheck"></span></center>
-					<center><button class="MenuOption" id="button_back2Town1" onclick="goTown1()">Back</button> </center> <br>
+					<center><button class="MenuOption" id="button_back2Town1" onclick="goBackToMenu()">Back</button> </center> <br>
 				</div>
 
 
 			<div id = "current_player_status" style="float:left; width:14vw; height: 65vh;" >
-					<button class="MenuOption" style="margin-left:3vw; width:12vw; height:40vh; font-size:3.5vh;">
+					<button class="MenuOption" style="margin-left:3vw; width:14vw; height:40vh; font-size:3.5vh;">
+					<span id="location_status" style="float:left; margin-left:1vw;">location status</span><br>
 					<span id="family1_status" style="float:left; margin-left:1vw;">Family1 status</span><br>
 					<span id="family2_status" style="float:left; margin-left:1vw;">Family2 status</span><br>
 					<span id="family3_status" style="float:left; margin-left:1vw;">Family3 status</span><br>
@@ -347,7 +348,7 @@
 				<center><button class="MenuOption" id="strspace" onclick="choosePace('Straining')">A Strenuous Pace</button></center>
 				<center><button class="MenuOption" id="grlpace" onclick="choosePace('Grueling')">A Grueling Pace</button></center>
 				<center><button class="MenuOption" id="paceinfo" onclick="">Info About Paces</button></center>
-				<center><button class="MenuOption" id="back2Town3" onclick="goTown1()">Back</button></center>
+				<center><button class="MenuOption" id="back2Town3" onclick="goBackToMenu()">Back</button></center>
 			</span>
 		</center>
 
@@ -360,7 +361,7 @@
 				<center><button class="MenuOption" id="button_meager" onclick="chooseFoodRation('meager')">Meager</button></center>
 				<center><span id="barebones_desc"></span></center>
 				<center><button class="MenuOption" id="button_bareb" onclick="chooseFoodRation('bare')">Bare Bones</button></center>
-				<center><button class="MenuOption" id="back2town4" onclick="goTown1()">Back</button></center>
+				<center><button class="MenuOption" id="back2town4" onclick="goBackToMenu()">Back</button></center>
 			</span>
 		</center>
 
@@ -369,7 +370,7 @@
 				<center><p id="daypass_desc"></p></center>
 				<center>Hows many days would you like to rest? <br><input type="number" id="input_restDays"> </center>
 				<center><button class="MenuOption" id="button_restDays" onclick="rest()">Rest</button></center>
-				<center><button class="MenuOption" id="back2town6" onclick="goTown1()">Back</button></center>
+				<center><button class="MenuOption" id="back2town6" onclick="goBackToMenu()">Back</button></center>
 			</span>
 		</center>
 
@@ -397,7 +398,7 @@
 				</span>
 				</button><br>
 					<center><button  class="MenuOption" id="button_acceptTrade" onclick="acceptTrade()">Accept Trade</button> </center>
-					<center><button  class="MenuOption" id="button_back2Town6" onclick="goTown1()">Back</button> </center>
+					<center><button  class="MenuOption" id="button_back2Town6" onclick="goBackToMenu()">Back</button> </center>
 			</div>
 		</center>
 
@@ -412,11 +413,12 @@
 
 					<div id="reached_destinationPrompt">
 						<button class="MenuOption" id="button_destinationPrompt" style="font-size:2vw; width:40vw; height:30vh;" onclick=""> </button>
-						<center><button  class="MenuOption" id="button_StartShop" style="width:15vw; height:15vh;" onclick="goToDestination_view()">Look Around</button> </center>
+						<center><button  class="MenuOption" id="button_destinationPrompt" style="width:15vw; height:15vh;" onclick="goToDestination_view1()">Look Around</button> </center>
 					</div>
 
 					<div id = "trail_current_player_status" style=" width:50vw; height: 35vh; border-style:solid;" >
-					 <button class="MenuOption" id="button_startTrail" onclick="beginMoving()" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Continue</button> <br>
+					 <button class="MenuOption" id="button_startTrail" onclick="pauseOrStarTrail('start')" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Continue</button> 
+					 <button class="MenuOption" id="button_pauseTrail" onclick="pauseOrStarTrail('pause')" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Stop To Rest</button> <br>
 					 <button class="MenuOption" style=" margin-left:3vw; width:25vw; height:30vh; font-size:3.5vh;">
 					 	<center><span id="trail_date" style="float:left; margin-left:3vw;">Date: </span><br> </center>
 					 	<center><span id="trail_weather" style="float:left; margin-left:3vw;">Weather: </span><br> </center>
@@ -432,7 +434,7 @@
 
 		<center>
 			<span id="wrapper_travel_pause_menu">
-				<button  class="MenuOption" id="button_continuetrail_tp" onclick="">Continue on the trail</button>  <br>
+				<button  class="MenuOption" id="button_continuetrail_tp" onclick="continueOnTrail()">Continue on the trail</button>  <br>
 				<button  class="MenuOption" id="button_checksupplies_tp" onclick="supplyCheck()">Check Supplies</button> <br>
 				<button  class="MenuOption" id="button_look@map_tp" onclick="">Look at map</button>  <br>
 				<button  class="MenuOption" id="button_changepace_tp" onclick="choosePace()">Change pace</button> <br>
@@ -445,7 +447,7 @@
 		</center>
 
 		<center>
-			<span id="wrapper_rivermenu">
+			<span id="wrapper_rivermenu"><br><br>
 				<center><span id="river_info_name"></span></center>
 				<center><span id="river_info_width"></span></center>
 				<center><span id="river_info_depth"></span></center>
@@ -469,10 +471,12 @@
 
 		<center>
 				<span id="wrapper_goToDestination">
-					<center><button class="MenuOption" id="button_startDestination" style="margin-top:45vh; height:10vh; width:15vw;"  onclick=""> ADD THE CURRENT DATE HERE <br> Enter</button> </center>
+					<center><button class="MenuOption" id="button_startDestination" style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goToDestination()"> ADD THE CURRENT DATE HERE <br> Enter</button> </center>
 				</span>
 
 			</center>
+
+		<div id="riverAnimation"></div> <!-- this div is for abosluiste positon of river corss animations -->
 
 
 
