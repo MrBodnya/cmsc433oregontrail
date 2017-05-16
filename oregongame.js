@@ -12,7 +12,7 @@ function Game(personBackground){
 	this.type="";
 	this.month = 0;
 	this.day = 1;
-	this.year = 1848; 
+	this.year = 1848;
 	this.oxen = 0;
 	this.food = 0;
 	this.clothes = 0;
@@ -21,7 +21,7 @@ function Game(personBackground){
 	this.axles = 0;
 	this.tongues = 0;
 	this.pace = "Steady";
-	this.ration = "filling"; //filling = 3lb/per person/day   meager = 2lb/per person/day   scarce = 2lb/per person/day 
+	this.ration = "filling"; //filling = 3lb/per person/day   meager = 2lb/per person/day   scarce = 2lb/per person/day
 	this.foodperPerson = 3; //pounds of food per person, per day.
 	this.healthReductionMultiplier = 1; //health reduction multiplier per day, the pace will make this either 1, 2 or 3
 	this.health = 100;
@@ -217,7 +217,7 @@ function oxen_purchase(){
 		theGame[0].money -= priceofOxen;
 		window.alert("Congratulations, you bought " + Number(numOfOxen) + "!");
 		mattsbill += priceofOxen;
-		openShop();							
+		openShop();
 	}
 }
 
@@ -240,7 +240,7 @@ function shop_for_food(){
 		case "Town":
 			document.getElementById("store_name_food").innerHTML = "Town General Store";
 			break;
-		
+
 	}
 }
 
@@ -257,7 +257,7 @@ function food_purchase(){
 		theGame[0].money -= priceofFood;
 		window.alert("Congratulations, you bought "+Number(numOfFood)+" pounds of food!");
 		mattsbill += priceofFood;
-		openShop();			
+		openShop();
 	}
 }
 
@@ -274,7 +274,7 @@ function shop_for_clothes(){
 	document.getElementById("store_date_clothes").innerHTML = getDate(theGame[0].month); //set store date
 	switch (theGame[0].storeType){
 		case "Matt":
-			document.getElementById("store_name_clothes").innerHTML = "Matt's General Store"; //set store name	
+			document.getElementById("store_name_clothes").innerHTML = "Matt's General Store"; //set store name
 			break;
 		case "Town":
 			document.getElementById("store_name_clothes").innerHTML = "Town General Store";
@@ -295,7 +295,7 @@ function clothes_purchase(){
 		theGame[0].money -= priceofClothes;
 		window.alert("Congratulations, you bought " + Number(numOfClothes)+" Clothes!");
 		mattsbill+=priceofClothes;
-		openShop();			
+		openShop();
 	}
 }
 
@@ -334,7 +334,7 @@ function ammo_purchase(){
 		theGame[0].money -= priceofAmmo;
 		window.alert("Congratulations, you bought " + Number(numOfAmmo)+"!");
 		mattsbill+=priceofAmmo;
-		openShop();			
+		openShop();
 	}
 }
 
@@ -355,7 +355,7 @@ function shop_spareparts(){
 			break;
 		case "Town":
 			document.getElementById("store_name_spare").innerHTML = "Town General Store";
-			break;	
+			break;
 	}
 }
 
@@ -376,7 +376,7 @@ function spareparts_purchase(){
 		theGame[0].money -= sparepartPrice;
 		window.alert ("Congratulations, you bought " + Number(numOfWheels) + " wheels, " + Number(numOfAxles) + " axles, and " + Number(numOfTongues) + " tongues.");
 		mattsbill += sparepartPrice;
-		openShop();		
+		openShop();
 	}
 }
 
@@ -490,11 +490,11 @@ function chooseFoodRation(ration){
 		theGame[0].foodperPerson = 3; //each person gets 3lbs of food per day with filling rations
 		window.alert("You have chosen to eat filling rations!");
 	}else if(ration == "meager"){
-		theGame[0].ration = ration; 
+		theGame[0].ration = ration;
 		theGame[0].foodperPerson = 2; //each person gets 2lbs of food per day with meager rations
 		window.alert("You have choser to eat meager portions of food!");
 	}else if(ration == "bare"){
-		theGame[0].ration = ration; 
+		theGame[0].ration = ration;
 		theGame[0].foodperPerson = 1 //each person gets 1lbs of food per day with bare rations
 		window.alert("You have chosen to eat the minimum bare bones!");
 	}
@@ -513,9 +513,9 @@ function rest(){
 	var days = document.getElementById("input_restDays").value;
 	if(theGame[0].storeType =="Town"){ window.alert("You Have Rested for "+days+" days."); }
 	theGame[0].day +=Number(days);
-	
+
 	if (days > 0){
-		//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE	
+		//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE
 		setRandomTradeValues(); //reset random trader after a day has passed
 		theGame[0].traderPresent = true; //reset trader present so that the player can trade
 
@@ -524,11 +524,11 @@ function rest(){
 		var foodEatenPerPerson_AfterStockCheck = (theGame[0].foodperPerson * days); //variable will determine the final amount of lbs the player will eat, if they are attempting to eat more than exists
 		if (theGame[0].storeType=="Town"){healthReduxMultiplier = 1;} //regardless of current pace, if player is in town, health reduction is set to 1
 		console.log(days+" days have passed, the player is in "+theGame[0].storeType+" so health reduction multiplier is set from "+theGame[0].healthReductionMultiplier+" to "+healthReduxMultiplier);
-		for (i = 0; i < theGame[0].game_family.length; i++){	
+		for (i = 0; i < theGame[0].game_family.length; i++){
 			if (theGame[0].game_family[i].health > 0){ //only people who have more than 0 health may eat
 				theGame[0].game_family[i].health -= (5 * healthReduxMultiplier)*days; //a persons health decreases by 5,10 or 15 points per day due to hunger
 				console.log(theGame[0].game_family[i].p_name +" has lost "+(5 * healthReduxMultiplier)*days+" hp points, health is now: "+ theGame[0].game_family[i].health);
-				
+
 				if(  foodEatenPerPerson >  theGame[0].food){ //this person needs to eat more food than is left, they will only eat whatever is left in stock instead
 					foodEatenPerPerson_AfterStockCheck = theGame[0].food;
 				}
@@ -542,23 +542,23 @@ function rest(){
 			}
 		}
 	}
-	
+
 	if(theGame[0].storeType =="Town"){
-		goTown1();	
+		goTown1();
 	}
 	else if (theGame[0].storeType =="Trail"){
 		//do not go back to town
 	}
-	
+
 }
 
 function attemptTrade(){
 
 	theGame[0].currWrapper ="wrapper_attemptTrade";
 	document.getElementById(theGame[0].currMenu).style.display ="none";
-	document.getElementById("wrapper_townMenu").style.display="none";	
+	document.getElementById("wrapper_townMenu").style.display="none";
 	document.getElementById("wrapper_attemptTrade").style.display="block";
-	
+
 	if(theGame[0].traderPresent == true){
 		document.getElementById("button_acceptTrade").style.display ="block"; //show accept trade button if trader is present
 		document.getElementById("trade_traderInfo").innerHTML ="A trader is asking for <font color='red'>"+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+ "</font>, They will trade you <font color='red'>"+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+"</font> in return.";
@@ -583,7 +583,7 @@ function attemptTrade(){
 		document.getElementById("trade_traderInfo").innerHTML="No One Wants to trade with you today."
 		document.getElementById("button_acceptTrade").style.display ="none"; //hide accept trade button if trader is not present
 	}
-	
+
 }
 
 function acceptTrade(){
@@ -619,13 +619,13 @@ function acceptTrade(){
 			break;
 	}
 	if(itemTraded == true){
-		aquireTradeItem(theGame[0].traderItemGiven);	
+		aquireTradeItem(theGame[0].traderItemGiven);
 		theGame[0].traderPresent = false; //after a trade is complete, they will no longer be present (for the day).
-		goTown1();	
+		goTown1();
 		window.alert("You have succesfully traded "+theGame[0].traderItemQuantityWanted+" "+theGame[0].traderItemWanted+" for "+theGame[0].traderItemQuantityGiven+" "+theGame[0].traderItemGiven+" in return!");
 		document.getElementById("button_acceptTrade").style.display ="none";
 	}
-	
+
 }
 
 function startTrail(){
@@ -634,16 +634,16 @@ function startTrail(){
 	document.getElementById("wrapper_townMenu").style.display = "none";
 	document.getElementById("wrapper_travel").style.display = "block";
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/MainMenu.png)';
-	
+
 	//set variables
 	switch(theGame[0].location){
 		case "Independence, Missouri":
-			setDestinationVariables("Kansas River");//sets your miles variables according to the kansas river	
+			setDestinationVariables("Kansas River");//sets your miles variables according to the kansas river
 			break;
 		case "Kansas River":
-			setDestinationVariables("Big Blue River");//sets your miles variables according to the kansas river	
+			setDestinationVariables("Big Blue River");//sets your miles variables according to the kansas river
 			break;
-		//add more cases here when adding more destinations	
+		//add more cases here when adding more destinations
 	}
 
 
@@ -663,15 +663,15 @@ function goBackToMenu(){
 	console.log("Switching from "+theGame[0].currWrapper+" to "+theGame[0].currMenu)
 	document.getElementById(theGame[0].currWrapper).style.display ="none";
 	document.getElementById(theGame[0].currMenu).style.display ="block";
-	
+
 	switch (theGame[0].currMenu){
 		case "wrapper_townMenu":
-			document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';	
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
 			break;
 		case "wrapper_travel_pause_menu":
-			document.getElementById("GameBox").style.backgroundImage = 'url(Images/campfire.gif)';	
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/campfire.gif)';
 			break;
-	
+
 	}
 }
 
@@ -724,29 +724,29 @@ function setDestinationVariables(destination){
 		case "Kansas River":
 			theGame[0].currentMilesTraveled = 0;
 			theGame[0].milesToDestination = 102;
-			theGame[0].milesLeft = 102; //this is just to display to the ui 
+			theGame[0].milesLeft = 102; //this is just to display to the ui
 			theGame[0].destinationName ="Kansas River";
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver("Kansas River");
-			wagonPos = 45; 
+			wagonPos = 45;
 			break;
 		case "Big Blue River":
 			theGame[0].currentMilesTraveled = 102;
 			theGame[0].milesToDestination = 185;
-			theGame[0].milesLeft = 83; //this is just to display to the ui 
+			theGame[0].milesLeft = 83; //this is just to display to the ui
 			theGame[0].destinationName ="Big Blue River";
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver("Big Blue River");
-			wagonPos = 45; 
+			wagonPos = 45;
 			break;
 		case "xxx": //CHANGE
 			theGame[0].currentMilesTraveled = 0;
 			theGame[0].milesToDestination = 102;
-			theGame[0].milesLeft = 102; //this is just to display to the ui 
+			theGame[0].milesLeft = 102; //this is just to display to the ui
 			theGame[0].destinationName ="Kansas River";
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver(XXX); //CHANGE
-			wagonPos = 45; 
+			wagonPos = 45;
 			break;
 		//Add More cases here
 	}
@@ -775,11 +775,11 @@ function continueOnTrail(){
 	else{ //if miels is not <=0 then we are on a destination still, bring you back to the trail without restarting varaibles
 	document.getElementById("GameBox").style.backgroundImage = 'url(Images/MainMenu.png)';
 	document.getElementById("wrapper_travel_pause_menu").style.display ="none";
-	document.getElementById("wrapper_travel").style.display ="block";	
+	document.getElementById("wrapper_travel").style.display ="block";
 	}
 
 
-	
+
 }
 
 
@@ -788,10 +788,10 @@ function beginMoving(){
 		if (theGame[0].milesLeft > 0){
 			moveWagon(); //move the wagon if we are not at the destination
 			console.log("moving");
-			rest(); //rest a day after traveling 
+			rest(); //rest a day after traveling
 			//PUT RANDOM FUNCTIONS HERE
 			//choose a random event (an event does not have to occur)
-			//process diseases on family 
+			//process diseases on family
 			randomEventGenerator();
 			processDisease();
 			//SEND PLAYER BACK TO MENU IF PLAYER OXEN AMOUNT IS < 0
@@ -814,8 +814,8 @@ function beginMoving(){
 	else if(theGame[0].continueTrail == false){ //go back to travel pause menu
 		goBackToMenu();
 	}
-	
-	
+
+
 }
 
 function moveWagon(){ //calculates the number of miles that will be traveled for the day, based on your pace and moves the wagon accordingly
@@ -924,8 +924,8 @@ function fordRiver(){
 			break;
 		}
 
-		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCrossFail.gif)';	
-		document.getElementById("riverAnimation").style.display ="block";		
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCrossFail.gif)';
+		document.getElementById("riverAnimation").style.display ="block";
 		setTimeout(function() {
 	    		// rest of code here
 	    	document.getElementById("riverAnimation").style.display ="none";
@@ -934,11 +934,11 @@ function fordRiver(){
 		window.alert("Your family almost died fording the river!");
 	}else{
 		document.getElementById("wrapper_rivermenu").style.display ="block";
-		
-		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCross.gif)';	
-		document.getElementById("riverAnimation").style.display ="block";		
+
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCross.gif)';
+		document.getElementById("riverAnimation").style.display ="block";
 		setTimeout(function() {
-	    		// rest of code here	
+	    		// rest of code here
 	    	document.getElementById("riverAnimation").style.display ="none";
 	    	goBackToMenu();
 		}, 4500);
@@ -965,8 +965,8 @@ function caulkRiver(){
 			break;
 		}
 		//show river animtion
-		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCrossFail.gif)';	
-		document.getElementById("riverAnimation").style.display ="block";		
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCrossFail.gif)';
+		document.getElementById("riverAnimation").style.display ="block";
 		setTimeout(function() {
 	    		// rest of code here
 	    	document.getElementById("riverAnimation").style.display ="none";
@@ -974,10 +974,10 @@ function caulkRiver(){
 		}, 4950);
 		// go to div passed river
 		window.alert("Your family almost died caulking the river!");
-	}else{	
+	}else{
 		//show river animtion
-		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCross.gif)';	
-		document.getElementById("riverAnimation").style.display ="block";		
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverCross.gif)';
+		document.getElementById("riverAnimation").style.display ="block";
 		setTimeout(function() {
 	    	// rest of code here
 	    	document.getElementById("riverAnimation").style.display ="none";
@@ -985,7 +985,7 @@ function caulkRiver(){
 		}, 4500);
 	    // go to div passed river
 	    window.alert("You have caulked the river successfully!");
-	
+
 	}
 }
 
@@ -994,8 +994,8 @@ function ferryRiver(){
 		window.alert("Sorry, not enough money to pay for ferry!");
 	}else{
 		theGame[0].money -= ferry_price;
-		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverFerry.gif)';	
-		document.getElementById("riverAnimation").style.display ="block";		
+		document.getElementById("riverAnimation").style.backgroundImage = 'url(Images/riverFerry.gif)';
+		document.getElementById("riverAnimation").style.display ="block";
 		setTimeout(function() {
 	    	// rest of code here
 	    	document.getElementById("riverAnimation").style.display ="none";
@@ -1037,7 +1037,7 @@ function wagonWheelBreak(){
 	if(repair == 1){
 		window.alert("Could not repair the wagon.");
 		// Would you like to use a spare?
-		
+
 		if(theGame[0].wheels > 0){
 			window.alert("Replaced the wheel with a spare!");
 			theGame[0].wagonAWheels++;
@@ -1061,7 +1061,7 @@ function wagonAxleBreak(){
 	if(repair == 1){
 		window.alert("Could not repair the wagon.");
 		// Would you like to use a spare?
-		
+
 		if(theGame[0].axles > 0){
 			window.alert("Replaced the axle with a spare!");
 			theGame[0].wagonAAxles++;
@@ -1086,7 +1086,7 @@ function wagonTongueBreak(){
 	if(repair == 1){
 		window.alert("Could not repair the wagon.");
 		// Would you like to use a spare?
-		
+
 		if(theGame[0].tongues > 0){
 			window.alert("Replaced the axle with a spare!");
 			theGame[0].wagonATongue++;
@@ -1115,45 +1115,45 @@ function findItems(){
 	switch(itemNum){
 		case 1:
 		case 8:
-		itemGot = Math.floor((Math.random() * Number(theGame[0].oxen))+1);
+		itemGot = Math.floor((Math.random() * Number(theGame[0].oxen))+1)+1;
 		theGame[0].oxen += itemGot;
 		window.alert("You have found " + itemGot + " oxen.");
 		break;
 		case 2:
 		case 9:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].clothes))+1);
+		itemGot = Math.floor((Math.random() * Number(theGame[0].clothes))+1)+1;
 		theGame[0].clothes += itemGot;
 		window.alert("You have found " + itemGot + " clothes.");
 		break;
 		case 3:
 		case 10:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].ammo))+1);
+		itemGot = Math.floor((Math.random() * Number(theGame[0].ammo))+1)+1;
 		theGame[0].ammo += itemGot;
 		window.alert("You have found " + itemGot + " bullets.");
 		break;
 		case 4:
 		case 11:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].wheels))+1);
+		itemGot = Math.floor((Math.random() * Number(theGame[0].wheels))+1)+1;
 		theGame[0].wheels += itemGot;
 		window.alert("You have found " + itemGot + " wheels.");
 		break;
 		case 5:
 		case 12:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].axles))+1);
+		itemGot = Math.floor((Math.random() * Number(theGame[0].axles))+1)+1;
 		theGame[0].axles += itemGot;
 		window.alert("You have found " + itemGot + " axles.");
 		break;
 		case 6:
 		case 13:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].tongues))+1);
-		theGame[0].tongues += itemLost;
+		itemGot = Math.floor((Math.random() * Number(theGame[0].tongues))+1)+1;
+		theGame[0].tongues += itemGot;
 		window.alert("You have found " + itemGot + " tongues.");
 		break;
 		case 7:
 		case 14:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].food))+1);
+		itemGot = Math.floor((Math.random() * Number(theGame[0].food))+1)+1;
 		theGame[0].food += itemGot;
-		window.alert("You have found " + itemGot + " pounds of food.");
+		window.alert("You have found " + itemGot + " pounds of food.")+1;
 		break;
 	}
 }
@@ -1259,28 +1259,28 @@ function snakeBite(){
 function dysentery(){
 	for (var i=0; i<theGame[0].game_family.length; i++){
 		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "dysentery"; break;}
-	} 
+	}
 
 }
 
 function cholera(){
 	for (var i=0; i<theGame[0].game_family.length; i++){
 		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "cholera"; break;}
-	} 
+	}
 }
 
 function exhaustion(){
-	
+
 for (var i=0; i<theGame[0].game_family.length; i++){
 		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "exhaustion"; break;}
-	} 
+	}
 }
 
 function fever(){
-	
+
 	for (var i=0; i<theGame[0].game_family.length; i++){
 		if (theGame[0].game_family[i].health < 80){ theGame[0].game_family[infect].condition = "fever"; break;}
-	} 
+	}
 }
 
 function wellAgain(){
@@ -1410,11 +1410,11 @@ function aquireTradeItem(item){
 		case "Oxen":
 			theGame[0].oxen += theGame[0].traderItemQuantityGiven;
 			break;
-		case "Set of Clothing":	
+		case "Set of Clothing":
 			theGame[0].clothes += theGame[0].traderItemQuantityGiven;
 			break;
-		case "Bullets":	
-			theGame[0].ammo += theGame[0].traderItemQuantityGiven;	
+		case "Bullets":
+			theGame[0].ammo += theGame[0].traderItemQuantityGiven;
 			break;
 		case "Wagon Wheels":
 			theGame[0].wheels += theGame[0].traderItemQuantityGiven;
@@ -1431,15 +1431,15 @@ function aquireTradeItem(item){
 	}
 }
 
-function calcAverageHealth(){ //takes the average of your family members health 
+function calcAverageHealth(){ //takes the average of your family members health
 	var HealthTotal = 0;
 	for (i = 0; i < theGame[0].game_family.length; i++){
-		//console.log(theGame[0].game_family[i].p_name+"'s Health is: "+theGame[0].game_family[i].health);	
+		//console.log(theGame[0].game_family[i].p_name+"'s Health is: "+theGame[0].game_family[i].health);
 		HealthTotal += theGame[0].game_family[i].health;
 	}
 
 	//console.log("Average health is: "+(HealthTotal/5) );
-	
+
 	switch (true){
 		case ( (HealthTotal/5) > 75 ):
 			return ("<font color='green'>"+(HealthTotal/5)+"</font>");
@@ -1462,7 +1462,7 @@ function calcAverageHealth(){ //takes the average of your family members health
     		window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
 			location.reload();
 			}, 300);
-			
+
 			break;
 	}
 	return "Invalid health amount";
@@ -1550,8 +1550,8 @@ function setRandomTradeValues(){
 }
 
 function devConsole_Execute(input){ // show and/or hide an html element or run a function
-	
-	
+
+
 	switch(input){
 		case "Show1": //show inputted html element
 			var TagToChange = document.getElementById("devConsoleInput").value;
@@ -1595,7 +1595,7 @@ function devConsole_Execute(input){ // show and/or hide an html element or run a
 			theGame[0].game_family[3] = new Person("Christy");
 			theGame[0].game_family[4] = new Person("Malik");
 			setRandomTradeValues();
-			break;	
+			break;
 	}
 }
 
@@ -1843,4 +1843,3 @@ function randomEventGenerator(){
 			break;
 	}
 }
-
