@@ -266,7 +266,7 @@
 	<!-- Menu for showing town image before acutally going into town-->
 			<center>
 				<span id="wrapper_goToTown">
-					<center><button class="MenuOption" id="button_startTown"style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goBackToMenu()"> ADD THE CURRENT DATE HERE <br> Enter The Town</button> </center>
+					<center><button class="MenuOption" id="button_startTown" style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goBackToMenu()"> ADD THE CURRENT DATE HERE <br> Enter The Town</button> </center>
 				</span>
 
 			</center>
@@ -416,7 +416,7 @@
 						<center><button  class="MenuOption" id="button_destinationPrompt" style="width:15vw; height:15vh;" onclick="goToDestination_view1()">Look Around</button> </center>
 					</div>
 
-					<div id = "trail_current_player_status" style=" width:50vw; height: 35vh; border-style:solid;" >
+					<div id = "trail_current_player_status" style=" width:50vw; height: 35vh;" >
 					 <button class="MenuOption" id="button_startTrail" onclick="pauseOrStarTrail('start')" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Continue</button> 
 					 <button class="MenuOption" id="button_pauseTrail" onclick="pauseOrStarTrail('pause')" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Stop To Rest</button> <br>
 					 <button class="MenuOption" style=" margin-left:3vw; width:25vw; height:30vh; font-size:3.5vh;">
@@ -470,15 +470,27 @@
 		</center>
 
 		<center>
-				<span id="wrapper_goToDestination">
-					<center><button class="MenuOption" id="button_startDestination" style="margin-top:45vh; height:10vh; width:15vw;"  onclick="goToDestination()"> ADD THE CURRENT DATE HERE <br> Enter</button> </center>
-				</span>
+			<span id="wrapper_goToDestination">
+				<center><button class="MenuOption" id="button_startDestination" style="margin-top:45vh; height:13vh; width:15vw;"  onclick="goToDestination()"> ADD THE CURRENT DATE HERE <br> Enter</button> </center>
+			</span>
 
-			</center>
+		</center>
+
+		<center>
+			<span id="wrapper_southPassChoice">
+				<center><button class="MenuOption" id="button_SouthPassPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center> 
+				<center><button class="MenuOption" id="button_ChooseFortBrigader" style=" height:10vh; width:15vw;"  onclick="setSouthPathChoice('Fort Bridger')"> Fort Brigader </button> </center>
+				<center><button class="MenuOption" id="button_ChooseGreenRiver" style=" height:10vh; width:15vw;"  onclick="setSouthPathChoice('Green River')"> Green River </button> </center>
+			</span>
+
+		</center>
+
+
+
+
+
 
 		<div id="riverAnimation"></div> <!-- this div is for abosluiste positon of river corss animations -->
-
-
 
 		</div> <!--**************************************************** END wrapper_menuHolder div*******************************************************  -->
 
@@ -494,7 +506,7 @@
 							<center> Dev Console: <input type="text" id="devConsoleInput" placeholder="Enter a wrapper_XXX name" value="wrapper_menuOptions"> <br>
 								<button id="button_devConsole" onclick="devConsole_Execute('Show1')"> Show </button>
 								<button id="button_devConsole" onclick="devConsole_Execute('Hide1')"> Hide </button>
-								<input type="text" id="devConsoleInput_2" placeholder="Enter a wrapper_XXX name" value="openShop();"> <br>
+								<input type="text" id="devConsoleInput_2" placeholder="Enter a wrapper_XXX name" value="theGame[0].location ='Independence Rock'; "> <br>
 								<button id="button_devConsole" onclick="devConsole_Execute('executeFunction')"> Execute Function </button><br>
 								<button id="button_devConsole" onclick="devConsole_Execute('fakeGame')"> Set Fake Game </button>
 							</center>

@@ -278,17 +278,24 @@
 	#wrapper_travel_pause_menu{
 		display: none;
 	}
+	#wrapper_southPassChoice{
+	display:none;
+	width:50vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	font-size:2vw;
+	}
 	#riverAnimation{
 	display:none;
 	position: absolute;
-	width:50vw;
-	height:50vh;
-	top:4vw;
-	bottom:5vw;
-	left:6.5vw;
+	width:65vw;
+	height:65vh;
+	top: 0%;
+  	left: 0%;
 	background-image:url(Images/riverCross.gif);
 	background-size: 100% 100%;
-
 	}
 	/********************************************END TOWN MENU CSS & ALL ITS SUB-MENUS*********************************************/
 
@@ -298,7 +305,7 @@
 	position:absolute;
 	width:12vw;
 	height:12vh;
-	top:7.5vw;
+	top:8vw;
 	bottom:5vw;
 	left:45vw;
 	background-size: 100% 100%;
@@ -307,28 +314,26 @@
 	-moz-transition: left 0.5s linear;
 	-ms-transition: left 0.5s linear;
 	transition: left 0.5s linear;
-	animation-duration: 1s;
+	animation-duration: 1.5s;
     animation-iteration-count: infinite;
     animation-name: wagonAnimate ;
-	}
+  	}
 	@keyframes wagonAnimate
 	{
-    0%   {background-image: url(Images/Wagon2.png); }
-
-    33%  {background-image: url(Images/Wagon.png); }
-
-	66% {background-image: url(Images/Wagon2.png); }
-
+    0%   {background-image: url(Images/Wagon.png); }
+    25%  {background-image: url(Images/Wagon2.png); }
+	50% {background-image: url(Images/Wagon.png); }
+	75% {background-image: url(Images/Wagon2.png); }
 	100% {background-image: url(Images/Wagon.png);}
 	}
 	#destination{
 	display:block;
 	position:absolute;
-	width:10vw;
-	height:17vh;
-	top:7.5vw;
+	width:12vw;
+	height:19.5vh;
+	top:7vw;
 	bottom:5vw;
-	left:10vw;
+	left:8vw;
 	/*right:5vw;*/
 	background-size: 100% 100%;
 	background-image: url(Images/river.png);
