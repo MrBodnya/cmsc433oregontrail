@@ -43,6 +43,7 @@ function Game(personBackground){
 	this.currWrapper ="";
 	this.currMenu = "";
 	this.continueTrail = true;
+	this.SouthPassChoice = 0; //if the user picks to go to fort brigader or green river
 
 	if (personBackground =="banker"){
 		this.money = 1600;
@@ -182,6 +183,8 @@ function openShop(){
 			document.getElementById("button_goto_town").onclick = goTown1;
 			break;
 	}
+
+
 }
 
 function shop_for_oxen(){
@@ -404,6 +407,9 @@ function goTown1_view(){
 }
 
 function goTown1(){
+	
+	//document.getElementById(theGame[0].currWrapper).style.display = "none";
+	//document.getElementById(theGame[0].currMenu).style.display = "none";
 	theGame[0].currMenu = "wrapper_townMenu";
 	// This is where the logic goes for going from just a picture to the twon menu
 	document.getElementById("wrapper_goToTown").style.display = "none";
@@ -426,6 +432,22 @@ function goTown1(){
 	//console.log("shop bill is "+mattsbill);
 	mattsbill = 0; //resetting the bill counter for the shop, so that it starts at 0 again when you go to the store
 	 //set store type variable so correct store & pricing is set
+	 switch(theGame[0].location){ //If we are in a fort, then continue on the trail will route back to the travel 
+	 	case "Fort Kearny":
+	 		document.getElementById("button_continuetrail").onclick = continueOnTrail;
+	 		break;
+	 	case "Fort Laramie":
+	 		document.getElementById("button_continuetrail").onclick = continueOnTrail;
+	 		break;
+	 	case "Fort Bridger":
+	 		document.getElementById("button_continuetrail").onclick = continueOnTrail;
+	 		break;
+	 	case "Fort Hall":
+	 		document.getElementById("button_continuetrail").onclick = continueOnTrail;
+	 		break;
+
+	 }
+
 }
 
 function supplyCheck(){
@@ -445,7 +467,7 @@ function supplyCheck(){
 	document.getElementById("foodcheck").innerHTML = "<u>Pounds of Food:</u> " + theGame[0].food;
 	document.getElementById("moneycheck").innerHTML = "<u>Money Left:</u> " + theGame[0].money;
 
-document.getElementById("location_status").innerHTML = "<u> Current Location: </u> <font color='green'>" + theGame[0].location;+"</font>";
+document.getElementById("location_status").innerHTML = "<u> Current Location: </u><br> <font color='green'>" + theGame[0].location;+"</font>";
 	document.getElementById("family1_status").innerHTML = "<u>" + theGame[0].game_family[0].p_name + "'s health:</u> " + theGame[0].game_family[0].health;
 	document.getElementById("family2_status").innerHTML = "<u>" +  theGame[0].game_family[1].p_name + "'s health:</u> " + theGame[0].game_family[1].health;
 	document.getElementById("family3_status").innerHTML = "<u>" + theGame[0].game_family[2].p_name + "'s health:</u> " + theGame[0].game_family[2].health;
@@ -628,6 +650,13 @@ function acceptTrade(){
 
 }
 
+/******************************************************************END TOWN MENU CODE ****************************************************************************************/
+
+
+
+
+/******************************************************************START TRAVEL TRAIL CODE ****************************************************************************************/
+var SplitExtraMiles;
 function startTrail(){
 	theGame[0].currMenu ="wrapper_travel_pause_menu";
 	theGame[0].currWrapper ="wrapper_travel";
@@ -643,7 +672,45 @@ function startTrail(){
 		case "Kansas River":
 			setDestinationVariables("Big Blue River");//sets your miles variables according to the kansas river
 			break;
+<<<<<<< HEAD
 		//add more cases here when adding more destinations
+=======
+		case "Big Blue River":
+			setDestinationVariables("Fort Kearny");//sets your miles variables according to the kansas river	
+			break;
+		case "Fort Kearny":
+			setDestinationVariables("Chimney Rock");//sets your miles variables according to the kansas river	
+			break;
+		case "Chimney Rock":
+			setDestinationVariables("Fort Laramie");//sets your miles variables according to the kansas river	
+			break;
+		case "Fort Laramie":
+			setDestinationVariables("Independence Rock");//sets your miles variables according to the kansas river	
+			break;
+		case "Independence Rock":
+			setDestinationVariables("South Pass");//sets your miles variables according to the kansas river	
+			break;
+		//You can either leave from south pass and stop inside the fort THEN  go tosoda springs, or go directly from South Pass	
+		case "South Pass":
+			SplitExtraMiles = 0; //going here adds more miles to the trail
+			setDestinationVariables("Green River");//sets your miles variables according to the kansas river	
+			break;
+		case "Fort Bridger":
+			SplitExtraMiles = 94;  //going here adds more miles to the trail
+			setDestinationVariables("Soda Springs");//sets your miles variables according to the kansas river
+			break;
+		case "Green River":
+			SplitExtraMiles = 0;  //going here adds more miles to the trail
+			setDestinationVariables("Soda Springs");//sets your miles variables according to the kansas river
+			break;
+		case "Soda Springs":
+			SplitExtraMiles = 0;  //going here adds more miles to the trail
+			setDestinationVariables("Fort Hall");//sets your miles variables according to the kansas river
+			break;
+
+
+		//add more cases here when adding more destinations	
+>>>>>>> refs/remotes/origin/master
 	}
 
 
@@ -659,6 +726,7 @@ function startTrail(){
 
 
 }
+<<<<<<< HEAD
 function goBackToMenu(){
 	console.log("Switching from "+theGame[0].currWrapper+" to "+theGame[0].currMenu)
 	document.getElementById(theGame[0].currWrapper).style.display ="none";
@@ -674,12 +742,9 @@ function goBackToMenu(){
 
 	}
 }
+=======
+>>>>>>> refs/remotes/origin/master
 
-
-/******************************************************************END TOWN MENU CODE ****************************************************************************************/
-
-
-/******************************************************************START TRAVEL TRAIL CODE ****************************************************************************************/
 
 function goToDestination_view1(){ //show view before entering destination
 	// Just add a span that shows the town, like a picture of it
@@ -687,7 +752,7 @@ function goToDestination_view1(){ //show view before entering destination
 	document.getElementById("wrapper_goToDestination").style.display = "block";
 	document.getElementById("wrapper_travel").style.display = "none";
 
-	document.getElementById("button_startDestination").innerHTML = getDate(theGame[0].month) + "</br> Enter";
+	document.getElementById("button_startDestination").innerHTML = getDate(theGame[0].month) + "</br>"+theGame[0].location+"<br> Enter";
 	//console.log(theGame[0].location);
 	switch (theGame[0].destinationName){
 		case "Kansas River":
@@ -696,6 +761,42 @@ function goToDestination_view1(){ //show view before entering destination
 			break;
 		case "Big Blue River":
 			document.getElementById("GameBox").style.backgroundImage = 'url(Images/BigBlueRiver.png)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Fort Kearny":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/FortKearny.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Chimney Rock":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/ChimneyRock.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Fort Laramie":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/FortLaramie.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Independence Rock":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceRock.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "South Pass":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/SouthPass.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Fort Bridger":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/FortBridger.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Soda Springs":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/SodaSprings.png)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Green River":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/GreenRiver.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Fort Hall":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/FortBridger.jpg)';
 			document.getElementById("wrapper_travel").style.display = "none";
 			break;
 
@@ -707,13 +808,38 @@ function goToDestination_view1(){ //show view before entering destination
 function goToDestination(){ //enters destination itself
 
 	switch (theGame[0].location){
-		case "Kansas River":
+		case "Kansas River": //when you reach this area, execute this code
 			displayRiver();
 			break;
 		case "Big Blue River":
 			displayRiver();
 			break;
-
+		case "Fort Kearny":
+			goTown1();
+			break;
+		case "Chimney Rock":
+			goBackToMenu();
+			break;
+		case "Fort Laramie":
+			goTown1();
+			break;
+		case "Independence Rock":
+			goBackToMenu();
+			break;
+		case "South Pass":
+			//let the player choose the which split to take in the road
+			showPrompt();
+			break;
+		case "Green River":
+			displayRiver();
+			break;
+		case "Soda Springs":
+			goBackToMenu();
+			break;
+		case "Fort Bridger":
+			goTown1();
+			break;
+	
 	}
 
 }
@@ -739,6 +865,7 @@ function setDestinationVariables(destination){
 			setRiver("Big Blue River");
 			wagonPos = 45;
 			break;
+<<<<<<< HEAD
 		case "xxx": //CHANGE
 			theGame[0].currentMilesTraveled = 0;
 			theGame[0].milesToDestination = 102;
@@ -747,6 +874,79 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver(XXX); //CHANGE
 			wagonPos = 45;
+=======
+		case "Fort Kearny": //CHANGE
+			theGame[0].currentMilesTraveled = 185;
+			theGame[0].milesToDestination = 304;
+			theGame[0].milesLeft = 119; //this is just to display to the ui 
+			theGame[0].destinationName ="Fort Kearny";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Chimney Rock": //CHANGE
+			theGame[0].currentMilesTraveled = 304;
+			theGame[0].milesToDestination = 554;
+			theGame[0].milesLeft = 250; //this is just to display to the ui 
+			theGame[0].destinationName ="Chimney Rock";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Fort Laramie":
+			theGame[0].currentMilesTraveled = 554;
+			theGame[0].milesToDestination = 640;
+			theGame[0].milesLeft = 86; //this is just to display to the ui 
+			theGame[0].destinationName ="Fort Laramie";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Independence Rock":
+			theGame[0].currentMilesTraveled = 640;
+			theGame[0].milesToDestination = 830;
+			theGame[0].milesLeft = 190; //this is just to display to the ui 
+			theGame[0].destinationName ="Independence Rock";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "South Pass":
+			theGame[0].currentMilesTraveled = 830;
+			theGame[0].milesToDestination = 932;
+			theGame[0].milesLeft = 102; //this is just to display to the ui 
+			theGame[0].destinationName ="South Pass";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Green River":
+			theGame[0].currentMilesTraveled = 932;
+			theGame[0].milesToDestination = 1,057;
+			theGame[0].milesLeft = 125;
+			theGame[0].destinationName ="Green River";
+			TempMilesLeft = theGame[0].milesLeft;
+			setRiver("Green River"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Soda Springs":
+			theGame[0].currentMilesTraveled = 932;
+			theGame[0].milesToDestination = 1201 + SplitExtraMiles;
+			theGame[0].milesLeft = 269 + SplitExtraMiles; //add extra miles based on your choice made
+			theGame[0].destinationName ="Soda Springs";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Fort Hall":
+			theGame[0].currentMilesTraveled = 1201 + SplitExtraMiles;
+			theGame[0].milesToDestination = 1,258 + SplitExtraMiles;
+			theGame[0].milesLeft = 57 + SplitExtraMiles;
+			theGame[0].destinationName ="Fort Hall";
+			TempMilesLeft = theGame[0].milesLeft;
+			setRiver("Green River"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+>>>>>>> refs/remotes/origin/master
 			break;
 		//Add More cases here
 	}
@@ -782,7 +982,36 @@ function continueOnTrail(){
 
 }
 
+function setSouthPathChoice(choice){
 
+	if(choice == 'Fort Bridger'){
+		theGame[0].currMenu ="wrapper_townMenu";
+		theGame[0].location = "Fort Bridger";
+		document.getElementById("wrapper_goToDestination").style.display ="none";
+		goTown1();
+	}
+	else if(choice =='Green River'){
+		theGame[0].currMenu ="wrapper_travel_pause_menu";
+		theGame[0].location = "South Pass";
+		document.getElementById("wrapper_goToDestination").style.display ="none";
+		goBackToMenu();
+	}
+	document.getElementById("wrapper_southPassChoice").style.display ="none";
+	
+}
+
+function showPrompt(){
+	document.getElementById(theGame[0].currWrapper).style.display ="none";
+	theGame[0].currWrapper = "wrapper_southPassChoice";
+	switch (theGame[0].location){
+		case 'South Pass':
+			document.getElementById("wrapper_southPassChoice").style.display ="block";
+			break;
+	}
+
+}
+
+/*************************************************************START WAGON MOVEMENTS & CALCULATIONS CODE*************************************************/
 function beginMoving(){
 	if(theGame[0].continueTrail == true){
 		if (theGame[0].milesLeft > 0){
@@ -856,8 +1085,11 @@ function animateWagon(miles){
 }
 
 
+/*************************************************************END WAGON MOVEMENTS & CALCULATIONS CODE*************************************************/
 
 /******************************************************************END TRAVEL TRAIL CODE ****************************************************************************************/
+
+
 
 /*************************************************************RIVER MENU AF*************************************************/
 var river_depth = 0;
@@ -872,7 +1104,7 @@ function displayRiver(){
 
 	document.getElementById("wrapper_rivermenuinfo").style.display="none";
 	document.getElementById("wrapper_rivermenu").style.display="block";
-	document.getElementById("river_info_name").innerHTML = "River: " + theGame[0].destinationName;
+	document.getElementById("river_info_name").innerHTML = theGame[0].destinationName;
 	document.getElementById("river_info_width").innerHTML = "River Width: " + river_width;
 	document.getElementById("river_info_depth").innerHTML = "River Depth: " + river_depth;
 
@@ -891,7 +1123,7 @@ function setRiver(river){
 		river_width = riverW;
 		ferry_price = 7;
 		cur_river = river;
-	}else if(river == "greenriver"){
+	}else if(river == "Green River"){
 		river_depth = riverD;
 		river_width = riverW;
 		ferry_price = 9;
@@ -902,7 +1134,7 @@ function setRiver(river){
 		ferry_price = 11;
 		cur_river = river;
 	}
-	document.getElementById("river_info_name").innerHTML = "River: " + theGame[0].destinationName;
+	document.getElementById("river_info_name").innerHTML =  theGame[0].destinationName;
 	document.getElementById("river_info_width").innerHTML = "River Width: " + river_width;
 	document.getElementById("river_info_depth").innerHTML = "River Depth: " + river_depth;
 
@@ -1000,7 +1232,7 @@ function ferryRiver(){
 	    	// rest of code here
 	    	document.getElementById("riverAnimation").style.display ="none";
 	    	goBackToMenu();
-		}, 7700);
+		}, 7500);
 	    // go to div passed river
 	    window.alert("You have successfully crossed the river!");
 	}
@@ -1028,7 +1260,7 @@ function riverInfo(){
 
 /**********************************************START Random Acts For Travel ****************************************/
 
- // Something like this?
+// Something like this?
 function wagonWheelBreak(){
 	theGame[0].wagonAWheels--;
 	window.alert("Your wagon wheel has broken!");
@@ -1160,7 +1392,7 @@ function findItems(){
 
 function findBarries(){
 	var barriesFound = Math.floor(Math.random()*20)+1;
-	window.alert("You have found " + barriesFound + " barries.");
+	window.alert("You have found " + barriesFound + " berries.");
 	theGame[0].food += Math.floor(barriesFound/4);
 }
 
@@ -1396,11 +1628,25 @@ function learnTheTrail(){
 }
 
 /*********************************Helper Functions*********************************/
-function setNextDestination(){
-	switch(theGame[0].location){
-		case "Kansas River":
 
-		case "Big Blue River":
+function goBackToMenu(){
+	console.log("Switching from "+theGame[0].currWrapper+" to "+theGame[0].currMenu)
+	document.getElementById(theGame[0].currWrapper).style.display ="none";
+	document.getElementById(theGame[0].currMenu).style.display ="block";
+	
+	switch (theGame[0].currMenu){
+		case "wrapper_townMenu":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+			document.getElementById("date_town").innerHTML = "<u>"+getDate(theGame[0].month)+"</u>";
+			document.getElementById("location_town").innerHTML = "<u>"+theGame[0].location+"</u>";
+			document.getElementById("health_town").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
+			document.getElementById("pace_town").innerHTML = "<u>Pace:</u> "+theGame[0].pace;
+			document.getElementById("rations_town").innerHTML = "<u>Rations:</u> " + getRationStatus();
+			break;
+		case "wrapper_travel_pause_menu":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/campfire.gif)';	
+			break;
+	
 	}
 }
 
@@ -1438,6 +1684,16 @@ function calcAverageHealth(){ //takes the average of your family members health
 		HealthTotal += theGame[0].game_family[i].health;
 	}
 
+	if(HealthTotal < 1){
+		document.getElementsByTagName("body")[0].style.background = "#890808";
+		document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlackScreen.png)';
+		document.getElementById("div_Menu").style.display ="none";
+		setTimeout(function() {
+    		// rest of code here
+    		window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
+		location.reload();
+		}, 300);
+	}
 	//console.log("Average health is: "+(HealthTotal/5) );
 
 	switch (true){
@@ -1605,8 +1861,8 @@ function getDate(intMonth){
 	intMonth =  Math.floor(theGame[0].month + monthsToAdd); //add the additional number of motnsh to the starting month.
 	actualDay = theGame[0].day % 32;
 	if (actualDay == 0) actualDay = 1;
-	console.log("Months to add: "+monthsToAdd);
-	console.log("Month after addition: "+intMonth);
+	//console.log("Months to add: "+monthsToAdd);
+	//console.log("Month after addition: "+intMonth);
 	switch (intMonth){
 		case 1:
 			return "January "+ actualDay + ", " + theGame[0].year;
@@ -1668,38 +1924,37 @@ function loseItem(){
 	switch(itemNum){
 		case 1:
 		case 8:
-		Math.floor(Math.random() * ( ( Number(theGame[0].oxen -1 )) - 1 + 1)) + 1;
-		itemLost = Math.floor((Math.random() * Number(theGame[0].oxen ))+1);
+		itemLost = Math.floor(Math.random() * ( ( Number(theGame[0].oxen -1 )) - 1 + 1)) + 1;
 		theGame[0].oxen -= itemLost;
 		window.alert("You have lost " + itemLost + " oxen.");
 		break;
 		case 2:
 		case 9:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].clothes))+1);
+		itemLost = Math.floor(Math.random() * ( ( Number(theGame[0].clothes -1 )) - 1 + 1)) + 1;
 		theGame[0].clothes -= itemLost;
 		window.alert("You have lost " + itemLost + " clothes.");
 		break;
 		case 3:
 		case 10:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].ammo))+1);
+		itemLost = Math.floor(Math.random() * ( ( Number(theGame[0].ammo -1 )) - 1 + 1)) + 1;
 		theGame[0].ammo -= itemLost;
 		window.alert("You have lost " + itemLost + " bullets.");
 		break;
 		case 4:
 		case 11:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].wheels))+1);
+		itemLost = Math.floor(Math.random() * ( ( Number(theGame[0].wheels -1 )) - 1 + 1)) + 1;
 		theGame[0].wheels -= itemLost;
 		window.alert("You have lost " + itemLost + " wheels.");
 		break;
 		case 5:
 		case 12:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].axles))+1);
+		itemLost = Math.floor(Math.random() * ( ( Number(theGame[0].axles -1 )) - 1 + 1)) + 1;
 		theGame[0].axles -= itemLost;
 		window.alert("You have lost " + itemLost + " axles.");
 		break;
 		case 6:
 		case 13:
-		itemLost = Math.floor((Math.random() * Number(theGame[0].tongues))+1);
+		itemLost = Math.floor(Math.random() * ( ( Number(theGame[0].tongues -1 )) - 1 + 1)) + 1;
 		theGame[0].tongues -= itemLost;
 		window.alert("You have lost " + itemLost + " tongues.");
 		break;
