@@ -43,14 +43,14 @@
 		b) meager
 		c) bare bones
 	- Stop to rest  THIS IPMROVES HEALTH BUT LOSE A DAY ------- Completed
-	- Attempt to trade
+	- Attempt to trade -- COMPLETED
 		a) lose days when trading
 		b) randomly select if trade is or isn't going to happen
 		c) randomly generate what to trade
 	- Talk to people
 		a) give zero useful information
 		b) roast the player
-	- Buy Supplies
+	- Buy Supplies --- COMPELTED
 4) Trip segments and random generators
 	- Generate random number between 0 and 50 over mile range, this designats if event occurs
 	(This changes dynimcally according to how much food user has and their health)
@@ -70,7 +70,7 @@
 		d) Food
 		e) Next Landmark
 		f) Miles traveled
-	- river stops/crossing
+	- river stops/crossing --- COMPLETED
 		a) Show how scenery looks after asking if they want to see
 		b) Show width and depth of river
 		c) menu
@@ -81,7 +81,7 @@
 			- wait to see if coonditions improve
 				- go up a day and change status of river or not
 			- get more info
-5) Rest menu
+5) Rest menu --- COMPELTED
 	- Continue on trail
 	- Check suppplies
 	- Look at map
