@@ -287,6 +287,24 @@
 	background-image: url(Images/openBook.png);
 	font-size:2vw;
 	}
+	#wrapper_blueMountainsChoice{
+	display:none;
+	width:50vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	font-size:2vw;
+	}
+	#wrapper_oregonCityChoice{
+	display:none;
+	width:50vw;
+	height: 65vh;
+	background-size: 100% 100%;
+	font-family:  'Just Another Hand', Helvetica, sans-serif;
+	background-image: url(Images/openBook.png);
+	font-size:2vw;
+	}
 	#riverAnimation{
 	display:none;
 	position: absolute;
@@ -295,6 +313,16 @@
 	top: 0%;
   	left: 0%;
 	background-image:url(Images/riverCross.gif);
+	background-size: 100% 100%;
+	}
+	#wrapper_map{
+	display:none;
+	position: absolute;
+	width:40vw;
+	height:40vh;
+	top: 0%;
+  	left: 16vw;
+	background-image:url(Images/map.gif);
 	background-size: 100% 100%;
 	}
 	/********************************************END TOWN MENU CSS & ALL ITS SUB-MENUS*********************************************/
@@ -345,7 +373,7 @@
 	height:18vh;
 	top:8vw;
 	bottom:5vw;
-	left:8vw;
+	left:7.5vw;
 	/*right:5vw;*/
 	background-size: 100% 100%;
 	background-image: url(Images/grass.svg);

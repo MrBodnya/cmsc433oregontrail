@@ -424,6 +424,7 @@ function goTown1(){
 
 	//set variables
 	document.getElementById("date_town").innerHTML = "<u>"+getDate(theGame[0].month)+"</u>";
+	document.getElementById("weather_town").innerHTML = "<u>Weather:</u> warm";
 	document.getElementById("location_town").innerHTML = "<u>"+theGame[0].location+"</u>";
 	document.getElementById("health_town").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
 	document.getElementById("pace_town").innerHTML = "<u>Pace:</u> "+theGame[0].pace;
@@ -444,6 +445,12 @@ function goTown1(){
 	 		break;
 	 	case "Fort Hall":
 	 		document.getElementById("button_continuetrail").onclick = continueOnTrail;
+	 		break;
+	 	case "Fort Boise":
+	 		document.getElementById("button_continuetrail").onclick = continueOnTrail;
+	 		break;
+	 	case "Fort Walla Walla":
+	 		 document.getElementById("button_continuetrail").onclick = continueOnTrail;
 	 		break;
 
 	 }
@@ -656,7 +663,9 @@ function acceptTrade(){
 
 
 /******************************************************************START TRAVEL TRAIL CODE ****************************************************************************************/
-var SplitExtraMiles;
+var SplitExtraMiles =0;
+var AnotherExtraMiles =0;
+var extraEndOption = false;
 function startTrail(){
 	theGame[0].currMenu ="wrapper_travel_pause_menu";
 	theGame[0].currWrapper ="wrapper_travel";
@@ -704,9 +713,27 @@ function startTrail(){
 			setDestinationVariables("Soda Springs");//sets your miles variables according to the kansas river
 			break;
 		case "Soda Springs":
-			SplitExtraMiles = 0;  //going here adds more miles to the trail
 			setDestinationVariables("Fort Hall");//sets your miles variables according to the kansas river
 			break;
+		case "Fort Hall":
+			setDestinationVariables("Snake River Crossing");//sets your miles variables according to the kansas river
+			break;
+		case "Snake River Crossing":
+			setDestinationVariables("Fort Boise");//sets your miles variables according to the kansas river
+			break;
+		case "Fort Boise":
+			setDestinationVariables("Blue Mountains");//sets your miles variables according to the kansas river
+			break;
+		case "Fort Walla Walla":
+			extraEndOption = true;
+			SplitExtraMiles = 172;  //going here adds more miles to the trail
+			setDestinationVariables("Oregon City");//sets your miles variables according to the kansas river
+			break;
+		case "Blue Mountains":
+			extraEndOption = false;
+			SplitExtraMiles = 0;  //going here adds more miles to the trail
+			setDestinationVariables("The Dalles");//sets your miles variables according to the kansas river
+			break;	
 
 
 		//add more cases here when adding more destinations
@@ -719,7 +746,7 @@ function startTrail(){
 	theGame[0].storeType = "Trail";
 	document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
 	document.getElementById("trail_health").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
-	//SET THE WEATHER HERE
+	document.getElementById("trail_weather").innerHTML ="<u>Weather:</u> cold";
 	document.getElementById("trail_food").innerHTML ="<u>Food:</u> "+ theGame[0].food+"lbs";
 	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ theGame[0].milesLeft +"("+theGame[0].destinationName+")";
 	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled;
@@ -798,7 +825,31 @@ function goToDestination_view1(){ //show view before entering destination
 			document.getElementById("GameBox").style.backgroundImage = 'url(Images/FortBridger.jpg)';
 			document.getElementById("wrapper_travel").style.display = "none";
 			break;
-
+		case "Snake River Crossing":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/SnakeRiverCrossing.png)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Fort Boise":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/FortBoise.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Blue Mountains":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlueMountains.png)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Fort Walla Walla":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/FortWallaWalla.png)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "The Dalles":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/TheDalles.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+		case "Oregon City":
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/OregonCity.jpg)';
+			document.getElementById("wrapper_travel").style.display = "none";
+			break;
+				
 	}
 
 
@@ -838,7 +889,34 @@ function goToDestination(){ //enters destination itself
 		case "Fort Bridger":
 			goTown1();
 			break;
+<<<<<<< HEAD
 
+=======
+		case "Fort Hall":
+			goTown1();
+			break;
+		case "Snake River Crossing":
+			displayRiver();
+			break;
+		case "Fort Boise":
+			goTown1();
+			break;
+		case "Blue Mountains":
+			showPrompt();
+			break;
+  		case "Fort Walla Walla":
+			goTown1();
+			break;
+		case "The Dalles":
+			showPrompt();
+			break;
+		case "Oregon City":
+			showPrompt();
+			break;
+
+
+	
+>>>>>>> refs/remotes/origin/master
 	}
 
 }
@@ -929,7 +1007,7 @@ function setDestinationVariables(destination){
 			wagonPos = 45;
 			break;
 		case "Soda Springs":
-			theGame[0].currentMilesTraveled = 932;
+			theGame[0].currentMilesTraveled = 932 +SplitExtraMiles;
 			theGame[0].milesToDestination = 1201 + SplitExtraMiles;
 			theGame[0].milesLeft = 269 + SplitExtraMiles; //add extra miles based on your choice made
 			theGame[0].destinationName ="Soda Springs";
@@ -943,10 +1021,62 @@ function setDestinationVariables(destination){
 			theGame[0].milesLeft = 57 + SplitExtraMiles;
 			theGame[0].destinationName ="Fort Hall";
 			TempMilesLeft = theGame[0].milesLeft;
+<<<<<<< HEAD
 			setRiver("Green River"); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
 
+=======
+			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
 			break;
+		case "Snake River Crossing":
+			theGame[0].currentMilesTraveled = 1,258 + SplitExtraMiles;
+			theGame[0].milesToDestination = 1,440 + SplitExtraMiles;
+			theGame[0].milesLeft = 182 + SplitExtraMiles;
+			theGame[0].destinationName ="Snake River Crossing";
+			TempMilesLeft = theGame[0].milesLeft;
+			setRiver("Snake River"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Fort Boise":
+			theGame[0].currentMilesTraveled = 1,440 + SplitExtraMiles;
+			theGame[0].milesToDestination = 1,554 + SplitExtraMiles;
+			theGame[0].milesLeft = 114 + SplitExtraMiles;
+			theGame[0].destinationName ="Fort Boise";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+>>>>>>> refs/remotes/origin/master
+			break;
+		case "Blue Mountains":
+			theGame[0].currentMilesTraveled = 1,554 + SplitExtraMiles;
+			theGame[0].milesToDestination = 1,714 + SplitExtraMiles;
+			theGame[0].milesLeft = 160 + SplitExtraMiles;
+			theGame[0].destinationName ="Blue Mountains";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "The Dalles":
+			theGame[0].currentMilesTraveled = 1,714 + SplitExtraMiles + AnotherExtraMiles;
+			theGame[0].milesToDestination = 1,769 + SplitExtraMiles + AnotherExtraMiles;
+			theGame[0].milesLeft = 55 + SplitExtraMiles + AnotherExtraMiles;
+			theGame[0].destinationName ="The Dalles";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		case "Oregon City":
+			theGame[0].currentMilesTraveled = 1,714 + SplitExtraMiles + AnotherExtraMiles;
+			theGame[0].milesToDestination = 1,769 + SplitExtraMiles + AnotherExtraMiles;
+			theGame[0].milesLeft = 55 + SplitExtraMiles + AnotherExtraMiles;
+			theGame[0].destinationName ="Oregon City";
+			TempMilesLeft = theGame[0].milesLeft;
+			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
+			wagonPos = 45; 
+			break;
+		
+
 		//Add More cases here
 	}
 
@@ -999,16 +1129,81 @@ function setSouthPathChoice(choice){
 
 }
 
+function setBlueMountainPathChoice(choice){
+
+	if(choice == 'Fort Walla Walla'){
+		theGame[0].currMenu ="wrapper_townMenu";
+		theGame[0].location = "Fort Walla Walla";
+		document.getElementById("wrapper_goToDestination").style.display ="none";
+		document.getElementById("wrapper_blueMountainsChoice").style.display ="none";
+		goTown1();
+	}
+	else if(choice =='The Dalles'){
+		theGame[0].currMenu ="wrapper_travel_pause_menu";
+		theGame[0].location = "Blue Mountains";
+		document.getElementById("wrapper_goToDestination").style.display ="none";
+		document.getElementById("wrapper_blueMountainsChoice").style.display ="none";
+		goBackToMenu();
+	}
+	document.getElementById("wrapper_blueMountainChoice").style.display ="none";
+	
+}
+
+function setOregonCityChoice(choice){
+
+	if(choice == 'Toll'){
+		theGame[0].currMenu ="wrapper_townMenu";
+		//theGame[0].location = "Fort Walla Walla";
+		document.getElementById("wrapper_goToDestination").style.display ="none";
+		document.getElementById("wrapper_oregonCityChoice").style.display ="none";
+
+		//END THE GAME HERE
+		winGame();
+		//location.reload();
+		//PUSH CODE TO DB
+
+	}
+	else if(choice =='Raft'){
+		theGame[0].currMenu ="wrapper_travel_pause_menu";
+		//theGame[0].location = "The Dalles";
+		document.getElementById("wrapper_goToDestination").style.display ="none";
+		document.getElementById("wrapper_oregonCityChoice").style.display ="none";
+		
+		//START RAFTING MINIGAME HERE
+
+
+	}
+	document.getElementById("wrapper_blueMountainChoice").style.display ="none";
+	
+}
+
 function showPrompt(){
 	document.getElementById(theGame[0].currWrapper).style.display ="none";
-	theGame[0].currWrapper = "wrapper_southPassChoice";
+
+
 	switch (theGame[0].location){
 		case 'South Pass':
+			theGame[0].currWrapper = "wrapper_southPassChoice";
 			document.getElementById("wrapper_southPassChoice").style.display ="block";
 			break;
+		case 'Blue Mountains':
+			theGame[0].currWrapper = "wrapper_blueMountainsChoice";
+			document.getElementById("wrapper_blueMountainsChoice").style.display ="block";
+			break;
+		case 'The Dalles':
+		case 'Oregon City':
+			theGame[0].currWrapper = "wrapper_oregonCityChoice";
+			document.getElementById("wrapper_oregonCityChoice").style.display ="block";
+			if(extraEndOption == false ){ //hide the toll road option if extra end option is false
+				document.getElementById("button_oregonCityPrompt").innerHTML = " I can't go back now... My only choice to get to Oregon City is to Raft down the river Dalles <br> May god have mercy...";
+				document.getElementById("button_ChooseToll").style.display ="none";
+			}
+			break;
 	}
-
 }
+
+
+
 
 /*************************************************************START WAGON MOVEMENTS & CALCULATIONS CODE*************************************************/
 function beginMoving(){
@@ -1031,6 +1226,7 @@ function beginMoving(){
 			document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
 			document.getElementById("trail_food").innerHTML = "<u>Food: </u>" + theGame[0].food +"lbs";
 			document.getElementById("trail_health").innerHTML = "<u>Avg Health: </u>" + calcAverageHealth();
+			document.getElementById("trail_weather").innerHTML ="<u>Weather:</u> cold";
 		}
 		else{ //you have reached the destination
 			document.getElementById("reached_destinationPrompt").style.display = "block";
@@ -1127,7 +1323,7 @@ function setRiver(river){
 		river_width = riverW;
 		ferry_price = 9;
 		cur_river = river;
-	}else if(river == "snakeriver"){
+	}else if(river == "Snake River"){
 		river_depth = riverD;
 		river_width = riverW;
 		ferry_price = 11;
@@ -1627,6 +1823,10 @@ function learnTheTrail(){
 }
 
 /*********************************Helper Functions*********************************/
+function winGame(){
+	window.alert("YOU WON THE GAME!");
+
+}
 
 function goBackToMenu(){
 	console.log("Switching from "+theGame[0].currWrapper+" to "+theGame[0].currMenu)
@@ -1636,6 +1836,7 @@ function goBackToMenu(){
 	switch (theGame[0].currMenu){
 		case "wrapper_townMenu":
 			document.getElementById("GameBox").style.backgroundImage = 'url(Images/IndependenceTown2.jpg)';
+			document.getElementById("weather_town").innerHTML = "<u>Weather:</u> warm";
 			document.getElementById("date_town").innerHTML = "<u>"+getDate(theGame[0].month)+"</u>";
 			document.getElementById("location_town").innerHTML = "<u>"+theGame[0].location+"</u>";
 			document.getElementById("health_town").innerHTML ="<u>Average Health:</u> "+ calcAverageHealth();
@@ -1803,7 +2004,13 @@ function setRandomTradeValues(){
 	}
 
 }
+function showMap(){
+	document.getElementById("wrapper_map").style.display = "block";
+}
 
+function hidemap(){
+	document.getElementById("wrapper_map").style.display = "none";
+}
 function devConsole_Execute(input){ // show and/or hide an html element or run a function
 
 
