@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href='http://fonts.googleapis.com/css?family=Just+Another+Hand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="oregon.css">
 	<audio id="audio_menuTheme"><source  src="Sound/Music.mp3" type="audio/mpeg"> </audio>
@@ -8,10 +9,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="oregon_jQuery.js"></script>
 	<script src="oregongame.js"></script>
+	<audio id="audio_shotSound"><source src="Sound/shotsound.mp3" type="audio/mpeg"> </audio>
 
 	</head>
 	<body>
-<canvas id="canvas_rain" style="display:none;"></canvas>
+<!--<canvas id="canvas_rain" style="display:none;"></canvas> -->
 <div class="sun" id="sun" style=""> <!--This div controls the sun effect, its z index is above the gamebox itself -->
     <div class="ray_box">
         <div class="ray ray1"></div>
@@ -283,7 +285,7 @@
 					 <button  class="MenuOption" id="button_changefoodration" onclick="chooseFoodRation()">Change food rations</button>  <br>
 					 <button  class="MenuOption" id="button_stop2rest" onclick="stoptoRest()">Stop to rest</button>  <br>
 					 <button  class="MenuOption" id="button_attempt2trade" onclick="attemptTrade()">Attempt to trade</button> <br>
-					 <button  class="MenuOption" id="button_talk2ppl" onclick="">Talk to people</button>  <br>
+					 <button  class="MenuOption" id="button_talk2ppl" onclick="showTalk()">Talk to people</button>  <br>
 					 <button  class="MenuOption" id="button_buysupplies" onclick="openShop('Town')">Buy supplies</button>
 				</div>
 
@@ -417,7 +419,7 @@
 					</div>
 
 					<div id = "trail_current_player_status" style=" width:50vw; height: 35vh;" >
-					 <button class="MenuOption" id="button_startTrail" onclick="pauseOrStarTrail('start')" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Continue</button> 
+					 <button class="MenuOption" id="button_startTrail" onclick="pauseOrStarTrail('start')" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Continue</button>
 					 <button class="MenuOption" id="button_pauseTrail" onclick="pauseOrStarTrail('pause')" onmouseover="playMenuHoverSound()" onmouseout="stopMenuHoverSound()">Stop To Rest</button> <br>
 					 <button class="MenuOption" style=" margin-left:3vw; width:25vw; height:30vh; font-size:3.5vh;">
 					 	<center><span id="trail_date" style="float:left; margin-left:3vw;">Date: </span><br> </center>
@@ -441,7 +443,7 @@
 				<button  class="MenuOption" id="button_changefoodration_tp" onclick="chooseFoodRation()">Change food rations</button>  <br>
 				<button  class="MenuOption" id="button_stop2rest_tp" onclick="stoptoRest()">Stop to rest</button>  <br>
 				<button  class="MenuOption" id="button_attempt2trade_tp" onclick="attemptTrade()">Attempt to trade</button> <br>
-				<button  class="MenuOption" id="button_talk2ppl_tp" onclick="">Talk to people</button>  <br>
+				<button  class="MenuOption" id="button_talk2ppl_tp" onclick="showTalk()">Talk to people</button>  <br>
 				<button  class="MenuOption" id="button_hunt_tp" onclick="learnToHunt()">Hunt</button>
 			</span>
 		</center>
@@ -478,7 +480,7 @@
 
 		<center>
 			<span id="wrapper_southPassChoice">
-				<center><button class="MenuOption" id="button_SouthPassPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center> 
+				<center><button class="MenuOption" id="button_SouthPassPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center>
 				<center><button class="MenuOption" id="button_ChooseFortBrigader" style=" height:10vh; width:15vw;"  onclick="setSouthPathChoice('Fort Bridger')"> Fort Brigader </button> </center>
 				<center><button class="MenuOption" id="button_ChooseGreenRiver" style=" height:10vh; width:15vw;"  onclick="setSouthPathChoice('Green River')"> Green River </button> </center>
 			</span>
@@ -487,7 +489,7 @@
 
 		<center>
 			<span id="wrapper_blueMountainsChoice">
-				<center><button class="MenuOption" id="button_blueMountainsPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center> 
+				<center><button class="MenuOption" id="button_blueMountainsPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center>
 				<center><button class="MenuOption" id="button_ChooseFortWallaWalla" style=" height:10vh; width:15vw;"  onclick="setBlueMountainPathChoice('Fort Walla Walla')"> Fort Walla Walla </button> </center>
 				<center><button class="MenuOption" id="button_ChooseTheDalles" style=" height:10vh; width:15vw;"  onclick="setBlueMountainPathChoice('The Dalles')"> The Dalles </button> </center>
 			</span>
@@ -496,22 +498,51 @@
 
 			<center>
 			<span id="wrapper_oregonCityChoice">
-				<center><button class="MenuOption" id="button_oregonCityPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center> 
+				<center><button class="MenuOption" id="button_oregonCityPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center>
 				<center><button class="MenuOption" id="button_ChooseToll" style=" height:10vh; width:15vw;"  onclick="setOregonCityChoice('Toll')"> Use the Toll Road ($20) </button> </center>
 				<center><button class="MenuOption" id="button_ChooseRaft" style=" height:10vh; width:15vw;"  onclick="setOregonCityChoice('Raft')"> Raft Down The Dalles </button> </center>
 			</span>
 
 		</center>
 
+		<center>
+		<span id="wrapper_peopleTalk">
+			<center><button class="MenuOption" id="button_talkPromot" style="height:50vh; width:45vw;"  onclick="c"> I dont know what to think of the oregon trail, me mum and me dad died when i was wee lass. What do I do now. Will you love me?</button> </center>
+			<center><button class="MenuOption" id="button_ChooseRaft" style=" height:10vh; width:15vw;"  onclick="hideTalk()"> Back</button> </center>
+		</span>
 
+		</center>
 
+		<!-- Span for hunting game area-->
+				<center>
+						<span id="wrapper_huntingArea" style="width:50vw; height:50vh;">
+							<center>
+									<span id="wrapper_learnToHunt">
+										<button class="MenuOption" id="button_huntInstructions" style=" width:50vw; height:40vh;" onclick="startHunting()">	Use the space bar to fire your weapon! Keep track of how much ammo you have so you dont run out.
+											 <br> Each animal's health is directly related to the number of bullets it takes to shoot 'em down.
+											 <br> Small Deer - 1<br>Medium Deer - 2<br>Small Buffalo - 2<br>Medium Buffalo - 3<br>
+											 <br> CLICK TO START HUNTING <br></button>
+									</span>
+							</center>
 
+							<center>
+									<span id="wrapper_huntingResults">
+										<!-- <button class="MenuOption" id="button_huntResults" style="width:50w; height:40vh;" onclick="goTown1()">Hunting Results:</button> -->
+									</span>
+							</center>
+
+							<span id="hunt_animal"></span>
+							<span id="fps"></span>
+						</span>
+				</center>
 
 
 		<div id="riverAnimation"></div> <!-- this div is for abosluiste positon of river corss animations -->
 		<div id="wrapper_map">
 			<center><button class="MenuOption" id="button_back" style=" height:10vh; width:15vw;"  onclick="hidemap()"> back </button> </center>
 		</div>
+
+
 		</div> <!--**************************************************** END wrapper_menuHolder div*******************************************************  -->
 
 	</div><!--******************************************************************************** END GameBox Div************************************************************************************** -->
