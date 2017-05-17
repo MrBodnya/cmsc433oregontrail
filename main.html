@@ -278,7 +278,7 @@
 				<div style="float:right; width:17vw; height: 65vh ;">
 				<br><br><br> <button  class="MenuOption" id="button_continuetrail" onclick="startTrail()">Continue on the trail</button>  <br>
 					 <button  class="MenuOption" id="button_checksupplies" onclick="supplyCheck()">Check Supplies</button> <br>
-					 <button  class="MenuOption" id="button_look@map" onclick="">Look at map</button>  <br>
+					 <button  class="MenuOption" id="button_lookatmap" onclick="showMap()">Look at map</button>  <br>
 					 <button  class="MenuOption" id="button_changepace" onclick="choosePace()">Change pace</button> <br>
 					 <button  class="MenuOption" id="button_changefoodration" onclick="chooseFoodRation()">Change food rations</button>  <br>
 					 <button  class="MenuOption" id="button_stop2rest" onclick="stoptoRest()">Stop to rest</button>  <br>
@@ -436,7 +436,7 @@
 			<span id="wrapper_travel_pause_menu">
 				<button  class="MenuOption" id="button_continuetrail_tp" onclick="continueOnTrail()">Continue on the trail</button>  <br>
 				<button  class="MenuOption" id="button_checksupplies_tp" onclick="supplyCheck()">Check Supplies</button> <br>
-				<button  class="MenuOption" id="button_look@map_tp" onclick="">Look at map</button>  <br>
+				<button  class="MenuOption" id="button_look@map_tp" onclick="showMap()">Look at map</button>  <br>
 				<button  class="MenuOption" id="button_changepace_tp" onclick="choosePace()">Change pace</button> <br>
 				<button  class="MenuOption" id="button_changefoodration_tp" onclick="chooseFoodRation()">Change food rations</button>  <br>
 				<button  class="MenuOption" id="button_stop2rest_tp" onclick="stoptoRest()">Stop to rest</button>  <br>
@@ -485,13 +485,33 @@
 
 		</center>
 
+		<center>
+			<span id="wrapper_blueMountainsChoice">
+				<center><button class="MenuOption" id="button_blueMountainsPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center> 
+				<center><button class="MenuOption" id="button_ChooseFortWallaWalla" style=" height:10vh; width:15vw;"  onclick="setBlueMountainPathChoice('Fort Walla Walla')"> Fort Walla Walla </button> </center>
+				<center><button class="MenuOption" id="button_ChooseTheDalles" style=" height:10vh; width:15vw;"  onclick="setBlueMountainPathChoice('The Dalles')"> The Dalles </button> </center>
+			</span>
+
+		</center>
+
+			<center>
+			<span id="wrapper_oregonCityChoice">
+				<center><button class="MenuOption" id="button_oregonCityPrompt" style="height:50vh; width:45vw;"  onclick=""> The Trail Splits in two here.... <br> Which path should I take? <br> The river is closer, but if I go to the fort I can probobly buy more supplies...</button> </center> 
+				<center><button class="MenuOption" id="button_ChooseToll" style=" height:10vh; width:15vw;"  onclick="setOregonCityChoice('Toll')"> Use the Toll Road ($20) </button> </center>
+				<center><button class="MenuOption" id="button_ChooseRaft" style=" height:10vh; width:15vw;"  onclick="setOregonCityChoice('Raft')"> Raft Down The Dalles </button> </center>
+			</span>
+
+		</center>
+
 
 
 
 
 
 		<div id="riverAnimation"></div> <!-- this div is for abosluiste positon of river corss animations -->
-
+		<div id="wrapper_map">
+			<center><button class="MenuOption" id="button_back" style=" height:10vh; width:15vw;"  onclick="hidemap()"> back </button> </center>
+		</div>
 		</div> <!--**************************************************** END wrapper_menuHolder div*******************************************************  -->
 
 	</div><!--******************************************************************************** END GameBox Div************************************************************************************** -->
