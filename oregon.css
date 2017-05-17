@@ -11,9 +11,11 @@
 	transition: background-image 0.5s linear;
 	overflow:hidden;
 	}
-	#canvas{
-		z-index:-2;
+	canvas{
 		position:absolute;
+    border:1px solid #d3d3d3;
+    background-color: #0BEFFF;
+    z-index:5;
 	}
 	#GameBox
 	{
@@ -65,8 +67,8 @@
 	div.wrapper_MenuHolder
 	{
 	animation-name: menuHover ;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
 	border-style:none;
 	}
@@ -396,10 +398,51 @@
 	left:8vw;
 	z-index:3;
 	}
-
+	#wrapper_peopleTalk{
+		display:none;
+		width:30vw;
+		height: 45vh;
+		background-size: 100% 100%;
+		font-family:  'Just Another Hand', Helvetica, sans-serif;
+		background-image: url(Images/openBook.png);
+	}
+	canvas {
+	    border:1px solid #d3d3d3;
+	    background-color: #0BEFFF;
+	    z-index:5;
+	}
 	/****************************************************************END TRAVEL THE TRAIL CSS *****************************************************************/
+	/*********hunting code*******/
+	#wrapper_huntingArea{
+			display: none;
+		}
 
+		#wrapper_huntingResults{
+			display: none;
+		}
 
+		#hunt_animal{
+			display: none;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			background-repeat: no-repeat;
+			z-index: 1;
+		}
+
+		#fps{
+			display: none;
+			width: 308px;
+			height: 195px;
+			position: absolute;
+			background-image: url(Images/fps.png);
+			background-repeat: no-repeat;
+			z-index: 2;
+			left: 250px;
+			top: 300px;
+		}
+
+	/*********END hunting code*******/
 	/********************************************Options Menu Logic********************************************/
 
 	.contrastSlider{ /*Wrapper for the Menu Transparency div which is within the wrapper_optionsMenu div*/
