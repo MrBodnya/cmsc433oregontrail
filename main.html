@@ -137,7 +137,7 @@
 				<span id="wrapper_OxenShop">
 
 				<div id="store_Options" style="float:right; width:17vw; height: 65vh ;"> <br><br><br>
-				<span style="font-size:1.6vw;" >I recommend at least six oxen to pull your wagon.<br>The price per oxen is $20 per oxen.<br>
+				<span style="font-size:1.6vw;" ><br><br>I recommend at least six oxen to pull your wagon.<br>The price per oxen is $20 per oxen.<br>
 					Number of oxen to buy: <input type="number" id="oxen_number">
 					</span> <br>
 					<center><button class="MenuOption" id="button_oxen_buy" onclick="oxen_purchase()">Buy Oxen</button> </center> <br>
@@ -160,8 +160,8 @@
 	<!-- Menu for Buying Food from General Store-->
 			<center>
 				<span id="wrapper_FoodShop">
-				<div id="store_Options" style="float:right; width:17vw; height: 65vh ;"> <br><br>
-				<span style=" font-size:1.6vw;"><br> You'll need plenty of flour, sugar, bacon, coffee, and other types of food.<br> I suggest you start out with at least 200 pounds for each person in your party.<br>
+				<div id="store_Options" style="float:right; padding-right:2vw; width:15vw; height: 65vh;"> <br><br>
+				<span style=" font-size:1.6vw;"><br><br> You'll need plenty of flour, sugar, bacon, coffee, and other types of food.<br> I suggest you start out with at least 200 pounds for each person in your party.<br>
 					The price for food is $0.20 per pound of food.<br>
 					Pounds of food to buy: <input type="number" id="foodp_number"> <br></span>
 					<center><button class="MenuOption" id="button_food_buy" onclick="food_purchase()">Buy Food</button> </center> <br>
@@ -188,8 +188,8 @@
 			<center>
 				<span id="wrapper_ClothesShop">
 
-				<div id="store_Options" style="float:right; width:17vw; height: 65vh ;"> <br><br><br>
-				<span style=" font-size:1.6vw;">You'll need good, warm clothing, especially for the mountains.<br> I recommend taking at least 2 sets of clothing per person.<br>The price for clothing is $10 per one set. </br>
+				<div id="store_Options" style="float:right; padding-right:2vw; width:17vw; height: 65vh ;"> <br><br><br>
+				<span style=" font-size:1.6vw;"><br><br>You'll need good, warm clothing, especially for the mountains.<br> I recommend taking at least 2 sets of clothing per person.<br>The price for clothing is $10 per one set. </br>
 					Sets of clothing to buy: <input type="number" id="clothes_number"></br> </span>
 					<center><button class="MenuOption" id="button_clothes_buy" onclick="clothes_purchase()">Buy Clothes</button> </center> <br>
 					<span style="font-size:2vw;" id="MattsTotalBill_3">Total Bill: notset</span><br>
@@ -215,7 +215,7 @@
 			<center>
 				<span id="wrapper_AmmoShop">
 				<div id="store_Options" style="float:right; width:17vw; height: 65vh ;"> <br><br><br>
-				<span style=" font-size:1.6vw;">You'll need ammunition too.<br> Each box of ammunition contains 20 bullets.<br>The price of ammunition is $2 per box of ammunition.<br>
+				<span style=" font-size:1.6vw;"><br><br>You'll need ammunition too.<br> Each box of ammunition contains 20 bullets.<br>The price of ammunition is $2 per box of ammunition.<br>
 					Number of boxes of ammunition to buy: <input type="number" id="ammo_number"></br></span>
 
 					<center><button class="MenuOption" id="button_ammo_buy" onclick="ammo_purchase()">Buy Ammunition</button> </center> <br>
@@ -238,8 +238,8 @@
 			<center>
 				<span id="wrapper_SpareShop">
 
-				<div id="store_Options" style="float:right; width:25vw; height: 65vh ;"> <br><br><br>
-			<center>	<span style=" font-size:1.6vw;">Finally, you might want to take along some spare wagon parts. Wagon Wheels, axles, and tongues are liable to break along the way.<br> If you're unable to repair a broken wagon, you'll be in big trouble!
+				<div id="store_Options" style="float:right; width:25vw;padding-right:1vw;  height: 65vh ;"> <br><br><br>
+			<center>	<span style=" font-size:1.6vw;"><br>Finally, you might want to take along some spare wagon parts. Wagon Wheels, axles, and tongues are liable to break along the way.<br> If you're unable to repair a broken wagon, you'll be in big trouble!
 					<br> The price for a spare wagon wheel is $10 per wheel.<br>
 					The price for a spare wagon axle is $10 per axle<br>
 					The price for a spare wagon tongue is $10 per tongue<br>
@@ -279,7 +279,7 @@
 
 				<div style="float:right; width:17vw; height: 65vh ;">
 				<br><br><br> <button  class="MenuOption" id="button_continuetrail" onclick="startTrail()">Continue on the trail</button>  <br>
-					 <button  class="MenuOption" id="button_checksupplies" onclick="supplyCheck()">Check Supplies</button> <br>
+					 <button  class="MenuOption" id="button_checksupplies" onclick="supplyCheck()">Check Supplies & Location</button> <br>
 					 <button  class="MenuOption" id="button_lookatmap" onclick="showMap()">Look at map</button>  <br>
 					 <button  class="MenuOption" id="button_changepace" onclick="choosePace()">Change pace</button> <br>
 					 <button  class="MenuOption" id="button_changefoodration" onclick="chooseFoodRation()">Change food rations</button>  <br>
@@ -437,7 +437,7 @@
 		<center>
 			<span id="wrapper_travel_pause_menu">
 				<button  class="MenuOption" id="button_continuetrail_tp" onclick="continueOnTrail()">Continue on the trail</button>  <br>
-				<button  class="MenuOption" id="button_checksupplies_tp" onclick="supplyCheck()">Check Supplies</button> <br>
+				<button  class="MenuOption" id="button_checksupplies_tp" onclick="supplyCheck()">Check Supplies & Location</button> <br>
 				<button  class="MenuOption" id="button_look@map_tp" onclick="showMap()">Look at map</button>  <br>
 				<button  class="MenuOption" id="button_changepace_tp" onclick="choosePace()">Change pace</button> <br>
 				<button  class="MenuOption" id="button_changefoodration_tp" onclick="chooseFoodRation()">Change food rations</button>  <br>
@@ -453,6 +453,7 @@
 				<center><span id="river_info_name"></span></center>
 				<center><span id="river_info_width"></span></center>
 				<center><span id="river_info_depth"></span></center>
+				<center><span id="river_info_price"></span></center>
 				<center><button class="MenuOption" id="button_ford" onclick="fordRiver()">Attempt to ford the river</button></center>
 				<center><button class="MenuOption" id="button_caulk" onclick="caulkRiver()">Caulk the wagon and float it across</button></center>
 				<center><button class="MenuOption" id="button_ferry" onclick="ferryRiver()">Take a ferry across</button></center>
@@ -507,7 +508,7 @@
 
 		<center>
 		<span id="wrapper_peopleTalk">
-			<center><button class="MenuOption" id="button_talkPromot" style="height:50vh; width:45vw;"  onclick="c"> I dont know what to think of the oregon trail, me mum and me dad died when i was wee lass. What do I do now. Will you love me?</button> </center>
+			<center><button class="MenuOption" id="button_talkPrompt" style="font-size:1.5vw; width:50vw; height:50vh;  onclick="">Did you read the Missouri republican today? <br> Says some folks travel without spare parts. What idiots! </button> </center>
 			<center><button class="MenuOption" id="button_ChooseRaft" style=" height:10vh; width:15vw;"  onclick="hideTalk()"> Back</button> </center>
 		</span>
 
@@ -538,8 +539,8 @@
 
 
 		<div id="riverAnimation"></div> <!-- this div is for abosluiste positon of river corss animations -->
-		<div id="wrapper_map">
-			<center><button class="MenuOption" id="button_back" style=" height:10vh; width:15vw;"  onclick="hidemap()"> back </button> </center>
+		<div id="wrapper_map" style="border-style:solid"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<center><button class="MenuOption" id="button_back" style=" height:6vh; width:8vw;"  onclick="hidemap()"> back </button> </center>
 		</div>
 
 
@@ -548,16 +549,16 @@
 	</div><!--******************************************************************************** END GameBox Div************************************************************************************** -->
 
 
-<span style="opacity:0.8;">
+<span style="opacity:0.8; ">
 	<div id="wrapper_optionsMenu">	<!--**************************************************** Options Menu Code*********************************************************************  -->
 
-			<table style="margin-top:44vh; margin-right:2vh;" >
+			<table style="margin-top:44vh; margin-right:12vh;" >
 				<tr>
 					<td> <div class="contrastSlider" style="height:23vh;">
 							<center> Dev Console: <input type="text" id="devConsoleInput" placeholder="Enter a wrapper_XXX name" value="wrapper_menuOptions"> <br>
 								<button id="button_devConsole" onclick="devConsole_Execute('Show1')"> Show </button>
 								<button id="button_devConsole" onclick="devConsole_Execute('Hide1')"> Hide </button>
-								<input type="text" id="devConsoleInput_2" placeholder="Enter a wrapper_XXX name" value="theGame[0].location ='Independence Rock'; "> <br>
+								<input type="text" id="devConsoleInput_2" placeholder="Enter a wrapper_XXX name" value="openShop(); "> <br>
 								<button id="button_devConsole" onclick="devConsole_Execute('executeFunction')"> Execute Function </button><br>
 								<button id="button_devConsole" onclick="devConsole_Execute('fakeGame')"> Set Fake Game </button>
 							</center>

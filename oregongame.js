@@ -47,6 +47,7 @@ function Game(personBackground){
 	this.currMenu = "";
 	this.continueTrail = true;
 	this.SouthPassChoice = 0; //if the user picks to go to fort brigader or green river
+	this.huntedToday = false;
 
 	if (personBackground =="banker"){
 		this.money = 1600;
@@ -576,6 +577,7 @@ function rest(){
 		//ADD LOGIC FOR FOOD/HEALTH SUBTRACTION HERE
 		setRandomTradeValues(); //reset random trader after a day has passed
 		theGame[0].traderPresent = true; //reset trader present so that the player can trade
+		theGame[0].huntedToday = false;
 
 		var healthReduxMultiplier = theGame[0].healthReductionMultiplier; //variable to hold health reduction multiplier
 		var foodEatenPerPerson = (theGame[0].foodperPerson * days) //variable that holds the amount of food each person will be eating is lbs of food per person * the number of days that pass
@@ -602,10 +604,10 @@ function rest(){
 	}
 
 	if(theGame[0].storeType =="Town"){
-		goTown1();
+		goBackToMenu();
 	}
-	else if (theGame[0].storeType =="Trail"){
-		//do not go back to town
+	else if (theGame[0].currMenu =="wrapper_travel_pause_menu" && theGame[0].continueTrail == false){
+		goBackToMenu();
 	}
 
 }
@@ -667,7 +669,7 @@ function acceptTrade(){
 			if (theGame[0].axles < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Axles to make this trade!");}
 			else{theGame[0].axles -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
-		case "Wagon Tonges":
+		case "Wagon Tongues":
 			if (theGame[0].tongues < theGame[0].traderItemQuantityWanted ){ window.alert("You do not have enough Wagon Tongues to make this trade!");}
 			else{theGame[0].tongues -= theGame[0].traderItemQuantityWanted; itemTraded = true;}
 			break;
@@ -959,6 +961,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver("Kansas River");
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A traveler tells you:<br> Some folks think two oxne are enough for the trail... I call em dead men walking";
 			break;
 		case "Big Blue River":
 			theGame[0].currentMilesTraveled = 102;
@@ -968,6 +971,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver("Big Blue River");
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A party leader heading east tells you: <br> I'm tired of all these damn flies and this friggen baking sun!!!!";
 			break;
 
 		case "xxx": //CHANGE
@@ -987,6 +991,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A lady, Marnie Stewart tells you: This prarie is beautiful! look at the wild flowres and tall grass!~ *sigh* I miss town.";
 			break;
 		case "Chimney Rock": //CHANGE
 			theGame[0].currentMilesTraveled = 304;
@@ -996,6 +1001,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="";
 			break;
 		case "Fort Laramie":
 			theGame[0].currentMilesTraveled = 554;
@@ -1005,6 +1011,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A fort solider tells you:<br> THIS FORT IS MY LIFE. I WILL DESTROY ANY AND ALL HEATHENS AT ALL COSTS MUAHUHAUHA";
 			break;
 		case "Independence Rock":
 			theGame[0].currentMilesTraveled = 640;
@@ -1014,6 +1021,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="Big louie, a trail driver, tells you:<br> Don't push those oxen too hard now! They have rights too...";
 			break;
 		case "South Pass":
 			theGame[0].currentMilesTraveled = 830;
@@ -1023,6 +1031,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="Celinda Hines tells you:<br> Did you see chimney Rock?? The thing is sublime in the moonlight.. Many indians tried to trade fish with us for clothing!";
 			break;
 		case "Green River":
 			theGame[0].currentMilesTraveled = 932;
@@ -1032,6 +1041,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver("Green River"); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="Celinda Hines tells you:<br> We meet again! make sure to rest when you need to. Family Survival is priority 1!";
 			break;
 		case "Soda Springs":
 			theGame[0].currentMilesTraveled = 932 +SplitExtraMiles;
@@ -1041,6 +1051,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver(XXX); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A traveler tells you:<br> Some folks think two oxen are enough for the trail... I call em dead men walking";
 			break;
 		case "Fort Hall":
 			theGame[0].currentMilesTraveled = 1201 + SplitExtraMiles;
@@ -1054,6 +1065,7 @@ function setDestinationVariables(destination){
 
 
 			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
+			document.getElementById("button_talkPrompt").innerHTML="A traveler tells you:<br> Some folks think two oxne are enough for the trail... I call em dead men walking";
 			wagonPos = 45;
 			break;
 		case "Snake River Crossing":
@@ -1064,6 +1076,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			setRiver("Snake River"); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A traveler tells you:<br> Some folks think two oxne are enough for the trail... I call em dead men walking";
 			break;
 		case "Fort Boise":
 			theGame[0].currentMilesTraveled = 1,440 + SplitExtraMiles;
@@ -1073,6 +1086,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A traveler tells you:<br> Some folks think two oxne are enough for the trail... I call em dead men walking";
 			break;
 		case "Blue Mountains":
 			theGame[0].currentMilesTraveled = 1,554 + SplitExtraMiles;
@@ -1091,6 +1105,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A traveler tells you:<br> Some folks think two oxne are enough for the trail... I call em dead men walking";
 			break;
 		case "Oregon City":
 			theGame[0].currentMilesTraveled = 1,714 + SplitExtraMiles + AnotherExtraMiles;
@@ -1100,6 +1115,7 @@ function setDestinationVariables(destination){
 			TempMilesLeft = theGame[0].milesLeft;
 			//setRiver("XXX"); // DO NOT SET A RIVER FOR FORT KEARNY
 			wagonPos = 45;
+			document.getElementById("button_talkPrompt").innerHTML="A traveler tells you:<br> Some folks think two oxne are enough for the trail... I call em dead men walking";
 			break;
 
 
@@ -1109,9 +1125,11 @@ function setDestinationVariables(destination){
 }
 
 function pauseOrStarTrail(choice){
+	theGame[0].currWrapper ="wrapper_travel";
 	if(choice =="start"){
 		theGame[0].continueTrail = true;
 		beginMoving();
+		console.log(theGame[0].continueTrail);
 
 	}
 	else if(choice =="pause"){
@@ -1121,17 +1139,28 @@ function pauseOrStarTrail(choice){
 }
 
 function continueOnTrail(){
-	if(theGame[0].milesLeft <=0){ //then you are pressing continue trail after finishing reaching a destination, so we reset your destination variables to the next place
-		document.getElementById("reached_destinationPrompt").style.display ="none";
-		document.getElementById("wrapper_travel_pause_menu").style.display ="none";
-		startTrail();
-
+	if(theGame[0].oxen > 0){
+		if(theGame[0].milesLeft <=0){ //then you are pressing continue trail after finishing reaching a destination, so we reset your destination variables to the next place
+			document.getElementById("reached_destinationPrompt").style.display ="none";
+			document.getElementById("wrapper_travel_pause_menu").style.display ="none";
+			startTrail();
+		}
+		else{ //if miels is not <=0 then we are on a destination still, bring you back to the trail without restarting varaibles
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/MainMenu.png)';
+			document.getElementById("wrapper_travel_pause_menu").style.display ="none";
+			document.getElementById("wrapper_travel").style.display ="block";
+			document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
+			document.getElementById("trail_food").innerHTML = "<u>Food: </u>" + theGame[0].food +"lbs";
+			document.getElementById("trail_health").innerHTML = "<u>Avg Health: </u>" + calcAverageHealth();
+			document.getElementById("trail_weather").innerHTML ="<u>Weather:</u> cold";
+		}
+	
 	}
-	else{ //if miels is not <=0 then we are on a destination still, bring you back to the trail without restarting varaibles
-	document.getElementById("GameBox").style.backgroundImage = 'url(Images/MainMenu.png)';
-	document.getElementById("wrapper_travel_pause_menu").style.display ="none";
-	document.getElementById("wrapper_travel").style.display ="block";
+	else if(theGame[0].oxen <= 0){
+			window.alert("Not Enough Oxen to continue pulling the cart! I Have to look for more by trading!!");
+			goBackToMenu();
 	}
+	
 
 
 
@@ -1199,7 +1228,7 @@ function setOregonCityChoice(choice){
 		startRaft();
 
 	}
-	document.getElementById("wrapper_blueMountainChoice").style.display ="none";
+	document.getElementById("wrapper_blueMountainsChoice").style.display ="none";
 
 }
 
@@ -1234,6 +1263,8 @@ function showPrompt(){
 /*************************************************************START WAGON MOVEMENTS & CALCULATIONS CODE*************************************************/
 function beginMoving(){
 	if(theGame[0].continueTrail == true){
+		
+		if(theGame[0].oxen > 0){
 		if (theGame[0].milesLeft > 0){
 			moveWagon(); //move the wagon if we are not at the destination
 			console.log("moving");
@@ -1243,6 +1274,10 @@ function beginMoving(){
 			//process diseases on family
 			randomEventGenerator();
 			processDisease();
+			document.getElementById("trail_date").innerHTML = "<u>Date: </u>" + getDate(theGame[0].month);
+			document.getElementById("trail_food").innerHTML = "<u>Food: </u>" + theGame[0].food +"lbs";
+			document.getElementById("trail_health").innerHTML = "<u>Avg Health: </u>" + calcAverageHealth();
+			document.getElementById("trail_weather").innerHTML ="<u>Weather:</u> cold";
 			//SEND PLAYER BACK TO MENU IF PLAYER OXEN AMOUNT IS < 0
 			setTimeout(function() {
 	    		// rest of code here
@@ -1260,8 +1295,16 @@ function beginMoving(){
 			theGame[0].location = theGame[0].destinationName; //update location to destination name
 
 		}
-	}
+		
+		}
+		else if(theGame[0].oxen <= 0){
+			window.alert("Not Enough Oxen to continue pulling the cart! I Have to look for more trading!!");
+			goBackToMenu();
+		}
+
+	}	
 	else if(theGame[0].continueTrail == false){ //go back to travel pause menu
+		console.log("GOIN BACK");
 		goBackToMenu();
 	}
 
@@ -1295,11 +1338,11 @@ function animateWagon(miles){
 	var pixelsToMove = (25/TempMilesLeft)*miles; //total pixels to move is (25vw / milesToDestination) * number of miles
 	wagonPos -= pixelsToMove; //new wagon pos is old wagon pos - pixels moved
 	document.getElementById("wagon").style.left = wagonPos + 'vw';
-	console.log("miles left before move: "+theGame[0].milesLeft);
+	//console.log("miles left before move: "+theGame[0].milesLeft);
 	theGame[0].currentMilesTraveled = theGame[0].currentMilesTraveled + Number(miles); //add how many miles were traveled to the current miles traveled variable
 	theGame[0].milesLeft = theGame[0].milesLeft - Number(miles); //reduce miles to destination by miles that the player has traveled
-	console.log("miles left AFTER move: "+theGame[0].milesLeft);
-	console.log("going to move wagon to "+pixelsToMove+"vw, new position will be: "+wagonPos+" total miles traveled: "+theGame[0].currentMilesTraveled);
+	//console.log("miles left AFTER move: "+theGame[0].milesLeft);
+	//console.log("going to move wagon to "+pixelsToMove+"vw, new position will be: "+wagonPos+" total miles traveled: "+theGame[0].currentMilesTraveled);
 	var MilesLeftshown = theGame[0].milesLeft; if(MilesLeftshown < 0){ MilesLeftshown = 0;} //this makes it so negative values are not displayed for miles left
 	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ MilesLeftshown +"("+theGame[0].destinationName+")"; //update ui elements
 	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled; //update ui elements
@@ -1328,6 +1371,7 @@ function displayRiver(){
 	document.getElementById("river_info_name").innerHTML = theGame[0].destinationName;
 	document.getElementById("river_info_width").innerHTML = "River Width: " + river_width;
 	document.getElementById("river_info_depth").innerHTML = "River Depth: " + river_depth;
+	document.getElementById("river_info_price").innerHTML = "Ferry Price: $" + ferry_price;
 
 }
 
@@ -1443,6 +1487,7 @@ function caulkRiver(){
 }
 
 function ferryRiver(){
+
 	if(ferry_price > theGame[0].money){
 		window.alert("Sorry, not enough money to pay for ferry!");
 	}else{
@@ -1850,9 +1895,11 @@ function learnTheTrail(){
 
 /*********************************Helper Functions*********************************/
 function winGame(){
-	window.alert("YOU WON THE GAME!");
-	var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
+	
 
+	var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
+	window.alert("YOU WON THE GAME! Your Score: "+score );
+	
 	saveHighScore(theGame[0].game_family[0].p_name, score);
 
 }
@@ -1924,7 +1971,7 @@ function calcAverageHealth(){ //takes the average of your family members health
 		}, 300);
 	}
 	//console.log("Average health is: "+(HealthTotal/5) );
-
+	else{
 	switch (true){
 		case ( (HealthTotal/5) > 75 ):
 			return ("<font color='green'>"+(HealthTotal/5)+"</font>");
@@ -1951,6 +1998,10 @@ function calcAverageHealth(){ //takes the average of your family members health
 			break;
 	}
 	return "Invalid health amount";
+	
+
+	}
+	
 
 }
 
@@ -2344,24 +2395,37 @@ function randomEventGenerator(){
 }
 /***********************************huntING CODE**************************************/
 function learnToHunt(){
-	document.getElementById("wrapper_townMenu").style.display="none";
-	document.getElementById("wrapper_travel_pause_menu").style.display="none";
-	document.getElementById("wrapper_learnToHunt").style.display="block";
-	document.getElementById("wrapper_huntingArea").style.display="block";
-	document.getElementById("GameBox").style.backgroundImage = 'url(Images/hunting_field2.jpg)';
+		 if(theGame[0].huntedToday == false){
+			document.getElementById("wrapper_townMenu").style.display="none";
+			document.getElementById("wrapper_travel_pause_menu").style.display="none";
+			document.getElementById("wrapper_learnToHunt").style.display="block";
+			document.getElementById("wrapper_huntingArea").style.display="block";
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/hunting_field2.jpg)';
+		 }
+		else{
+		document.getElementById("button_talkPrompt").innerHTML= "You can't hunt anymore for today! Try again tommorow.";
+	 	showTalk();
+		//document.getElementById("wrapper_peopleTalk").style.display = "block";
+		
+
+	 }
 }
 
 var originalFood; // variable to store amt of food before hunting
 function startHunting(){
-	document.getElementById("wrapper_learnToHunt").style.display="none";
-	document.getElementById("fps").style.display="block";
-	var randomHunts = Math.floor((Math.random() * 3) + 1);
-	originalFood = theGame[0].food;
-	createAnimals();
-	goHunting(randomHunts);
+	 	document.getElementById("wrapper_learnToHunt").style.display="none";
+		document.getElementById("fps").style.display="block";
+		var randomHunts = Math.floor((Math.random() * 3) + 1);
+		originalFood = theGame[0].food;
+		createAnimals();
+		goHunting(randomHunts);
+
+
+	
 }
 
 function goHunting(numHunts){
+	theGame[0].huntedToday = true;
 	var shotsound = document.getElementById("audio_shotSound");
 	if (numHunts > 0) {
 		// restores health of each animal
@@ -2451,13 +2515,9 @@ function huntingResults(){
 	results.style.display="block";
 
 	// create button to display results
-	var r = document.createElement('button');
-	r.setAttribute('class', 'MenuOption');
-	r.setAttribute('onclick', 'goBackToMenu()');
-	r.setAttribute('style', 'width:50w; height:40vh');
-	r.setAttribute('id', 'button_huntResults');
-	r.innerHTML = "Sorry! Looks like that's all the animals that are out today.<br><h3>Hunting Results</h3>Pounds of food: " + Number(foodWon) + "<br>Ammo left: " + Number(theGame[0].ammo);
-	results.appendChild(r);
+	document.getElementById("button_talkPrompt").innerHTML= "Sorry! Looks like that's all the animals that are out today.<br><h3>Hunting Results</h3>Pounds of food: " + Number(foodWon) + "<br>Ammo left: " + Number(theGame[0].ammo);
+	showTalk();
+
 }
 
 function saveHighScore(name, score){
@@ -2585,29 +2645,64 @@ function component(width, height, color, x, y, type) {
 	return crash;
 	}
 }
-
+var health = 0;
 function updateGameArea() {
 	var x, height, gap, minHeight, maxHeight, minGap, maxGap;
 	if (myGameArea.frameNo > 4500){
-			alert("Ya Dingus!!!! You've missed the docks! Looks like youre taking the long way home -_-");
+			alert("Ya Dingus!!!! You've missed the docks! Looks like youre taking the long way home.....DOWN THE WATERFALL.... -_-");
 			myGameArea.stop();
+			document.getElementsByTagName("body")[0].style.background = "#890808";
+			document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlackScreen.png)';
+			document.getElementById("div_Menu").style.display ="none";
+			setTimeout(function() {
+    		// rest of code here
+    			window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
+				location.reload();
+			}, 300);
+
 		}
 	for (i = 0; i < myLogs.length; i+= 1){
 		if (myGamePiece.crashWith(myLogs[i])){
 			alert("You hit something m8, get rekt skrub");
-			myGamePiece.x += 30;
+			myGamePiece.x += 34;
+			health += 50;
+			if (health >=100){
+				document.getElementsByTagName("body")[0].style.background = "#890808";
+				document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlackScreen.png)';
+				document.getElementById("div_Menu").style.display ="none";
+				setTimeout(function() {
+    			// rest of code here
+    				window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
+					location.reload();
+				}, 300);
+
+			}
 		}
 	}
 	for (i = 0; i < myRocks.length; i+= 1){
 		if (myGamePiece.crashWith(myRocks[i])){
 			alert("You hit something m8, get rekt skrub");
-			myGamePiece.x += 30;
+			health += 50;
+			myGamePiece.x += 34;
+			if (health >=100){
+
+				document.getElementsByTagName("body")[0].style.background = "#890808";
+				document.getElementById("GameBox").style.backgroundImage = 'url(Images/BlackScreen.png)';
+				document.getElementById("div_Menu").style.display ="none";
+				setTimeout(function() {
+    			// rest of code here
+    				window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
+					location.reload();
+				}, 300);
+				
+			}
 		}
 	}
 	for (i = 0; i < myDock.length; i+= 1){
 		if (myGamePiece.crashWith(myDock[i])){
-			alert("You've made it to the dock");
+			alert("You've made it to the dock ");
 			myGameArea.stop();
+			winGame();
 			}
 	}
 	myGameArea.clear();
