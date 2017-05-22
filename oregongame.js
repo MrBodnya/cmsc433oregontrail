@@ -48,6 +48,7 @@ function Game(personBackground){
 	this.continueTrail = true;
 	this.SouthPassChoice = 0; //if the user picks to go to fort brigader or green river
 	this.huntedToday = false;
+	this.totalMiles = 0;
 
 	if (personBackground =="banker"){
 		this.money = 1600;
@@ -596,7 +597,7 @@ function rest(){
 				theGame[0].food -= foodEatenPerPerson_AfterStockCheck; //reduce food stock by the total amount this individual is eating after the stock check.
 				theGame[0].game_family[i].health += (foodEatenPerPerson_AfterStockCheck * 4) //a person gains 4 points of health per lb of food, they gain this health for each day that passes: total lbs of food eaten * 4hp points
 				if (theGame[0].game_family[i].health > 100) {theGame[0].game_family[i].health = 100;} //if a persons health exceeds 100, change it back to 100.
-				if (theGame[0].game_family[i].health <= 0) {theGame[0].game_family[i].health = 0; window.alert(theGame[0].game_family[i].p_name +" HAS DIED NOOOOOOOOOOOO!!!!! ;("); }
+				if (theGame[0].game_family[i].health <= 0) {theGame[0].game_family[i].health = 0; saveTombstone( getDate(theGame[0].month),theGame[0].game_family[i],theGame[0].totalMiles,"Here lies idiot."); window.alert(theGame[0].game_family[i].p_name +" HAS DIED NOOOOOOOOOOOO!!!!! ;( "); }
 
 				console.log(theGame[0].game_family[i].p_name +" has eaten "+foodEatenPerPerson_AfterStockCheck+" lbs of food. and gained "+(foodEatenPerPerson_AfterStockCheck * 4)+" hp points, health is now: "+theGame[0].game_family[i].health);
 			}
@@ -1213,7 +1214,7 @@ function setOregonCityChoice(choice){
 		document.getElementById("wrapper_oregonCityChoice").style.display ="none";
 
 		//END THE GAME HERE
-		winGame();
+
 		//location.reload();
 		//PUSH CODE TO DB
 
@@ -1346,6 +1347,7 @@ function animateWagon(miles){
 	var MilesLeftshown = theGame[0].milesLeft; if(MilesLeftshown < 0){ MilesLeftshown = 0;} //this makes it so negative values are not displayed for miles left
 	document.getElementById("trail_nextLandmark").innerHTML ="<u>Next Landmark:</u> "+ MilesLeftshown +"("+theGame[0].destinationName+")"; //update ui elements
 	document.getElementById("trail_milesTraveled").innerHTML ="<u>Miles Traveled:</u> "+ theGame[0].currentMilesTraveled; //update ui elements
+	theGame[0].totalMiles += miles;
 }
 
 
@@ -1899,8 +1901,8 @@ function winGame(){
 
 	var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
 	window.alert("YOU WON THE GAME! Your Score: "+score );
-	
-	saveHighScore(theGame[0].game_family[0].p_name, score);
+
+	winGame(theGame[0].game_family[0].p_name,score);
 
 }
 
@@ -1966,7 +1968,11 @@ function calcAverageHealth(){ //takes the average of your family members health
 		document.getElementById("div_Menu").style.display ="none";
 		setTimeout(function() {
     		// rest of code here
+    		var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
+
+			saveDeath(theGame[0].game_family[0].p_name,score);
     		window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
+
 		location.reload();
 		}, 300);
 	}
@@ -1991,6 +1997,9 @@ function calcAverageHealth(){ //takes the average of your family members health
 			document.getElementById("div_Menu").style.display ="none";
 			setTimeout(function() {
     		// rest of code here
+    		var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
+
+			saveDeath(theGame[0].game_family[0].p_name,score);
     		window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
 			location.reload();
 			}, 300);
@@ -2099,6 +2108,12 @@ function showMap(){
 
 function hidemap(){
 	document.getElementById("wrapper_map").style.display = "none";
+}
+function showScores(){
+
+document.getElementById("wrapper_peopleTalk").style.display = "block";
+document.getElementById("button_talkPrompt").style.height = 45+"vh";
+document.getElementById("button_talkPrompt").innerHTML="<center><table style='font-size:1.5vw;'><tr><td>Satan: 1557 </td></tr>  <tr><td>Sean: 1237 </td></tr>  <tr><td>Christie: 1115 </td></tr>  <tr><td>Andrei: 1102 </td></tr>  <tr><td>Malik: 1008 </td></tr> <tr><td>Adnan: 942 </td></tr> <tr><td>Jacob: 469</td> </tr> <tr><td>Jon: 201 </td></tr> <tr><td>James: 1237 </td></tr></table></center>";
 }
 function devConsole_Execute(input){ // show and/or hide an html element or run a function
 
@@ -2266,6 +2281,7 @@ function killPersonRandom(){
 	var who = Math.floor((Math.random()*4)+0);
 	if(Number(theGame[0].game_family[who].health) != 0){
 		theGame[0].game_family[who].health = 0;
+		saveTombstone( getDate(theGame[0].month),theGame[0].game_family[who],theGame[0].totalMiles,"Here lies idiot.");
 		window.alert(theGame[0].game_family[who].p_name + " has died.");
 	}else{
 		killPerson();
@@ -2520,7 +2536,7 @@ function huntingResults(){
 
 }
 
-function saveHighScore(name, score){
+function winGame(name, score){
 	$.ajax({ url: "proj2.php",
 		method: "POST",
 		data: {'username': name, 'score': score},
@@ -2535,7 +2551,7 @@ function saveHighScore(name, score){
 }
 
 function saveDeath(time, message, mile){
-	$.ajax({ url: "deaths.php",
+	$.ajax({ url: "proj2.php",
 		method: "POST",
 		data: {'time': time, 'message': message, 'mile': mile},
 		//dataType: 'text',
@@ -2549,7 +2565,7 @@ function saveDeath(time, message, mile){
 }
 
 function saveTombstone(dod, name, mile, message){
-	$.ajax({ url: "tombstones.php",
+	$.ajax({ url: "proj2.php",
 		method: "POST",
 		data: {'dod': dod, 'name': name, 'mile': mile, 'message': message},
 		//dataType: 'text',
@@ -2656,6 +2672,9 @@ function updateGameArea() {
 			document.getElementById("div_Menu").style.display ="none";
 			setTimeout(function() {
     		// rest of code here
+    		var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
+
+			saveDeath(theGame[0].game_family[0].p_name,score);
     			window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
 				location.reload();
 			}, 300);
@@ -2672,6 +2691,9 @@ function updateGameArea() {
 				document.getElementById("div_Menu").style.display ="none";
 				setTimeout(function() {
     			// rest of code here
+    			var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
+
+			saveDeath(theGame[0].game_family[0].p_name,score);
     				window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
 					location.reload();
 				}, 300);
@@ -2691,6 +2713,9 @@ function updateGameArea() {
 				document.getElementById("div_Menu").style.display ="none";
 				setTimeout(function() {
     			// rest of code here
+    			var score = (theGame[0].food +theGame[0].money + theGame[0].oxen+ theGame[0].wheels + theGame[0].axles +theGame[0].tongues+ theGame[0].clothes) * theGame[0].pointsMulti;
+
+			saveDeath(theGame[0].game_family[0].p_name,score);
     				window.alert( "Your Family has all died, how careless of you. You are trash. I'm going to just refresh the page for you, you useless idiot....");
 					location.reload();
 				}, 300);
